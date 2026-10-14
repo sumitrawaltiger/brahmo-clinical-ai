@@ -1,0 +1,18 @@
+{
+  "_comment": "Cited reference ceilings used ONLY to annotate an aggregate exposure figure. Each entry must cite a document in the corpus. No ceiling is ever applied to a patient; population is stated verbatim from the source.",
+  "ceilings": [
+    {
+      "ingredient": "Paracetamol",
+      "population": "adult",
+      "max_mg_per_day": 3000,
+      "as_written": "max 3 g/day adult",
+      "source_doc": "STW-GP-01",
+      "source_version": "2025.1",
+      "source_effective": "2025-04-01",
+      "source_section": "FIRST-LINE MANAGEMENT",
+      "corroborated_by": [
+        {"source_doc": "STW-GP-04", "source_version": "2024.2", "as_written": "max 3 g/day", "source_section": "OPD MANAGEMENT"}
+      ]
+    }
+  ]
+}

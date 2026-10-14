@@ -1,0 +1,32 @@
+{
+  "_comment": "Maps question vocabulary to corpus condition keys. A question whose detected condition has no document in the corpus abstains before retrieval. Keys are the condition slugs assigned at chunking time; the 'absent' list names conditions we know doctors ask about that the provided corpus does NOT cover, so the abstention can name what is missing.",
+  "conditions": {
+    "acute_pharyngitis": ["pharyngitis", "sore throat", "tonsillitis", "strep throat", "streptococcal"],
+    "hypertension": ["hypertension", "hypertensive", "blood pressure", "bp ", "htn"],
+    "type_2_diabetes": ["diabetes", "diabetic", "t2dm", "hba1c", "metformin", "glycemic", "glycaemic"],
+    "dengue": ["dengue"],
+    "iron_deficiency_anemia_pregnancy": ["anemia", "anaemia", "iron deficiency", "haemoglobin", "hemoglobin", "ferrous"],
+    "uti_pregnancy": ["urinary tract infection", "uti", "urinary antibiotic", "cystitis", "dysuria", "nitrofurantoin"],
+    "pcos": ["pcos", "polycystic"],
+    "acute_low_back_pain": ["low back pain", "back pain", "lumbar", "lbp"],
+    "knee_osteoarthritis": ["osteoarthritis", "knee oa", "knee pain"],
+    "acute_otitis_media": ["otitis media", "ear infection", "aom", "ear pain"],
+    "childhood_pneumonia": ["pneumonia"],
+    "acute_gastroenteritis": ["gastroenteritis", "diarrhoea", "diarrhea", "loose stool", "ors", "zinc", "dehydration"],
+    "acute_undifferentiated_fever_adult": ["undifferentiated fever", "acute fever", "fever without", "fever persists", "empirical antibiotic"]
+  },
+  "absent_conditions": {
+    "migraine": ["migraine", "headache prophylaxis"],
+    "pulmonary_tuberculosis": ["tuberculosis", "tb ", " tb", "pulmonary tb", "anti-tubercular", "att regimen"],
+    "asthma": ["asthma"],
+    "copd": ["copd"],
+    "malaria": ["malaria"],
+    "typhoid": ["typhoid", "enteric fever"],
+    "epilepsy": ["epilepsy", "seizure"],
+    "depression": ["depression", "antidepressant"]
+  },
+  "pregnancy_markers": ["pregnan", "weeks of gestation", "trimester", "antenatal"],
+  "paediatric_markers": ["child", "children", "paediatric", "pediatric", "year-old", "year old", "infant", "months old"],
+  "dose_markers": ["dose", "mg/kg", "how much", "how many mg"],
+  "local_protocol_markers": ["clinic's own", "clinic protocol", "local protocol", "our protocol", "sop", "per the clinic"]
+}

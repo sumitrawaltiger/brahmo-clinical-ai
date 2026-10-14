@@ -1,0 +1,84 @@
+{
+  "_comment": "All runtime configuration. No thresholds, paths or list locations are hardcoded in code. Override any key with env BRAHMO_<KEY> (upper-case, dots -> __).",
+  "db": {
+    "path": "build/brahmo.sqlite",
+    "migrations_dir": "migrations"
+  },
+  "data": {
+    "cdci": "data/cdci_drug_subset.csv",
+    "nlem": "data/nlem_extract.csv",
+    "jan_aushadhi": "data/jan_aushadhi_extract.csv",
+    "gazette": "data/regulatory_gazette_events.csv",
+    "pharmacy_stock": "data/pharmacy_stock.csv",
+    "interactions": "data/severe_interaction_seed.csv",
+    "seed_prescriptions": "data/seed_prescriptions_template.csv",
+    "stock_reference_date": "2026-10-14",
+    "_stock_reference_date_note": "Date against which stock expiry is judged; the packet carries no 'as of' date for the stock file."
+  },
+  "corpus": {
+    "dir": "corpus",
+    "stw_glob": "STW_*.pdf",
+    "local_protocols": ["corpus/local_protocol_acute_fever.md"],
+    "index_path": "build/rag_index.json"
+  },
+  "freshness": {
+    "_comment": "A data set older than max_age_days relative to the check date yields DATA_EXPIRED. Clinical cutoff dates are a product decision; these values are placeholders to be set by the clinical owner.",
+    "drug_master_max_age_days": 400,
+    "regulatory_max_age_days": 400,
+    "interaction_seed_max_age_days": 400
+  },
+  "resolver": {
+    "_comment": "Confidence values attached to each resolution method; nothing below auto_accept_min is ever auto-resolved.",
+    "auto_accept_min": 0.90,
+    "method_confidence": {
+      "exact_brand_strength_form": 0.99,
+      "exact_brand_strength": 0.97,
+      "exact_brand_form": 0.95,
+      "exact_brand_unique": 0.95,
+      "normalized_billing_string": 0.93,
+      "alias_table": 0.92,
+      "fuzzy_suggestion": 0.50,
+      "llm_suggestion": 0.60
+    },
+    "fuzzy_cutoff": 0.72,
+    "fuzzy_max_candidates": 5,
+    "llm_assist_enabled": false
+  },
+  "rail": {
+    "rule_set_path": "config/rules.json",
+    "reference_ceilings_path": "config/reference_ceilings.json",
+    "frequency_patterns_path": "config/frequency_patterns.json",
+    "restricted_severity": "MODERATE",
+    "prohibited_severity": "SEVERE",
+    "withdrawn_severity": "SEVERE",
+    "duplicate_severity": "MODERATE",
+    "interaction_require_ingredient_coverage": true
+  },
+  "retrieval": {
+    "bm25_k1": 1.5,
+    "bm25_b": 0.75,
+    "top_k": 8,
+    "rrf_k": 60,
+    "min_fused_score": 0.012,
+    "lexical_weight": 1.0,
+    "semantic_weight": 1.0,
+    "current_only_default": true,
+    "embedding_provider": "local_hashed",
+    "embedding_model": "local-hashed-char-ngram-v1",
+    "embedding_dims": 512,
+    "condition_synonyms_path": "config/condition_synonyms.json"
+  },
+  "answering": {
+    "mode": "extractive",
+    "_mode_note": "extractive = deterministic verbatim decision units with citations (default, no network). llm = Claude composes from retrieved units; every claim is re-verified against cited text before it is shown.",
+    "llm_model": "claude-sonnet-5-5",
+    "llm_max_tokens": 1200,
+    "prompt_path": "prompts/runtime/grounded_answer_v1.md",
+    "max_claims": 8,
+    "numeric_guard": true
+  },
+  "trace": {
+    "schema_version": "1.0",
+    "output_dir": "outputs"
+  }
+}

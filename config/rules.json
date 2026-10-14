@@ -1,0 +1,36 @@
+{
+  "rule_set_id": "brahmo-rail-rules",
+  "rule_set_version": "1.0.0",
+  "status_vocabulary": [
+    "HIT",
+    "CHECKED_NO_HIT",
+    "PARTIAL_COVERAGE",
+    "UNVERIFIED_INPUT",
+    "NOT_CHECKED",
+    "DATA_EXPIRED",
+    "SOURCE_CONFLICT",
+    "SERVICE_UNAVAILABLE"
+  ],
+  "rules": {
+    "DUP-001": {
+      "version": "1.0.0",
+      "name": "duplicate_active_ingredient",
+      "description": "Same active ingredient present in two or more distinct prescription items after FDC decomposition. Evidence carries the per-ingredient aggregate daily exposure."
+    },
+    "FDC-001": {
+      "version": "1.1.0",
+      "name": "prohibited_or_restricted_product",
+      "description": "Any item whose ingredient set (exact for FDC targets, subset for ingredient targets) carries an in-force PROHIBITED / RESTRICTED / WITHDRAWN regulatory status as of the check date, derived from the event-sourced register."
+    },
+    "INT-001": {
+      "version": "1.0.0",
+      "name": "severe_interaction_seed",
+      "description": "Any unordered ingredient pair across the whole prescription present in the severe-interaction seed list. Coverage is declared: ingredients absent from the seed list make the check PARTIAL_COVERAGE."
+    },
+    "CUM-001": {
+      "version": "1.0.0",
+      "name": "cumulative_ingredient_exposure",
+      "description": "Per-ingredient daily total across all items (units/day x strength). Reported for every shared ingredient; annotated against cited reference ceilings only, never computed for a patient."
+    }
+  }
+}

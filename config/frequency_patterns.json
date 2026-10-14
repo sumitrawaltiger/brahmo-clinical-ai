@@ -1,0 +1,11 @@
+{
+  "_comment": "How dose_frequency strings are parsed into units per day. Anything that does not match a pattern is UNPARSEABLE and makes cumulative totals partial. 'as_needed' tokens never produce a number.",
+  "as_needed_tokens": ["SOS", "PRN", "AS NEEDED", "WHEN REQUIRED"],
+  "patterns": [
+    {"regex": "^(\\d+(?:\\.\\d+)?)-(\\d+(?:\\.\\d+)?)-(\\d+(?:\\.\\d+)?)(?:-(\\d+(?:\\.\\d+)?))?(?:\\s*[xX×]\\s*(\\d+)\\s*[dD](?:ays?)?)?$", "kind": "morning_noon_night", "note": "1-0-1 x 5d"},
+    {"regex": "^(?:OD|once daily|1x/day)$", "kind": "fixed", "units_per_day": 1},
+    {"regex": "^(?:BD|BID|twice daily|2x/day)$", "kind": "fixed", "units_per_day": 2},
+    {"regex": "^(?:TDS|TID|thrice daily|three times daily|3x/day)$", "kind": "fixed", "units_per_day": 3},
+    {"regex": "^(?:QID|four times daily|4x/day)$", "kind": "fixed", "units_per_day": 4}
+  ]
+}
