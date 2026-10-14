@@ -329,3 +329,46 @@ Six of the fourteen findings were behavioural (D-025..D-030); the regression tes
 63. The common thread: each was a place where the *shape* of the honest state existed but one path did not reach it
 (a flag not read, a filter not applied, a key name mismatch). The lesson for `CLAUDE.md`: every "never" in the rules
 needs a test that tries to do it.
+
+## Decisions added with the robustness and stretch work (2026-10-14, later)
+
+### D-031 — Colloquial prescription spellings resolve deterministically; single-variant families resolve with a visible lower confidence
+- **Decision:** `strip_form_tokens` removes leading/trailing form tokens ("Tab.", "T.", "Syp", "cap") and keeps the
+  implied form as a filter; a brand family with exactly one variant in the serving master ("Sinarest" → Sinarest
+  Tablet, "Dolo" → Dolo 650) resolves with method `brand_family_unique` at confidence 0.92 (config). A family with
+  two or more variants stays `AMBIGUOUS`. "Inj" maps to a real form so an injection written for a tablet-only brand
+  is `FORM_MISMATCH`, not a silent tablet. Measured by `brahmo resolver-eval` on 45 messy spellings
+  (`data/eval/messy_prescription_spellings.json`): 45 correct, 0 wrong.
+- **Why:** Held-out prescriptions will be written the way doctors write, not the way the template is. Each
+  avoidable `UNVERIFIED_INPUT` is a check that did not run.
+- **Rejected:** Fuzzy auto-accept (D-003 still stands); treating a single-variant family as "exact" (it is not —
+  the confidence tag says so, and a future master with more variants flips it to ambiguous automatically).
+- **Implication:** This is the "alias handling for colloquial spellings" stretch item; the alias table remains the
+  place for spellings that are not derivable (true typos), fed by review decisions.
+
+### D-032 — Intent completion for one-page workflows
+- **Decision:** When the condition is known, the answerer adds that workflow's *current* units whose type matches
+  the question's intent (antibiotic/treat/dose → recommendation; refer/admit → red flag; avoid/can I give →
+  contraindication; diagnose/cut-off → assessment; how often → monitoring), in addition to lexically matching units.
+  Units remain verbatim and cited; the `considered` list marks them `added_by: intent:<type>`.
+- **Why:** "Which antibiotic and for how long?" shares no word with "Amoxicillin 500 mg three times daily for 5
+  days". On a one-page workflow the honest, complete answer is the section, not the best-matching line. Measured on
+  a 35-question paraphrase set (`data/eval/paraphrase_questions.json`): 35 correct, 0 wrong, 0 uncited numbers.
+- **Rejected:** Pure retrieval ranking (6/35 incomplete); LLM re-ranking (a model call on the answer path).
+- **Implication:** At corpus scale the intent filter is a metadata filter on unit type; it does not grow with
+  corpus size, but the condition filter must stay precise (D-026).
+
+### D-033 — Freshness mechanism, demonstrated
+- **Decision:** `brahmo freshness-demo` loads a synthetic v2 register (v1 + one labelled demo notification) into a
+  throw-away database as a new batch and shows: status before, after, at a check date between publication and
+  effect (pending), and replay against the v1 batch after v2 exists; the rail's FDC-001 on RX03 flips from
+  `CHECKED_NO_HIT` to `HIT` with the v2 batch id in `data_versions`. Output in `outputs/freshness_demo.md`.
+- **Why:** The stretch item asks "what happens when a new gazette notification arrives"; the batch machinery
+  already answered it, this makes it runnable and visible. The production gate (re-eval before promotion) is in
+  the Part 2 plan, not built.
+- **Rejected:** Mutating the serving database for the demo (would leave a synthetic event in the register).
+
+### D-034 — Continuous reproduction
+- **Decision:** A GitHub Actions workflow runs `make reproduce` on Python 3.9 and 3.12 on every push and fails if
+  any checked-in output other than ingestion-timestamped files differs from what the code produces.
+- **Why:** G1 is a claim until a machine that is not mine has done it.

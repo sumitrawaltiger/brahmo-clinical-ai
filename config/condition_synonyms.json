@@ -1,32 +1,337 @@
 {
-  "_comment": "Maps question vocabulary to corpus condition keys. A question whose detected condition has no document in the corpus abstains before retrieval. Keys are the condition slugs assigned at chunking time; the 'absent' list names conditions we know doctors ask about that the provided corpus does NOT cover, so the abstention can name what is missing.",
+  "_comment": "Maps question vocabulary to corpus condition keys. Terms match on word boundaries (see rag/analysis.py). A question whose detected condition has no document in the corpus abstains before retrieval. Keys are the condition slugs assigned at chunking time; 'absent_conditions' names topics doctors ask about that the provided corpus does NOT cover, so the abstention can name what is missing. Grow both lists from the abstention log.",
   "conditions": {
-    "acute_pharyngitis": ["pharyngitis", "sore throat", "tonsillitis", "strep throat", "streptococcal"],
-    "hypertension": ["hypertension", "hypertensive", "blood pressure", "bp ", "htn"],
-    "type_2_diabetes": ["diabetes", "diabetic", "t2dm", "hba1c", "metformin", "glycemic", "glycaemic"],
-    "dengue": ["dengue"],
-    "iron_deficiency_anemia_pregnancy": ["anemia", "anaemia", "iron deficiency", "haemoglobin", "hemoglobin", "ferrous"],
-    "uti_pregnancy": ["urinary tract infection", "uti", "urinary antibiotic", "cystitis", "dysuria", "nitrofurantoin"],
-    "pcos": ["pcos", "polycystic"],
-    "acute_low_back_pain": ["low back pain", "back pain", "lumbar", "lbp"],
-    "knee_osteoarthritis": ["osteoarthritis", "knee oa", "knee pain"],
-    "acute_otitis_media": ["otitis media", "ear infection", "aom", "ear pain"],
-    "childhood_pneumonia": ["pneumonia"],
-    "acute_gastroenteritis": ["gastroenteritis", "diarrhoea", "diarrhea", "loose stool", "ors", "zinc", "dehydration"],
-    "acute_undifferentiated_fever_adult": ["undifferentiated fever", "acute fever", "fever without", "fever persists", "empirical antibiotic"]
+    "acute_pharyngitis": [
+      "pharyngitis",
+      "sore throat",
+      "throat infection",
+      "tonsillitis",
+      "tonsillar",
+      "tonsils",
+      "strep throat",
+      "streptococcal",
+      "centor",
+      "viral sore throat"
+    ],
+    "hypertension": [
+      "hypertension",
+      "hypertensive",
+      "blood pressure",
+      "high bp",
+      "bp",
+      "htn",
+      "antihypertensive",
+      "amlodipine",
+      "telmisartan",
+      "atenolol"
+    ],
+    "type_2_diabetes": [
+      "diabetes",
+      "diabetic",
+      "t2dm",
+      "hba1c",
+      "metformin",
+      "glimepiride",
+      "glycemic",
+      "glycaemic",
+      "fpg",
+      "fasting plasma glucose",
+      "blood sugar",
+      "sugar"
+    ],
+    "dengue": [
+      "dengue",
+      "ns1"
+    ],
+    "iron_deficiency_anemia_pregnancy": [
+      "anemia",
+      "anaemia",
+      "anaemic",
+      "anemic",
+      "iron deficiency",
+      "haemoglobin",
+      "hemoglobin",
+      "hb",
+      "ferrous",
+      "iron tablets",
+      "iron supplement"
+    ],
+    "uti_pregnancy": [
+      "urinary tract infection",
+      "uti",
+      "urine infection",
+      "urinary infection",
+      "urinary antibiotic",
+      "cystitis",
+      "dysuria",
+      "burning micturition",
+      "nitrofurantoin",
+      "pyelonephritis"
+    ],
+    "pcos": [
+      "pcos",
+      "polycystic",
+      "rotterdam",
+      "hirsutism",
+      "oligomenorrhoea",
+      "oligomenorrhea",
+      "anovulation"
+    ],
+    "acute_low_back_pain": [
+      "low back pain",
+      "back pain",
+      "backache",
+      "lumbar",
+      "lumbago",
+      "lbp",
+      "sciatica",
+      "spinal tenderness"
+    ],
+    "knee_osteoarthritis": [
+      "osteoarthritis",
+      "knee oa",
+      "oa knee",
+      "knee pain",
+      "knee",
+      "crepitus"
+    ],
+    "acute_otitis_media": [
+      "otitis media",
+      "otitis",
+      "ear infection",
+      "aom",
+      "ear pain",
+      "earache",
+      "eardrum",
+      "tympanic"
+    ],
+    "childhood_pneumonia": [
+      "pneumonia",
+      "fast breathing",
+      "chest indrawing"
+    ],
+    "acute_gastroenteritis": [
+      "gastroenteritis",
+      "diarrhoea",
+      "diarrhea",
+      "loose stool",
+      "loose stools",
+      "loose motion",
+      "loose motions",
+      "ors",
+      "zinc",
+      "rehydration",
+      "dehydration",
+      "antimotility",
+      "loperamide"
+    ],
+    "acute_undifferentiated_fever_adult": [
+      "undifferentiated fever",
+      "acute fever",
+      "fever without",
+      "fever persists",
+      "fever protocol",
+      "empirical antibiotic",
+      "empirical antibiotics",
+      "pyrexia"
+    ]
   },
   "absent_conditions": {
-    "migraine": ["migraine", "headache prophylaxis"],
-    "pulmonary_tuberculosis": ["tuberculosis", "tb ", " tb", "pulmonary tb", "anti-tubercular", "att regimen"],
-    "asthma": ["asthma"],
-    "copd": ["copd"],
-    "malaria": ["malaria"],
-    "typhoid": ["typhoid", "enteric fever"],
-    "epilepsy": ["epilepsy", "seizure"],
-    "depression": ["depression", "antidepressant"]
+    "migraine": [
+      "migraine",
+      "headache prophylaxis",
+      "migraine prophylaxis"
+    ],
+    "pulmonary_tuberculosis": [
+      "tuberculosis",
+      "tb",
+      "pulmonary tb",
+      "anti-tubercular",
+      "antitubercular",
+      "att regimen",
+      "att"
+    ],
+    "asthma": [
+      "asthma",
+      "asthmatic",
+      "inhaler"
+    ],
+    "copd": [
+      "copd",
+      "chronic obstructive"
+    ],
+    "malaria": [
+      "malaria",
+      "malarial",
+      "antimalarial",
+      "chloroquine",
+      "artemisinin"
+    ],
+    "typhoid": [
+      "typhoid",
+      "enteric fever"
+    ],
+    "epilepsy": [
+      "epilepsy",
+      "seizure",
+      "seizures",
+      "antiepileptic",
+      "convulsion disorder"
+    ],
+    "depression": [
+      "depression",
+      "antidepressant",
+      "ssri"
+    ],
+    "hypothyroidism": [
+      "hypothyroidism",
+      "hypothyroid",
+      "thyroxine dose",
+      "levothyroxine"
+    ],
+    "anxiety": [
+      "anxiety",
+      "anxiolytic"
+    ],
+    "heart_failure": [
+      "heart failure",
+      "cardiac failure"
+    ],
+    "stroke": [
+      "stroke"
+    ],
+    "covid": [
+      "covid",
+      "sars-cov-2"
+    ]
   },
-  "pregnancy_markers": ["pregnan", "weeks of gestation", "trimester", "antenatal"],
-  "paediatric_markers": ["child", "children", "paediatric", "pediatric", "year-old", "year old", "infant", "months old"],
-  "dose_markers": ["dose", "mg/kg", "how much", "how many mg"],
-  "local_protocol_markers": ["clinic's own", "clinic protocol", "local protocol", "our protocol", "sop", "per the clinic"]
+  "pregnancy_markers": [
+    "pregnan",
+    "weeks of gestation",
+    "trimester",
+    "antenatal",
+    "gravid"
+  ],
+  "paediatric_markers": [
+    "child",
+    "children",
+    "paediatric",
+    "pediatric",
+    "year-old",
+    "year old",
+    "infant",
+    "months old",
+    "month-old",
+    "kg child",
+    "baby"
+  ],
+  "dose_markers": [
+    "dose",
+    "dosage",
+    "mg/kg",
+    "how much",
+    "how many mg",
+    "mg per",
+    "per dose",
+    "regimen"
+  ],
+  "local_protocol_markers": [
+    "clinic's own",
+    "clinic protocol",
+    "clinic's protocol",
+    "local protocol",
+    "our protocol",
+    "sop",
+    "per the clinic",
+    "sunrise"
+  ],
+  "intent_unit_types": {
+    "_comment": "Question intent -> decision-unit types to include from the detected condition's CURRENT workflow, in addition to lexically matching units. Lets 'which antibiotic and for how long' reach the first-line unit even when the question shares no word with it. Terms are prefix-matched on word boundaries.",
+    "recommendation": [
+      "antibiotic",
+      "treat",
+      "start",
+      "drug",
+      "give",
+      "regimen",
+      "dose",
+      "dosage",
+      "management",
+      "therapy",
+      "option",
+      "first-line",
+      "first line",
+      "prescribe",
+      "medication",
+      "medicine",
+      "how much",
+      "mg",
+      "analgesic",
+      "iron",
+      "zinc",
+      "ors",
+      "what to use",
+      "use"
+    ],
+    "red_flag_referral": [
+      "refer",
+      "referral",
+      "red flag",
+      "admit",
+      "admission",
+      "warning",
+      "danger",
+      "emergency",
+      "urgent",
+      "hospital"
+    ],
+    "contraindication": [
+      "avoid",
+      "should i give",
+      "can i give",
+      "is it ok",
+      "is it safe",
+      "safe to",
+      "contraindicat",
+      "do not",
+      "don't",
+      "dont",
+      "not give",
+      "allowed",
+      "still",
+      "ok for"
+    ],
+    "assessment": [
+      "diagnos",
+      "criteria",
+      "cut-off",
+      "cutoff",
+      "threshold",
+      "defined",
+      "definition",
+      "classify",
+      "confirm",
+      "screen",
+      "suspect",
+      "signs",
+      "symptom",
+      "when is",
+      "how is"
+    ],
+    "monitoring": [
+      "monitor",
+      "repeat",
+      "follow",
+      "how often",
+      "review",
+      "frequency",
+      "reassess",
+      "counsel",
+      "advice"
+    ],
+    "target": [
+      "target",
+      "goal"
+    ]
+  }
 }

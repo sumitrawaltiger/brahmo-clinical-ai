@@ -1,0 +1,84 @@
+{
+  "as_of": "2026-10-14",
+  "probe_brand": "Azee 500",
+  "probe_rx": "RX03",
+  "demo_db": "/Users/sumitrawal/Documents/Brahmo Clinical AI Assessment/brahmo-clinical-ai/build/freshness_demo.sqlite",
+  "register_v1_batch": "gazette:extract-through-2025-11-02:a57b5a9d",
+  "register_v2_batch": "gazette:extract-through-2026-09-15:ec5a1fae",
+  "v2_added_event": {
+    "event_id": "EV013",
+    "notification_id": "DEMO-GSR-000(E)",
+    "date_published": "2026-09-15",
+    "effective_date": "2026-10-01",
+    "action": "RESTRICTED",
+    "target_type": "INGREDIENT",
+    "target_description": "Azithromycin (all products)",
+    "supersedes_event_id": "",
+    "note": "SYNTHETIC DEMO EVENT for the freshness mechanism — not a real notification"
+  },
+  "status_before": {
+    "batch": "latest",
+    "status": "NONE",
+    "governing": [],
+    "pending": []
+  },
+  "status_after": {
+    "batch": "latest",
+    "status": "RESTRICTED",
+    "governing": [
+      {
+        "notification_id": "DEMO-GSR-000(E)",
+        "effective_date": "2026-10-01",
+        "action": "RESTRICTED",
+        "note": "SYNTHETIC DEMO EVENT for the freshness mechanism — not a real notification"
+      }
+    ],
+    "pending": []
+  },
+  "status_after_but_as_of_before_effective_date": {
+    "batch": "latest",
+    "status": "NONE",
+    "governing": [],
+    "pending": [
+      {
+        "notification_id": "DEMO-GSR-000(E)",
+        "effective_date": "2026-10-01"
+      }
+    ]
+  },
+  "replay_against_v1_after_v2_loaded": {
+    "batch": "gazette:extract-through-2025-11-02:a57b5a9d",
+    "status": "NONE",
+    "governing": [],
+    "pending": []
+  },
+  "rail_fdc_before": {
+    "status": "CHECKED_NO_HIT",
+    "severity": "NONE",
+    "summary": "no in-force PROHIBITED/RESTRICTED/WITHDRAWN event matches any item as of 2026-10-14",
+    "data_versions": {
+      "cdci": "cdci:2026-06-30:8f7cdf39",
+      "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+      "interactions": "interactions:public-high-priority-2026:a68f50eb"
+    },
+    "run_id": "rail-2d8e5809b9c73a66"
+  },
+  "rail_fdc_after": {
+    "status": "HIT",
+    "severity": "MODERATE",
+    "summary": "Azee 500: RESTRICTED per DEMO-GSR-000(E) (eff. 2026-10-01)",
+    "data_versions": {
+      "cdci": "cdci:2026-06-30:8f7cdf39",
+      "gazette": "gazette:extract-through-2026-09-15:ec5a1fae",
+      "interactions": "interactions:public-high-priority-2026:a68f50eb"
+    },
+    "run_id": "rail-bca66de8e32d9cf8"
+  },
+  "what_the_mechanism_guarantees": [
+    "a new register is a new load_batch (sha256 + version); v1 rows are never edited",
+    "every check reads the serving (latest) batch and records its id in data_versions",
+    "an event published before but effective after the check date is reported as pending, not in force",
+    "the v1 batch stays queryable, so any pre-change output can be replayed against exactly what produced it",
+    "in production this load sits behind a re-evaluation gate (seed rail + eval must pass) before the batch is promoted — see PART2_PLAN §1.3"
+  ]
+}

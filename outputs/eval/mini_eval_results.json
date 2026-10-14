@@ -1,5 +1,6 @@
 {
   "eval_version": "mini-eval-1.0.0",
+  "question_set": "sample",
   "mode": "extractive",
   "as_of": "2026-10-14",
   "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
@@ -28,7 +29,8 @@
       "claims": [
         "Pain: Paracetamol 15 mg/kg per dose every 6 h as needed",
         "Amoxicillin 40 mg/kg/day in three divided doses for 5 days",
-        "Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)"
+        "Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)",
+        "Mastoid tenderness, facial palsy, failure after 48–72 h of antibiotics"
       ],
       "labels": [
         "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD"
@@ -50,7 +52,11 @@
       },
       "claims": [
         "Fever: Paracetamol 15 mg/kg per dose every 6 h as needed",
-        "Amoxicillin 40 mg/kg/day in three divided doses for 5 days"
+        "Amoxicillin 40 mg/kg/day in three divided doses for 5 days",
+        "No cough syrups under 5 years; no routine chest X-ray in OPD non-severe cases",
+        "Fast breathing for age without danger signs = non-severe pneumonia",
+        "Any danger sign (unable to drink, convulsions, chest indrawing) = REFER",
+        "Reassess at 48–72 h; no improvement = referral"
       ],
       "labels": [
         "NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)"
@@ -75,7 +81,8 @@
         "Add Hydrochlorothiazide 12.5 mg if still uncontrolled",
         "Start Amlodipine 5 mg once daily OR Telmisartan 40 mg once daily",
         "Resistant HTN on 3 drugs; suspected secondary cause; pregnancy",
-        "Baseline: creatinine, potassium, lipids, ECG, urine albumin"
+        "Baseline: creatinine, potassium, lipids, ECG, urine albumin",
+        "Two readings, two occasions; rule out secondary causes if <30 y"
       ],
       "labels": [
         "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)"
@@ -97,7 +104,9 @@
       },
       "claims": [
         "AVOID Ibuprofen, Diclofenac, Aspirin and all NSAIDs — bleeding risk",
-        "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia"
+        "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia",
+        "Paracetamol 500–650 mg every 6 h for fever (max 3 g/day); adequate oral fluids",
+        "Daily CBC from day 3 of illness"
       ],
       "labels": [
         "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management"
@@ -119,7 +128,8 @@
       },
       "claims": [
         "ORS after every loose stool: 50–100 ml (<2 y), 100–200 ml (2–10 y)",
-        "Zinc 20 mg once daily for 14 days (10 mg if <6 months)"
+        "Zinc 20 mg once daily for 14 days (10 mg if <6 months)",
+        "Continue feeding; ondansetron 0.15 mg/kg single dose only for persistent vomiting"
       ],
       "labels": [
         "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD"
@@ -167,7 +177,8 @@
         "Nitrofurantoin 100 mg twice daily for 5 days (avoid at 36+ weeks)",
         "Ciprofloxacin and other fluoroquinolones throughout pregnancy",
         "Alternative: Cefixime 200 mg twice daily for 5 days",
-        "Dysuria/frequency; urine routine + culture before antibiotics where possible"
+        "Dysuria/frequency; urine routine + culture before antibiotics where possible",
+        "Repeat culture after treatment (test of cure)"
       ],
       "labels": [
         "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy"

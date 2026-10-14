@@ -41,6 +41,7 @@
       "exact_brand_strength": 0.97,
       "exact_brand_form": 0.95,
       "exact_brand_unique": 0.95,
+      "brand_family_unique": 0.92,
       "normalized_billing_string": 0.93,
       "alias_table": 0.92,
       "fuzzy_suggestion": 0.5,
@@ -48,7 +49,8 @@
     },
     "fuzzy_cutoff": 0.72,
     "fuzzy_max_candidates": 5,
-    "llm_assist_enabled": false
+    "llm_assist_enabled": false,
+    "_brand_family_unique_note": "'Sinarest' / 'Dolo' with no strength: the brand family has exactly one variant in the serving master, so it resolves with this lower, visible confidence. A family with 2+ variants is always AMBIGUOUS."
   },
   "rail": {
     "rule_set_path": "config/rules.json",
@@ -82,11 +84,13 @@
     "llm_model": "claude-sonnet-5-5",
     "llm_max_tokens": 1200,
     "prompt_path": "prompts/runtime/grounded_answer_v1.md",
-    "max_claims": 8,
+    "max_claims": 10,
     "numeric_guard": true
   },
   "eval": {
-    "expected_path": "data/eval/sample_questions_expected.json"
+    "expected_path": "data/eval/sample_questions_expected.json",
+    "paraphrase_path": "data/eval/paraphrase_questions.json",
+    "messy_spellings_path": "data/eval/messy_prescription_spellings.json"
   },
   "trace": {
     "schema_version": "1.0",
@@ -159,5 +163,12 @@
         "clavulanic acid"
       ]
     }
+  },
+  "freshness_demo": {
+    "_comment": "Stretch: what happens when a new gazette notification arrives. The demo runs in its OWN database so the serving data is untouched.",
+    "db_path": "build/freshness_demo.sqlite",
+    "synthetic_event_file": "data/eval/freshness_demo_gazette_v2_delta.csv",
+    "probe_brand": "Azee 500",
+    "probe_rx_id": "RX03"
   }
 }

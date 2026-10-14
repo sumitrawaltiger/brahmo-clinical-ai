@@ -28,6 +28,8 @@ index: `rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86`
   ↳ *NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD* — STW-PED-01 v2024.1, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/2)
 - Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)  
   ↳ *NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD* — STW-PED-01 v2024.1, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/3)
+- Mastoid tenderness, facial palsy, failure after 48–72 h of antibiotics  
+  ↳ *NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD* — STW-PED-01 v2024.1, REFER, p1 (p1/refer/5)
 - _note: Dose text is quoted exactly as written in the source. No dose has been calculated for any patient; mg/kg figures are not converted._
 
 ### Q2 — A 6-year-old with non-severe community pneumonia: what is the amoxicillin dose exactly as the workflow states it? (Dose question — retrieve and cite the text as written; do not compute for any specific child.)
@@ -36,6 +38,14 @@ index: `rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86`
   ↳ *NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)* — STW-PED-02 v2023.2, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/4)
 - Amoxicillin 40 mg/kg/day in three divided doses for 5 days  
   ↳ *NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)* — STW-PED-02 v2023.2, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/3)
+- No cough syrups under 5 years; no routine chest X-ray in OPD non-severe cases  
+  ↳ *NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)* — STW-PED-02 v2023.2, DO NOT, p1 (p1/do_not/6)
+- Fast breathing for age without danger signs = non-severe pneumonia  
+  ↳ *NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)* — STW-PED-02 v2023.2, CLASSIFY, p1 (p1/classify/1)
+- Any danger sign (unable to drink, convulsions, chest indrawing) = REFER  
+  ↳ *NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)* — STW-PED-02 v2023.2, CLASSIFY, p1 (p1/classify/2)
+- Reassess at 48–72 h; no improvement = referral  
+  ↳ *NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)* — STW-PED-02 v2023.2, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/5)
 - _note: Dose text is quoted exactly as written in the source. No dose has been calculated for any patient; mg/kg figures are not converted._
 
 ### Q3 — What is the first-line initial drug therapy for newly diagnosed adult hypertension? (Note: the pack may contain more than one edition of this workflow.)
@@ -50,6 +60,8 @@ index: `rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86`
   ↳ *NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)* — STW-GP-02 v2025.2, REFER, p1 (p1/refer/7)
 - Baseline: creatinine, potassium, lipids, ECG, urine albumin  
   ↳ *NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)* — STW-GP-02 v2025.2, CONFIRM, p1 (p1/confirm/2)
+- Two readings, two occasions; rule out secondary causes if <30 y  
+  ↳ *NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)* — STW-GP-02 v2025.2, CONFIRM, p1 (p1/confirm/1)
 - _archived edition (not merged):_ Start Atenolol 50 mg once daily as initial monotherapy — STW-GP-02 v2021.1 (superseded by STW-GP-02 v2025.2)
 - _archived edition (not merged):_ Alternative: Hydrochlorothiazide 25 mg once daily — STW-GP-02 v2021.1 (superseded by STW-GP-02 v2025.2)
 - _archived edition (not merged):_ Review at 6 weeks — STW-GP-02 v2021.1 (superseded by STW-GP-02 v2025.2)
@@ -60,6 +72,10 @@ index: `rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86`
   ↳ *NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management* — STW-GP-04 v2024.2, OPD MANAGEMENT, p1 (p1/opd_management/5)
 - Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia  
   ↳ *NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management* — STW-GP-04 v2024.2, SUSPECT, p1 (p1/suspect/1)
+- Paracetamol 500–650 mg every 6 h for fever (max 3 g/day); adequate oral fluids  
+  ↳ *NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management* — STW-GP-04 v2024.2, OPD MANAGEMENT, p1 (p1/opd_management/4)
+- Daily CBC from day 3 of illness  
+  ↳ *NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management* — STW-GP-04 v2024.2, OPD MANAGEMENT, p1 (p1/opd_management/6)
 
 ### Q5 — What are the ORS volumes after each loose stool for a child aged 2–10 years, and what zinc course accompanies it?
 
@@ -67,6 +83,8 @@ index: `rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86`
   ↳ *NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD* — STW-PED-03 v2024.1, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/2)
 - Zinc 20 mg once daily for 14 days (10 mg if <6 months)  
   ↳ *NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD* — STW-PED-03 v2024.1, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/3)
+- Continue feeding; ondansetron 0.15 mg/kg single dose only for persistent vomiting  
+  ↳ *NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD* — STW-PED-03 v2024.1, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/4)
 
 ### Q6 — Which red flags in acute low back pain mandate imaging or referral?
 
@@ -89,6 +107,8 @@ index: `rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86`
   ↳ *NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy* — STW-GYN-02 v2023.1, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/3)
 - Dysuria/frequency; urine routine + culture before antibiotics where possible  
   ↳ *NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy* — STW-GYN-02 v2023.1, ASSESS, p1 (p1/assess/1)
+- Repeat culture after treatment (test of cure)  
+  ↳ *NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy* — STW-GYN-02 v2023.1, FIRST-LINE MANAGEMENT, p1 (p1/first_line_management/4)
 
 ### Q8 — At what HbA1c threshold at diagnosis does the workflow add a second agent to metformin, and which agent?
 

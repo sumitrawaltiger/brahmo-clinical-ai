@@ -1,0 +1,2 @@
+event_id,notification_id,date_published,effective_date,action,target_type,target_description,supersedes_event_id,note
+EV013,DEMO-GSR-000(E),2026-09-15,2026-10-01,RESTRICTED,INGREDIENT,Azithromycin (all products),,SYNTHETIC DEMO EVENT for the freshness mechanism — not a real notification

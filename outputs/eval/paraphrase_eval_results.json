@@ -1,0 +1,755 @@
+{
+  "eval_version": "mini-eval-1.0.0",
+  "question_set": "paraphrase",
+  "mode": "extractive",
+  "as_of": "2026-10-14",
+  "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+  "n": 35,
+  "tally": {
+    "correct": 35,
+    "abstained": 0,
+    "wrong": 0
+  },
+  "held_out_style_total": 26,
+  "uncited_numbers_total": 0,
+  "results": [
+    {
+      "id": "P01",
+      "question": "Adult with sore throat and fever, Centor 3 — which antibiotic and for how long?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-01": [
+          "2025.1"
+        ]
+      },
+      "claims": [
+        "Sore throat, fever; examine tonsils, cervical nodes",
+        "Do not use antibiotics for clearly viral sore throat",
+        "Centor criteria ≥3 suggests streptococcal cause",
+        "Symptomatic: Paracetamol 500–650 mg every 6–8 h as needed (max 3 g/day adult)",
+        "Avoid routine throat swab in low-risk presentation",
+        "Penicillin allergy: Azithromycin 500 mg once daily for 3 days",
+        "If streptococcal likely: Amoxicillin 500 mg three times daily for 5 days"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-01 v2025.1 (effective 2025-04-01) — Acute Pharyngitis — Adult OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P02",
+      "question": "Penicillin-allergic adult with streptococcal pharyngitis: what does the workflow say to use?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-01": [
+          "2025.1"
+        ]
+      },
+      "claims": [
+        "Centor criteria ≥3 suggests streptococcal cause",
+        "Do not use antibiotics for clearly viral sore throat",
+        "Penicillin allergy: Azithromycin 500 mg once daily for 3 days",
+        "If streptococcal likely: Amoxicillin 500 mg three times daily for 5 days",
+        "Symptomatic: Paracetamol 500–650 mg every 6–8 h as needed (max 3 g/day adult)"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-01 v2025.1 (effective 2025-04-01) — Acute Pharyngitis — Adult OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P03",
+      "question": "Should antibiotics be given for a clearly viral sore throat?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-01": [
+          "2025.1"
+        ]
+      },
+      "claims": [
+        "Do not use antibiotics for clearly viral sore throat",
+        "Sore throat, fever; examine tonsils, cervical nodes",
+        "Avoid routine throat swab in low-risk presentation",
+        "Symptomatic: Paracetamol 500–650 mg every 6–8 h as needed (max 3 g/day adult)",
+        "If streptococcal likely: Amoxicillin 500 mg three times daily for 5 days",
+        "Penicillin allergy: Azithromycin 500 mg once daily for 3 days"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-01 v2025.1 (effective 2025-04-01) — Acute Pharyngitis — Adult OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P04",
+      "question": "High blood pressure newly found in a 50-year-old: what do I start?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-02": [
+          "2025.2"
+        ]
+      },
+      "claims": [
+        "Start Amlodipine 5 mg once daily OR Telmisartan 40 mg once daily",
+        "Uncontrolled at 4 weeks: combine Amlodipine + Telmisartan",
+        "Add Hydrochlorothiazide 12.5 mg if still uncontrolled"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P05",
+      "question": "Is atenolol still the first-line antihypertensive?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-02": [
+          "2025.2"
+        ]
+      },
+      "claims": [
+        "Add Hydrochlorothiazide 12.5 mg if still uncontrolled",
+        "Uncontrolled at 4 weeks: combine Amlodipine + Telmisartan",
+        "Start Amlodipine 5 mg once daily OR Telmisartan 40 mg once daily"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P06",
+      "question": "What BP target applies to a hypertensive patient with diabetes?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-02": [
+          "2025.2"
+        ]
+      },
+      "claims": [
+        "<140/90 general; <130/80 if diabetes or CKD (individualize)"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P07",
+      "question": "When should I refer a hypertensive patient?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-02": [
+          "2025.2"
+        ]
+      },
+      "claims": [
+        "Resistant HTN on 3 drugs; suspected secondary cause; pregnancy"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P08",
+      "question": "How is type 2 diabetes diagnosed per the workflow?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Type 1 suspicion, pregnancy, eGFR <30, recurrent hypoglycemia",
+        "FPG ≥126 mg/dL or HbA1c ≥6.5% on two occasions, or RPG ≥200 with symptoms"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P09",
+      "question": "How often should HbA1c be repeated after starting metformin?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "HbA1c every 3 months until at goal; annual creatinine and urine albumin",
+        "HbA1c ≥8.5% at diagnosis: add Glimepiride 1 mg before breakfast",
+        "FPG ≥126 mg/dL or HbA1c ≥6.5% on two occasions, or RPG ≥200 with symptoms",
+        "Metformin 500 mg once daily with dinner; up-titrate weekly to 500 mg twice daily as tolerated",
+        "Lifestyle counselling at every visit"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P10",
+      "question": "Can I give ibuprofen for fever in suspected dengue?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-04": [
+          "2024.2"
+        ]
+      },
+      "claims": [
+        "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia",
+        "AVOID Ibuprofen, Diclofenac, Aspirin and all NSAIDs — bleeding risk",
+        "Paracetamol 500–650 mg every 6 h for fever (max 3 g/day); adequate oral fluids",
+        "Daily CBC from day 3 of illness"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P11",
+      "question": "Which dengue warning signs mean the patient must be admitted?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-04": [
+          "2024.2"
+        ]
+      },
+      "claims": [
+        "Persistent vomiting, abdominal pain, mucosal bleed",
+        "Lethargy, hepatomegaly, rising haematocrit with falling platelets",
+        "Immediate return if any warning sign appears",
+        "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P12",
+      "question": "Hb cut-off for anaemia in pregnancy and the iron regimen?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GYN-01": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Mild–moderate: Ferrous Ascorbate 100 mg elemental iron once daily + Folic Acid 500 mcg daily",
+        "Continue 3 months after Hb normalises",
+        "Hb at booking, 26–28 weeks, and 34 weeks; anemia if Hb <11 g/dL",
+        "Take iron away from tea/calcium; expect dark stools",
+        "Hb <7 g/dL or beyond 34 weeks with moderate anemia: REFER (parenteral pathway)"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GYN-01 v2024.1 (effective 2024-08-01) — Iron Deficiency Anemia in Pregnancy"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P13",
+      "question": "Can ciprofloxacin be used for a urine infection in a pregnant woman?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GYN-02": [
+          "2023.1"
+        ]
+      },
+      "claims": [
+        "Ciprofloxacin and other fluoroquinolones throughout pregnancy",
+        "Dysuria/frequency; urine routine + culture before antibiotics where possible",
+        "Nitrofurantoin 100 mg twice daily for 5 days (avoid at 36+ weeks)",
+        "Alternative: Cefixime 200 mg twice daily for 5 days",
+        "Repeat culture after treatment (test of cure)"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P14",
+      "question": "Metformin in PCOS — when and how much per the workflow?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GYN-03": [
+          "2024.1"
+        ],
+        "STW-GP-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Metformin 500 mg twice daily when metabolic indication present",
+        "Metformin 500 mg once daily with dinner; up-titrate weekly to 500 mg twice daily as tolerated",
+        "HbA1c ≥8.5% at diagnosis: add Glimepiride 1 mg before breakfast",
+        "Lifestyle counselling at every visit",
+        "Lifestyle: 5–10% weight reduction target as primary therapy",
+        "Cycle regulation where needed per specialist pathway"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation",
+        "NATIONAL STW STW-GYN-03 v2024.1 (effective 2024-10-01) — PCOS — Initial OPD Approach"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P15",
+      "question": "Backache for 3 days in an adult, no red flags: analgesic options as written?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-ORT-01": [
+          "2023.1"
+        ]
+      },
+      "claims": [
+        "Saddle anaesthesia, bladder/bowel involvement, progressive weakness",
+        "Fever with spinal tenderness; significant trauma; age >65 with new pain + weight loss",
+        "Stay active; avoid bed rest beyond 48 h",
+        "Paracetamol 650 mg every 8 h OR Ibuprofen 400 mg every 8 h after food (short course)",
+        "Muscle spasm: consider short course only per local formulary"
+      ],
+      "labels": [
+        "NATIONAL STW STW-ORT-01 v2023.1 (effective 2023-09-01) — Acute Low Back Pain — Adult OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P16",
+      "question": "When does knee osteoarthritis need referral?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-ORT-02": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Night pain with locking; deformity; failure of 3-month conservative care"
+      ],
+      "labels": [
+        "NATIONAL STW STW-ORT-02 v2024.1 (effective 2024-04-01) — Knee Osteoarthritis — OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P17",
+      "question": "Earache with a red bulging eardrum in a 4-year-old: antibiotic as the page states it",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-01": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Ear pain, fever, red bulging tympanic membrane on otoscopy",
+        "Mastoid tenderness, facial palsy, failure after 48–72 h of antibiotics",
+        "Amoxicillin 40 mg/kg/day in three divided doses for 5 days",
+        "Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)",
+        "Pain: Paracetamol 15 mg/kg per dose every 6 h as needed"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P18",
+      "question": "How many mg of amoxicillin should a 15 kg child with otitis media get per dose?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-01": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Pain: Paracetamol 15 mg/kg per dose every 6 h as needed",
+        "Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)",
+        "Amoxicillin 40 mg/kg/day in three divided doses for 5 days"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P19",
+      "question": "Is a cough syrup OK for a 3-year-old with non-severe pneumonia?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-02": [
+          "2023.2"
+        ]
+      },
+      "claims": [
+        "No cough syrups under 5 years; no routine chest X-ray in OPD non-severe cases",
+        "Fast breathing for age without danger signs = non-severe pneumonia"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P20",
+      "question": "Loose motions in a 1-year-old: how much ORS after each stool?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "ORS after every loose stool: 50–100 ml (<2 y), 100–200 ml (2–10 y)",
+        "Zinc 20 mg once daily for 14 days (10 mg if <6 months)",
+        "Continue feeding; ondansetron 0.15 mg/kg single dose only for persistent vomiting"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P21",
+      "question": "Zinc for a 4-month-old with diarrhoea — what does the page say?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Zinc 20 mg once daily for 14 days (10 mg if <6 months)",
+        "ORS after every loose stool: 50–100 ml (<2 y), 100–200 ml (2–10 y)",
+        "Continue feeding; ondansetron 0.15 mg/kg single dose only for persistent vomiting"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P22",
+      "question": "Should I give loperamide to a child with gastroenteritis?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "No/ some/ severe dehydration per standard signs; severe = REFER for IV",
+        "ORS after every loose stool: 50–100 ml (<2 y), 100–200 ml (2–10 y)",
+        "Zinc 20 mg once daily for 14 days (10 mg if <6 months)",
+        "Continue feeding; ondansetron 0.15 mg/kg single dose only for persistent vomiting",
+        "No routine antibiotics; no antimotility agents in children"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P23",
+      "question": "What does the clinic's own fever protocol say to do on day 3 and 4?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "SOP-CLIN-014": [
+          "2.1"
+        ]
+      },
+      "claims": [
+        "Day 3–4: review with reports; escalate per findings; admit if warning signs.",
+        "Day 2: if fever persists beyond 48 hours without a localizing source, start empirical Azithromycin 500 mg once daily for 3 days.",
+        "Documentation: record fever chart and medication reconciliation at each visit.",
+        "Day 0–1: Paracetamol per standard reference dosing; hydration advice; CBC + peripheral smear if fever > 48h; dengue NS1 in season."
+      ],
+      "labels": [
+        "CLINIC PROTOCOL (Sunrise Multi-speciality Clinic, SOP-CLIN-014 v2.1, approved 2026-03-10) — organization-level knowledge, not national guidance"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "P24",
+      "question": "What is the first-line treatment for malaria?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P25",
+      "question": "Which antibiotic for enteric fever (typhoid)?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P26",
+      "question": "What inhaler should I start for asthma?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P27",
+      "question": "First-line antiepileptic for a new seizure disorder?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P28",
+      "question": "Which SSRI is preferred for depression in adults?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P29",
+      "question": "What is the routine treatment for COPD exacerbation?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P30",
+      "question": "What are the risk factors for typhoid fever?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P31",
+      "question": "Does the workflow pack cover hypothyroidism?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "P32",
+      "question": "Is NimuPar-P banned in India?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "CDCI subset": [
+          "n/a"
+        ],
+        "GSR 411(E)": [
+          "n/a"
+        ]
+      },
+      "claims": [
+        "NimuPar-P (Tablet) = Nimesulide 100 mg + Paracetamol 325 mg",
+        "Status PROHIBITED as of 2026-10-14: GSR 411(E) (PROHIBITED), published 2023-06-02, effective 2023-06-15 — target: Nimesulide + Paracetamol (all strengths)"
+      ],
+      "labels": [],
+      "route": "module_a_structured"
+    },
+    {
+      "id": "P33",
+      "question": "What does Sinarest Tablet contain?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "CDCI subset": [
+          "n/a"
+        ],
+        "gazette extract": [
+          "n/a"
+        ]
+      },
+      "claims": [
+        "Sinarest Tablet (Tablet) = Paracetamol 500 mg + Chlorpheniramine 2 mg + Phenylephrine 10 mg",
+        "No in-force PROHIBITED/RESTRICTED/WITHDRAWN event matches this product as of 2026-10-14 in the loaded register (extract through its latest published notification)."
+      ],
+      "labels": [],
+      "route": "module_a_structured"
+    },
+    {
+      "id": "P34",
+      "question": "Is Combiflam prohibited?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "CDCI subset": [
+          "n/a"
+        ],
+        "gazette extract": [
+          "n/a"
+        ]
+      },
+      "claims": [
+        "Combiflam (Tablet) = Ibuprofen 400 mg + Paracetamol 325 mg",
+        "No in-force PROHIBITED/RESTRICTED/WITHDRAWN event matches this product as of 2026-10-14 in the loaded register (extract through its latest published notification)."
+      ],
+      "labels": [],
+      "route": "module_a_structured"
+    },
+    {
+      "id": "P35",
+      "question": "Is Telma banned?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "module_a_structured"
+    }
+  ]
+}

@@ -109,7 +109,24 @@ def cmd_eval(args) -> int:
 
     cfg = load_config()
     conn = connect(cfg)
-    _print(run_eval(conn, cfg, mode=args.mode, out_dir=args.out, as_of=args.as_of))
+    _print(run_eval(conn, cfg, mode=args.mode, out_dir=args.out, as_of=args.as_of, question_set=args.set))
+    return 0
+
+
+def cmd_resolver_eval(args) -> int:
+    from .normalize.evaluate import run_resolver_eval
+
+    cfg = load_config()
+    conn = connect(cfg)
+    _print(run_resolver_eval(conn, cfg, out_dir=args.out))
+    return 0
+
+
+def cmd_freshness_demo(args) -> int:
+    from .regulatory.freshness_demo import run_demo
+
+    cfg = load_config()
+    _print(run_demo(cfg, as_of=args.as_of or "2026-10-14", out_dir=args.out))
     return 0
 
 
@@ -180,7 +197,17 @@ def main(argv=None) -> int:
     ev.add_argument("--mode", default=None)
     ev.add_argument("--out", default=None)
     ev.add_argument("--as-of", dest="as_of", default=None, help="date for any structured-fact (regulatory) question in the set")
+    ev.add_argument("--set", default="sample", help="sample (the 11 provided questions) | paraphrase (robustness set)")
     ev.set_defaults(fn=cmd_eval)
+
+    re_ = sub.add_parser("resolver-eval", help="messy-spelling resolver eval -> outputs/eval/resolver_eval_results.*")
+    re_.add_argument("--out", default=None)
+    re_.set_defaults(fn=cmd_resolver_eval)
+
+    fd = sub.add_parser("freshness-demo", help="stretch: load a synthetic new gazette notification in a throw-away DB and show before/after/replay")
+    fd.add_argument("--as-of", dest="as_of", default=None)
+    fd.add_argument("--out", default=None)
+    fd.set_defaults(fn=cmd_freshness_demo)
 
     tr = sub.add_parser("trace", help="Module C: one prescription + one question -> one JSON trace")
     tr.add_argument("--rx", required=True)

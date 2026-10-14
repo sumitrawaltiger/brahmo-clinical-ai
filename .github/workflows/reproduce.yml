@@ -1,0 +1,30 @@
+name: reproduce
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Fresh-machine reproduction (G1)
+        run: make reproduce PY=python
+      - name: Outputs are deterministic (only ingestion timestamps may differ)
+        run: |
+          git diff --stat -- outputs ':!outputs/trace_sample.json' ':!outputs/freshness_demo.json' ':!outputs/freshness_demo.md'
+          git diff --exit-code -- outputs ':!outputs/trace_sample.json' ':!outputs/freshness_demo.json' ':!outputs/freshness_demo.md'
+      - name: Upload outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: outputs-py${{ matrix.python-version }}
+          path: outputs/

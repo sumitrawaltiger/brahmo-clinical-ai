@@ -23,7 +23,7 @@ def _cited_docs(out: Dict[str, Any]) -> Dict[str, set]:
     docs: Dict[str, set] = {}
     for c in out.get("claims", []):
         for cit in c.get("citations", []):
-            docs.setdefault(cit.get("document"), set()).add(cit.get("version"))
+            docs.setdefault(str(cit.get("document")), set()).add(str(cit.get("version") or "n/a"))
     return docs
 
 
@@ -72,6 +72,8 @@ def score_one(spec: Dict[str, Any], out: Dict[str, Any], index) -> Dict[str, Any
                 ok = False; checks.append("clinic protocol not labelled")
             if spec.get("require_national_comparison") and not out.get("comparison"):
                 ok = False; checks.append("national comparison missing")
+            if spec.get("route") and out.get("route") != spec["route"]:
+                ok = False; checks.append(f"route {out.get('route')} != expected {spec['route']}")
             verdict = "correct" if ok and not uncited else "wrong"
     held_out = {"correct": 1, "abstained": 0, "wrong": -1}[verdict]
     if spec["expected"] == "abstain" and verdict == "correct":
@@ -82,9 +84,10 @@ def score_one(spec: Dict[str, Any], out: Dict[str, Any], index) -> Dict[str, Any
 
 
 def run_eval(conn: Optional[sqlite3.Connection], cfg: Optional[Config] = None, mode: Optional[str] = None, out_dir: Optional[str] = None,
-             as_of: Optional[str] = None) -> Dict[str, Any]:
+             as_of: Optional[str] = None, question_set: str = "sample") -> Dict[str, Any]:
     cfg = cfg or load_config()
-    spec = cfg.load_json("eval.expected_path")
+    spec = cfg.load_json("eval.expected_path" if question_set == "sample" else "eval.paraphrase_path")
+    prefix = "mini_eval" if question_set == "sample" else f"{question_set}_eval"
     index = load_index(cfg)
     results = []
     full = []
@@ -94,14 +97,14 @@ def run_eval(conn: Optional[sqlite3.Connection], cfg: Optional[Config] = None, m
         results.append(score_one(q, out, index))
     tally = {"correct": sum(r["verdict"] == "correct" for r in results), "abstained": sum(r["verdict"] == "abstained" for r in results),
              "wrong": sum(r["verdict"] == "wrong" for r in results)}
-    summary = {"eval_version": EVAL_VERSION, "mode": mode or cfg["answering.mode"], "as_of": as_of, "index_version": index.version, "n": len(results), "tally": tally,
+    summary = {"eval_version": EVAL_VERSION, "question_set": question_set, "mode": mode or cfg["answering.mode"], "as_of": as_of, "index_version": index.version, "n": len(results), "tally": tally,
                "held_out_style_total": sum(r["held_out_style_score"] for r in results), "uncited_numbers_total": sum(1 for r in results for c in r["checks"] if c.startswith("uncited")),
                "results": results}
     od = Path(out_dir) if out_dir else cfg.path("trace.output_dir") / "eval"
     od.mkdir(parents=True, exist_ok=True)
-    (od / "mini_eval_results.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
-    (od / "answers_full.json").write_text(json.dumps(full, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
-    md = [f"# Mini-eval results ({summary['mode']} mode)", "", f"index: `{index.version}`", "",
+    (od / f"{prefix}_results.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+    (od / ("answers_full.json" if question_set == "sample" else f"{prefix}_answers_full.json")).write_text(json.dumps(full, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
+    md = [f"# {'Mini-eval' if question_set == 'sample' else question_set.title() + ' eval'} results ({summary['mode']} mode)", "", f"index: `{index.version}`", "",
           f"**{tally['correct']} correct · {tally['abstained']} abstained · {tally['wrong']} wrong** (held-out-style total {summary['held_out_style_total']}; uncited numbers: {summary['uncited_numbers_total']})", "",
           "| id | expected | got | verdict | cited | checks |", "|---|---|---|---|---|---|"]
     for r in results:
@@ -126,5 +129,5 @@ def run_eval(conn: Optional[sqlite3.Connection], cfg: Optional[Config] = None, m
             for u in o["comparison"].get("national_units", []):
                 md.append(f"  - {u['text']} — {u['citation']['document']} v{u['citation']['version']}")
         md.append("")
-    (od / "mini_eval_results.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    (od / f"{prefix}_results.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return dict(summary, output_dir=str(od))

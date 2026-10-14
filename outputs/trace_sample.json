@@ -742,6 +742,54 @@
         ],
         "label": "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management",
         "verbatim": true
+      },
+      {
+        "text": "Paracetamol 500–650 mg every 6 h for fever (max 3 g/day); adequate oral fluids",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-04:2024.2:opd_management:4",
+            "source_type": "national_stw",
+            "document": "STW-GP-04",
+            "title": "Dengue Fever — OPD Management",
+            "version": "2024.2",
+            "effective_date": "2024-07-01",
+            "section": "OPD MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/opd_management/4",
+            "file": "STW_GP_04_Dengue_OPD.pdf",
+            "file_sha256": "b3c1a7b4a358",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management",
+        "verbatim": true
+      },
+      {
+        "text": "Daily CBC from day 3 of illness",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-04:2024.2:opd_management:6",
+            "source_type": "national_stw",
+            "document": "STW-GP-04",
+            "title": "Dengue Fever — OPD Management",
+            "version": "2024.2",
+            "effective_date": "2024-07-01",
+            "section": "OPD MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/opd_management/6",
+            "file": "STW_GP_04_Dengue_OPD.pdf",
+            "file_sha256": "b3c1a7b4a358",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management",
+        "verbatim": true
       }
     ],
     "labels": [
@@ -760,6 +808,11 @@
         "dengue"
       ],
       "conditions_absent_from_corpus": [],
+      "intent_unit_types": [
+        "recommendation",
+        "contraindication",
+        "assessment"
+      ],
       "markers": {
         "dose": false,
         "paediatric": false,
@@ -880,7 +933,7 @@
       "prompt_version": null,
       "prompt_file_sha256": "73e57a8defc4"
     },
-    "config_sha256": "625b849a8fd0"
+    "config_sha256": "1c1cd5fbddfc"
   },
   "run_ids": {
     "rail_run_id": "rail-1c2741610fbdef25",

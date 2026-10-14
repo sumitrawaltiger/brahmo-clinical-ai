@@ -57,15 +57,17 @@ class EventView:
         }
 
 
-def load_events(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
-    """Events of the serving (latest) gazette batch only. A reloaded register never mixes with an older one."""
+def load_events(conn: sqlite3.Connection, batch_id: Optional[str] = None) -> List[Dict[str, Any]]:
+    """Events of ONE gazette batch: the serving (latest) one by default, or an explicit batch for replay.
+    A reloaded register never mixes with an older one."""
     out = []
     for r in conn.execute(
         """SELECT e.*, t.ingredient_set, t.match_mode, t.form_qualifier, t.population_qualifier, t.ratio_qualifier,
                   t.parse_confidence, t.parse_method, t.unresolved_terms
            FROM regulatory_event e JOIN regulatory_target t ON t.event_id = e.event_id AND t.batch_id = e.batch_id
-           WHERE e.batch_id = (SELECT batch_id FROM load_batch WHERE dataset='gazette' ORDER BY loaded_at DESC, batch_id DESC LIMIT 1)
-           ORDER BY e.effective_date, e.event_id"""
+           WHERE e.batch_id = COALESCE(?, (SELECT batch_id FROM load_batch WHERE dataset='gazette' ORDER BY loaded_at DESC, batch_id DESC LIMIT 1))
+           ORDER BY e.effective_date, e.event_id""",
+        (batch_id,),
     ):
         d = dict(r)
         d["ingredient_set"] = json.loads(d["ingredient_set"] or "[]")

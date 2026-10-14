@@ -10,7 +10,7 @@ import difflib
 import re
 import sqlite3
 from dataclasses import dataclass, field, asdict
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from ..config import Config, load_config
 from ..ingest.batches import latest_batch
@@ -30,6 +30,25 @@ FORM_TOKENS = {
     "SYP": "Syrup", "SYR": "Syrup", "SYRUP": "Syrup",
     "SUSP": "Suspension", "SUSPENSION": "Suspension",
 }
+# Colloquial prescription prefixes/suffixes ("Tab. Dolo 650", "T. Azee 500", "Combiflam tab", "Syp Calpol 250").
+# Keys are norm_key tokens. Single letters are accepted only as a LEADING token (the Indian "T./C." convention).
+_LEAD_FORM = {"tab": "Tablet", "tabs": "Tablet", "tablet": "Tablet", "t": "Tablet", "cap": "Capsule", "caps": "Capsule", "capsule": "Capsule",
+              "c": "Capsule", "syp": "Syrup", "syr": "Syrup", "syrup": "Syrup", "susp": "Suspension", "suspension": "Suspension", "inj": "Injection", "injection": "Injection"}
+_TRAIL_FORM = {k: v for k, v in _LEAD_FORM.items() if len(k) > 1}
+
+
+def strip_form_tokens(text: str) -> Tuple[str, Optional[str]]:
+    """'Tab. Dolo 650' -> ('dolo 650', 'Tablet'); 'Combiflam tab' -> ('combiflam', 'Tablet'); 'Dolo 650' -> ('dolo 650', None).
+    Returns the normalized core key and the form the doctor implied (None when no token). 'Inj' maps to Injection so a brand the master only knows as a tablet becomes FORM_MISMATCH, not a silent tablet."""
+    toks = norm_key(text).split()
+    hint: Optional[str] = None
+    while len(toks) > 1 and toks[0] in _LEAD_FORM:
+        hint = hint or _LEAD_FORM[toks[0]]
+        toks.pop(0)
+    while len(toks) > 1 and toks[-1] in _TRAIL_FORM:
+        hint = hint or _TRAIL_FORM[toks[-1]]
+        toks.pop()
+    return " ".join(toks), hint
 
 
 @dataclass
@@ -150,11 +169,23 @@ def resolve(
         return res
 
     method = "exact_brand"
-    cands = _load_candidates(conn, key, batch_id)
+    cands: List[Candidate] = []
 
-    # strength embedded in the written text, e.g. "Telma 40 mg" -> brand "Telma 40"
-    if not cands:
-        m = _TRAILING_STRENGTH_RE.match(text)
+    # Text variants in priority order: as written, then with colloquial form tokens stripped ("Tab. Dolo 650").
+    # The stripped variant may also carry the form the doctor implied, used as a filter later.
+    core_key, form_hint = strip_form_tokens(text)
+    variants: List[Tuple[str, Optional[str]]] = [(key, None)]
+    if core_key != key:
+        variants.append((core_key, form_hint))
+    for vkey, vform in variants:
+        cands = _load_candidates(conn, vkey, batch_id)
+        if cands:
+            key = vkey
+            if vform and not form:
+                form, res.form_given = vform, vform
+            break
+        # strength glued to the brand, e.g. "Telma 40 mg" / "Dolo 650mg" -> brand "Telma 40" / "Dolo 650"
+        m = _TRAILING_STRENGTH_RE.match(vkey)
         if m:
             alt_key = norm_key(f"{m.group(1)} {m.group(2)}")
             cands = _load_candidates(conn, alt_key, batch_id)
@@ -163,16 +194,33 @@ def resolve(
                 if strength is None:
                     strength = parse_strength(f"{m.group(2)} {m.group(3)}")
                     res.strength_given = strength
+                if vform and not form:
+                    form, res.form_given = vform, vform
+                break
     if not cands:
-        alias_target = _alias_lookup(conn, key)
-        if alias_target:
-            cands = _load_candidates(conn, alias_target, batch_id)
-            method = "alias_table"
+        for vkey, vform in variants:
+            alias_target = _alias_lookup(conn, vkey)
+            if alias_target:
+                cands = _load_candidates(conn, alias_target, batch_id)
+                method = "alias_table"
+                key = alias_target
+                if vform and not form:
+                    form, res.form_given = vform, vform
+                break
 
     # brand family: "Telma" -> Telma 20 / Telma 40 / Telma 80 / Telma-H 40. A family is a real, nameable ambiguity
-    # (strength or variant missing), which is more useful to a reviewer than a fuzzy near-miss.
+    # (strength or variant missing), which is more useful to a reviewer than a fuzzy near-miss. A family with exactly
+    # ONE variant ("Sinarest" -> Sinarest Tablet, "Dolo" -> Dolo 650 in this master) is not ambiguous and resolves
+    # with its own method tag so the lower confidence is visible.
     if not cands:
-        family = [b for b in _all_brand_norms(conn, batch_id) if b.startswith(key + " ")]
+        family: List[str] = []
+        for vkey, vform in variants:
+            family = [b for b in _all_brand_norms(conn, batch_id) if b.startswith(vkey + " ")]
+            if family:
+                key = vkey
+                if vform and not form:
+                    form, res.form_given = vform, vform
+                break
         if family:
             fam_cands: List[Candidate] = []
             for b in family:
@@ -186,6 +234,10 @@ def resolve(
                     cands = narrowed
                     key = norm_key(narrowed[0].brand_name)
                     method = "brand_family_strength"
+            if not cands and len({c.brand_name for c in fam_cands}) == 1:
+                cands = fam_cands
+                key = norm_key(fam_cands[0].brand_name)
+                method = "brand_family_unique"
             if not cands:
                 res.status = AMBIGUOUS
                 res.candidates = [_cand_dict(c) for c in fam_cands]
@@ -289,6 +341,8 @@ def resolve(
             res.method, res.confidence = "alias_table", mconf["alias_table"]
         elif method.startswith("brand_family_strength"):
             res.method, res.confidence = "exact_brand_strength", mconf["exact_brand_strength"]
+        elif method.startswith("brand_family_unique"):
+            res.method, res.confidence = "brand_family_unique", mconf["brand_family_unique"]
         else:
             res.method, res.confidence = "exact_brand_unique", mconf["exact_brand_unique"]
         if res.confidence < float(cfg["resolver.auto_accept_min"]):

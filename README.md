@@ -1,5 +1,7 @@
 # BRAHMO clinical AI — assessment build
 
+[![reproduce](https://github.com/sumitrawaltiger/brahmo-clinical-ai/actions/workflows/reproduce.yml/badge.svg)](https://github.com/sumitrawaltiger/brahmo-clinical-ai/actions/workflows/reproduce.yml)
+
 India drug master + deterministic medication-safety rail (Module A), grounded STW question answering (Module B),
 and one end-to-end trace (Module C). Built for the BRAHMO Senior Engineering Assessment.
 
@@ -21,10 +23,11 @@ make reproduce
 |---|---|---|
 | venv | `python3 -m venv .venv && pip install -e ".[dev]"` | isolated environment |
 | setup | `brahmo setup` | `build/brahmo.sqlite` via numbered migrations (`migrations/00*.sql`), every dataset loaded with a `load_batch` (sha256 + declared version), review queue populated, `build/rag_index.json` built |
-| test | `pytest` | 63 tests: provenance, zero-silent-resolution, event-sourced status, rail contract, Module B, trace |
+| test | `pytest` | 67 tests: provenance, zero-silent-resolution, event-sourced status, rail contract, Module B, trace |
 | rail | `brahmo rail --seed --as-of 2026-10-14` | `outputs/rail/RX01..RX10.json`, `outputs/seed_prescriptions_completed.csv`, `outputs/seed_rail_summary.md` |
-| eval | `brahmo eval` | `outputs/eval/mini_eval_results.{json,md}`, `outputs/eval/answers_full.json` |
+| eval | `brahmo eval`, `brahmo eval --set paraphrase`, `brahmo resolver-eval` | `outputs/eval/mini_eval_results.*` (11 sample questions), `outputs/eval/paraphrase_eval_results.*` (35 paraphrased/near-miss questions), `outputs/eval/resolver_eval_results.*` (45 messy spellings) |
 | trace | `brahmo trace ...` | `outputs/trace_sample.json` |
+| freshness-demo | `brahmo freshness-demo` | `outputs/freshness_demo.{json,md}` — a new gazette notification arrives (throw-away DB) |
 
 Without `make`: run the commands in the table from the repo root after activating the venv.
 
@@ -40,6 +43,9 @@ brahmo rail --rx my_rx.json --as-of 2026-10-14
 brahmo ask "Which analgesic class must be avoided in suspected dengue, and why?"
 brahmo ask "Is NimuPar-P banned?"             # structured facts route to Module A, never to retrieval
 brahmo eval                                   # mini-eval over the 11 sample questions
+brahmo eval --set paraphrase                  # 35 paraphrased / near-miss / absent-topic questions
+brahmo resolver-eval                          # 45 messy prescription spellings
+brahmo freshness-demo                         # stretch: a new gazette notification arrives
 brahmo trace --rx data/trace_sample_rx.json --question "..." --out outputs/trace_sample.json
 ```
 

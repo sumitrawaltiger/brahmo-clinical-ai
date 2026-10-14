@@ -3,7 +3,7 @@ PY ?= python3
 VENV := .venv
 BIN := $(VENV)/bin
 
-.PHONY: all venv setup test rail eval trace outputs clean reproduce
+.PHONY: all venv setup test rail eval trace freshness-demo outputs clean reproduce
 
 all: reproduce
 
@@ -21,14 +21,19 @@ test:
 rail: ## seeded rail demonstration -> outputs/rail/*.json, outputs/seed_prescriptions_completed.csv, outputs/seed_rail_summary.md
 	$(BIN)/python -m brahmo rail --seed --as-of 2026-10-14
 
-eval: ## Module B mini-eval -> outputs/eval/
+eval: ## Module B mini-eval + paraphrase robustness set + resolver eval -> outputs/eval/
 	$(BIN)/python -m brahmo eval --as-of 2026-10-14
+	$(BIN)/python -m brahmo eval --as-of 2026-10-14 --set paraphrase
+	$(BIN)/python -m brahmo resolver-eval
+
+freshness-demo: ## stretch: a new gazette notification arrives (throw-away DB) -> outputs/freshness_demo.*
+	$(BIN)/python -m brahmo freshness-demo --as-of 2026-10-14
 
 trace: ## Module C sample trace -> outputs/trace_sample.json
 	$(BIN)/python -m brahmo trace --rx data/trace_sample_rx.json --question "Which analgesic class must be avoided in suspected dengue, and why?" --as-of 2026-10-14 --out outputs/trace_sample.json > /dev/null
 	@echo "wrote outputs/trace_sample.json"
 
-outputs: rail eval trace
+outputs: rail eval trace freshness-demo
 
 reproduce: venv setup test outputs ## everything, from a clean clone
 	@echo "Reproduction complete. See outputs/ and SUBMISSION.md"

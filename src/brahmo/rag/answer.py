@@ -117,9 +117,21 @@ def answer_question(conn: Optional[sqlite3.Connection], question: str, cfg: Opti
     for ov, c in scored:
         if ov == 0 and c["_scores"]["sem_rank"] <= 1 and c not in supporting:
             supporting.append(c)
+    # intent completion: when the condition is known, add that workflow's CURRENT units whose type matches the
+    # question's intent (e.g. 'which antibiotic and for how long' -> recommendation units), so a one-page workflow
+    # answers completely even when the question shares no word with the decisive unit. Still verbatim, still cited.
+    if conds and analysis.get("intent_unit_types"):
+        have = {c["chunk_id"] for c in supporting}
+        for c in index.chunks:
+            if c["is_current"] and c["condition"] in conds and c["unit_type"] in analysis["intent_unit_types"] and c["chunk_id"] not in have:
+                cc = dict(c)
+                cc["_scores"] = {"fused": 0.0, "bm25": 0.0, "cosine": 0.0, "lex_rank": None, "sem_rank": None, "added_by": "intent:" + c["unit_type"]}
+                supporting.append(cc)
+                considered.append(dict(_cite(cc), scores=cc["_scores"], text=cc["text"]))
     if analysis["markers"]["dose"]:
+        # dose questions: units carrying a quantity come first, but nothing is dropped (a cut-off in g/dL is still the answer)
         dose_units = [c for c in supporting if any(u in c["text"].lower() for u in ("mg", "ml", "mcg", "dose"))]
-        supporting = dose_units or supporting
+        supporting = dose_units + [c for c in supporting if c not in dose_units]
     supporting = supporting[: int(cfg["answering.max_claims"])]
 
     national = [c for c in supporting if c["source_type"] == "national_stw"]

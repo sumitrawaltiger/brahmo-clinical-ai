@@ -48,9 +48,11 @@ def analyze(question: str, cfg: Config) -> Dict[str, Any]:
         "patient_specific": bool(_PATIENT_RE.search(question)),
     }
     structured = bool(_STRUCTURED_RE.search(question)) and not present
+    intents = [u for u, words in syn.get("intent_unit_types", {}).items() if not u.startswith("_") and _any(q, words, prefix=True)]
     return {
         "conditions_in_corpus": present,
         "conditions_absent_from_corpus": absent,
+        "intent_unit_types": intents,
         "markers": markers,
         "route": "module_a_structured" if structured else ("abstain_no_corpus" if (absent and not present) else "retrieval"),
     }
