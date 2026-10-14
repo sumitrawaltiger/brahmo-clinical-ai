@@ -1,6 +1,6 @@
 [
   {
-    "run_id": "7cb15a25-fec5-45c4-8147-142d2c1da6f9",
+    "run_id": "5c605ca5-4488-4604-a6cd-a7aedfd397bf",
     "question": "What is the first-line antibiotic, dose basis, and duration for acute otitis media in a child?",
     "analysis": {
       "question": "What is the first-line antibiotic, dose basis, and duration for acute otitis media in a child?",
@@ -252,7 +252,7 @@
     }
   },
   {
-    "run_id": "57374de9-d6c8-41ba-9695-d67b6d20e81c",
+    "run_id": "16973320-e493-43d1-aa31-0646cc7f02bb",
     "question": "A 6-year-old with non-severe community pneumonia: what is the amoxicillin dose exactly as the workflow states it? (Dose question — retrieve and cite the text as written; do not compute for any specific child.)",
     "analysis": {
       "question": "A 6-year-old with non-severe community pneumonia: what is the amoxicillin dose exactly as the workflow states it? (Dose question — retrieve and cite the text as written; do not compute for any specific child.)",
@@ -505,7 +505,7 @@
     }
   },
   {
-    "run_id": "0f36568b-e366-40bb-aac0-18339b6b55fd",
+    "run_id": "c989f639-4c05-4b58-beba-c0f9a96ceed9",
     "question": "What is the first-line initial drug therapy for newly diagnosed adult hypertension? (Note: the pack may contain more than one edition of this workflow.)",
     "analysis": {
       "question": "What is the first-line initial drug therapy for newly diagnosed adult hypertension? (Note: the pack may contain more than one edition of this workflow.)",
@@ -917,7 +917,7 @@
     }
   },
   {
-    "run_id": "0bad8d67-bc90-450e-ab06-5881ae51e0ef",
+    "run_id": "0d9a20d4-68e7-40c0-90f6-e075f97ea9cb",
     "question": "Which analgesic class must be avoided in suspected dengue, and why?",
     "analysis": {
       "question": "Which analgesic class must be avoided in suspected dengue, and why?",
@@ -1193,7 +1193,7 @@
     }
   },
   {
-    "run_id": "acb9b1b6-6b2e-4d3c-804a-1d50687515b4",
+    "run_id": "1f388dbe-2b06-4db1-8316-b7d14f8bf0b2",
     "question": "What are the ORS volumes after each loose stool for a child aged 2–10 years, and what zinc course accompanies it?",
     "analysis": {
       "question": "What are the ORS volumes after each loose stool for a child aged 2–10 years, and what zinc course accompanies it?",
@@ -1419,7 +1419,7 @@
     }
   },
   {
-    "run_id": "5cd19df0-610f-4060-b097-2438248480f8",
+    "run_id": "a668e284-6e40-4978-b419-0c18239230bd",
     "question": "Which red flags in acute low back pain mandate imaging or referral?",
     "analysis": {
       "question": "Which red flags in acute low back pain mandate imaging or referral?",
@@ -1694,7 +1694,7 @@
     }
   },
   {
-    "run_id": "2dd86b2a-4b19-47ec-a017-bc545537d8d8",
+    "run_id": "dd0427b8-a418-4804-a4b0-4f2fa439b1d0",
     "question": "Which urinary antibiotic is avoided at 36+ weeks of pregnancy, and what is the stated alternative?",
     "analysis": {
       "question": "Which urinary antibiotic is avoided at 36+ weeks of pregnancy, and what is the stated alternative?",
@@ -2042,7 +2042,7 @@
     }
   },
   {
-    "run_id": "425426d7-69c6-46eb-a7c6-aa943439934c",
+    "run_id": "a8eb090b-7a42-49d2-be74-b658ecc13399",
     "question": "At what HbA1c threshold at diagnosis does the workflow add a second agent to metformin, and which agent?",
     "analysis": {
       "question": "At what HbA1c threshold at diagnosis does the workflow add a second agent to metformin, and which agent?",
@@ -2341,7 +2341,7 @@
     }
   },
   {
-    "run_id": "ca5f369c-3eb0-4f27-b7f2-32c01a0e0856",
+    "run_id": "5d754d05-162a-46cc-8dbf-34f8f0062071",
     "question": "What is the first-line prophylactic drug for migraine in adults?",
     "analysis": {
       "question": "What is the first-line prophylactic drug for migraine in adults?",
@@ -2395,7 +2395,7 @@
     }
   },
   {
-    "run_id": "eb81eb1d-f8bc-4e46-815d-26e27b5600d6",
+    "run_id": "034b2ee0-9f0f-45ef-82b2-132d88097699",
     "question": "What is the standard drug regimen for newly diagnosed pulmonary tuberculosis?",
     "analysis": {
       "question": "What is the standard drug regimen for newly diagnosed pulmonary tuberculosis?",
@@ -2449,7 +2449,7 @@
     }
   },
   {
-    "run_id": "64c2892a-3166-4c09-8668-450c7f52c9e6",
+    "run_id": "d663939e-ed1b-480f-bab6-5faf67aeb6d4",
     "question": "Per the clinic's own protocol, when are empirical antibiotics started in adult acute undifferentiated fever — and does the national workflow pack say the same? Label your sources.",
     "analysis": {
       "question": "Per the clinic's own protocol, when are empirical antibiotics started in adult acute undifferentiated fever — and does the national workflow pack say the same? Label your sources.",

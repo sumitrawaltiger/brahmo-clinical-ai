@@ -1,7 +1,7 @@
 {
-  "trace_id": "21bf761c-94b5-441e-b2bf-cc277a6a6f72",
+  "trace_id": "8e901aad-dfbc-44d7-84dc-121c49b5d9d5",
   "schema_version": "1.0",
-  "created_at": "2026-10-14T08:41:40+00:00",
+  "created_at": "2026-10-14T08:58:25+00:00",
   "as_of": "2026-10-14",
   "input": {
     "prescription": {
@@ -883,8 +883,8 @@
     "config_sha256": "bd32b79c308a"
   },
   "run_ids": {
-    "rail_run_id": "f08f169d-44df-4cc8-9a76-26cd6d71b7cf",
-    "qa_run_id": "aec3907c-3af6-45bf-ba00-131367a49a9c"
+    "rail_run_id": "bacd84ff-d40a-41a8-bf60-a53982e23e5b",
+    "qa_run_id": "755c2704-a545-4cac-b174-32730694498a"
   },
   "doctor_decides": "Nothing here is final. Every state above is a draft check or a cited excerpt for the prescribing doctor to confirm or reject."
 }

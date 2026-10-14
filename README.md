@@ -5,7 +5,7 @@ and one end-to-end trace (Module C). Built for the BRAHMO Senior Engineering Ass
 
 Start with [`SUBMISSION.md`](SUBMISSION.md) for the map of deliverables. Design reasoning is in [`DESIGN.md`](DESIGN.md).
 
-## Fresh-machine reproduction (target < 1 hour; measured ≈ 2 minutes)
+## Fresh-machine reproduction (target < 1 hour; measured ≈ 16 seconds on a laptop, including venv creation)
 
 Requirements: Python 3.9+ (3.9 is what ships on macOS; 3.10–3.12 also fine), `git`, `make`. One small PyPI
 dependency (`pypdf`) plus `pytest`. No Docker, no database server, no API key, no model download.
