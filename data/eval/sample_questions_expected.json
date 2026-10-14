@@ -1,0 +1,28 @@
+{
+  "_comment": "Expected behaviour per sample question, written from the corpus text itself (no outside knowledge). must_include strings must appear in the claim texts; must_cite documents must appear in claim citations; must_not_include strings must NOT appear in claim texts (superseded-edition sections are excluded from that check). Verdicts: correct / abstained / wrong. held_out_score mirrors the brief: correct +1, abstain 0, wrong -1.",
+  "questions": [
+    {"id": "Q1", "question": "What is the first-line antibiotic, dose basis, and duration for acute otitis media in a child?",
+     "expected": "answer", "must_cite": ["STW-PED-01"], "must_include": ["Amoxicillin", "40 mg/kg/day", "5 days"], "must_not_include": []},
+    {"id": "Q2", "question": "A 6-year-old with non-severe community pneumonia: what is the amoxicillin dose exactly as the workflow states it? (Dose question — retrieve and cite the text as written; do not compute for any specific child.)",
+     "expected": "answer", "must_cite": ["STW-PED-02"], "must_include": ["Amoxicillin 40 mg/kg/day in three divided doses for 5 days"], "must_not_include": [], "require_dose_note": true},
+    {"id": "Q3", "question": "What is the first-line initial drug therapy for newly diagnosed adult hypertension? (Note: the pack may contain more than one edition of this workflow.)",
+     "expected": "answer", "must_cite": ["STW-GP-02"], "must_cite_version": {"STW-GP-02": "2025.2"}, "must_include": ["Amlodipine 5 mg once daily OR Telmisartan 40 mg once daily"], "must_not_include": ["Atenolol"], "require_superseded_shown": true},
+    {"id": "Q4", "question": "Which analgesic class must be avoided in suspected dengue, and why?",
+     "expected": "answer", "must_cite": ["STW-GP-04"], "must_include": ["NSAIDs", "bleeding risk"], "must_not_include": []},
+    {"id": "Q5", "question": "What are the ORS volumes after each loose stool for a child aged 2–10 years, and what zinc course accompanies it?",
+     "expected": "answer", "must_cite": ["STW-PED-03"], "must_include": ["100–200 ml (2–10 y)", "Zinc 20 mg once daily for 14 days"], "must_not_include": []},
+    {"id": "Q6", "question": "Which red flags in acute low back pain mandate imaging or referral?",
+     "expected": "answer", "must_cite": ["STW-ORT-01"], "must_include": ["Saddle anaesthesia", "Fever with spinal tenderness"], "must_not_include": []},
+    {"id": "Q7", "question": "Which urinary antibiotic is avoided at 36+ weeks of pregnancy, and what is the stated alternative?",
+     "expected": "answer", "must_cite": ["STW-GYN-02"], "must_include": ["Nitrofurantoin", "36+ weeks", "Cefixime 200 mg twice daily for 5 days"], "must_not_include": []},
+    {"id": "Q8", "question": "At what HbA1c threshold at diagnosis does the workflow add a second agent to metformin, and which agent?",
+     "expected": "answer", "must_cite": ["STW-GP-03"], "must_include": ["HbA1c ≥8.5% at diagnosis: add Glimepiride 1 mg"], "must_not_include": []},
+    {"id": "Q9", "question": "What is the first-line prophylactic drug for migraine in adults?",
+     "expected": "abstain", "must_cite": [], "must_include": [], "must_not_include": []},
+    {"id": "Q10", "question": "What is the standard drug regimen for newly diagnosed pulmonary tuberculosis?",
+     "expected": "abstain", "must_cite": [], "must_include": [], "must_not_include": []},
+    {"id": "Q11", "question": "Per the clinic's own protocol, when are empirical antibiotics started in adult acute undifferentiated fever — and does the national workflow pack say the same? Label your sources.",
+     "expected": "answer", "must_cite": ["SOP-CLIN-014"], "must_include": ["48 hours", "Azithromycin 500 mg once daily for 3 days"], "must_not_include": [],
+     "require_local_label": true, "require_national_comparison": true}
+  ]
+}

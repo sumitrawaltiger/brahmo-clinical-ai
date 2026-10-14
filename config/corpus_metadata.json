@@ -1,0 +1,30 @@
+{
+  "_comment": "Per-document metadata the chunker cannot read from the page itself. Keyed by STW code. Specialty and population are declared here; the page supplies code, version, effective date and supersession.",
+  "publisher_label": "ICMR Standard Treatment Workflow (synthetic assessment copy)",
+  "documents": {
+    "STW-GP-01": {"condition": "acute_pharyngitis", "specialty": "general_practice", "population": "adult"},
+    "STW-GP-02": {"condition": "hypertension", "specialty": "general_practice", "population": "adult"},
+    "STW-GP-03": {"condition": "type_2_diabetes", "specialty": "general_practice", "population": "adult"},
+    "STW-GP-04": {"condition": "dengue", "specialty": "general_practice", "population": "all"},
+    "STW-GYN-01": {"condition": "iron_deficiency_anemia_pregnancy", "specialty": "gynaecology", "population": "pregnancy"},
+    "STW-GYN-02": {"condition": "uti_pregnancy", "specialty": "gynaecology", "population": "pregnancy"},
+    "STW-GYN-03": {"condition": "pcos", "specialty": "gynaecology", "population": "adult"},
+    "STW-ORT-01": {"condition": "acute_low_back_pain", "specialty": "orthopaedics", "population": "adult"},
+    "STW-ORT-02": {"condition": "knee_osteoarthritis", "specialty": "orthopaedics", "population": "adult"},
+    "STW-PED-01": {"condition": "acute_otitis_media", "specialty": "paediatrics", "population": "child"},
+    "STW-PED-02": {"condition": "childhood_pneumonia", "specialty": "paediatrics", "population": "child"},
+    "STW-PED-03": {"condition": "acute_gastroenteritis", "specialty": "paediatrics", "population": "child"}
+  },
+  "local_protocols": {
+    "SOP-CLIN-014": {"condition": "acute_undifferentiated_fever_adult", "specialty": "general_practice", "population": "adult", "organization": "Sunrise Multi-speciality Clinic"}
+  },
+  "section_unit_types": {
+    "assessment": ["ASSESS", "CONFIRM", "DIAGNOSE", "SUSPECT", "CLASSIFY", "SCREEN", "ASSESS DEHYDRATION"],
+    "red_flag_referral": ["RED FLAGS", "WARNING SIGNS", "REFER"],
+    "recommendation": ["FIRST-LINE MANAGEMENT", "OPD MANAGEMENT"],
+    "contraindication": ["DO NOT", "AVOID"],
+    "target": ["TARGETS"],
+    "monitoring": ["MONITOR", "REVIEW", "FOLLOW-UP", "COUNSEL"],
+    "status_note": ["STATUS"]
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "eval_version": "mini-eval-1.0.0",
+  "mode": "extractive",
+  "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+  "n": 11,
+  "tally": {
+    "correct": 11,
+    "abstained": 0,
+    "wrong": 0
+  },
+  "held_out_style_total": 9,
+  "uncited_numbers_total": 0,
+  "results": [
+    {
+      "id": "Q1",
+      "question": "What is the first-line antibiotic, dose basis, and duration for acute otitis media in a child?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-01": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "Pain: Paracetamol 15 mg/kg per dose every 6 h as needed",
+        "Amoxicillin 40 mg/kg/day in three divided doses for 5 days",
+        "Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q2",
+      "question": "A 6-year-old with non-severe community pneumonia: what is the amoxicillin dose exactly as the workflow states it? (Dose question — retrieve and cite the text as written; do not compute for any specific child.)",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-02": [
+          "2023.2"
+        ]
+      },
+      "claims": [
+        "Fever: Paracetamol 15 mg/kg per dose every 6 h as needed",
+        "Amoxicillin 40 mg/kg/day in three divided doses for 5 days"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q3",
+      "question": "What is the first-line initial drug therapy for newly diagnosed adult hypertension? (Note: the pack may contain more than one edition of this workflow.)",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-02": [
+          "2025.2"
+        ]
+      },
+      "claims": [
+        "Uncontrolled at 4 weeks: combine Amlodipine + Telmisartan",
+        "Add Hydrochlorothiazide 12.5 mg if still uncontrolled",
+        "Start Amlodipine 5 mg once daily OR Telmisartan 40 mg once daily",
+        "Resistant HTN on 3 drugs; suspected secondary cause; pregnancy",
+        "Baseline: creatinine, potassium, lipids, ECG, urine albumin"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q4",
+      "question": "Which analgesic class must be avoided in suspected dengue, and why?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-04": [
+          "2024.2"
+        ]
+      },
+      "claims": [
+        "AVOID Ibuprofen, Diclofenac, Aspirin and all NSAIDs — bleeding risk",
+        "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q5",
+      "question": "What are the ORS volumes after each loose stool for a child aged 2–10 years, and what zinc course accompanies it?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-PED-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "ORS after every loose stool: 50–100 ml (<2 y), 100–200 ml (2–10 y)",
+        "Zinc 20 mg once daily for 14 days (10 mg if <6 months)"
+      ],
+      "labels": [
+        "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q6",
+      "question": "Which red flags in acute low back pain mandate imaging or referral?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-ORT-01": [
+          "2023.1"
+        ]
+      },
+      "claims": [
+        "Fever with spinal tenderness; significant trauma; age >65 with new pain + weight loss",
+        "Saddle anaesthesia, bladder/bowel involvement, progressive weakness",
+        "Reassess at 2 weeks; persistent >6 weeks = imaging pathway"
+      ],
+      "labels": [
+        "NATIONAL STW STW-ORT-01 v2023.1 (effective 2023-09-01) — Acute Low Back Pain — Adult OPD"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q7",
+      "question": "Which urinary antibiotic is avoided at 36+ weeks of pregnancy, and what is the stated alternative?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GYN-02": [
+          "2023.1"
+        ]
+      },
+      "claims": [
+        "Nitrofurantoin near term (36+ weeks)",
+        "Nitrofurantoin 100 mg twice daily for 5 days (avoid at 36+ weeks)",
+        "Ciprofloxacin and other fluoroquinolones throughout pregnancy",
+        "Alternative: Cefixime 200 mg twice daily for 5 days",
+        "Dysuria/frequency; urine routine + culture before antibiotics where possible"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q8",
+      "question": "At what HbA1c threshold at diagnosis does the workflow add a second agent to metformin, and which agent?",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "STW-GP-03": [
+          "2024.1"
+        ]
+      },
+      "claims": [
+        "HbA1c ≥8.5% at diagnosis: add Glimepiride 1 mg before breakfast",
+        "HbA1c every 3 months until at goal; annual creatinine and urine albumin",
+        "Metformin 500 mg once daily with dinner; up-titrate weekly to 500 mg twice daily as tolerated",
+        "FPG ≥126 mg/dL or HbA1c ≥6.5% on two occasions, or RPG ≥200 with symptoms"
+      ],
+      "labels": [
+        "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation"
+      ],
+      "route": "retrieval"
+    },
+    {
+      "id": "Q9",
+      "question": "What is the first-line prophylactic drug for migraine in adults?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "Q10",
+      "question": "What is the standard drug regimen for newly diagnosed pulmonary tuberculosis?",
+      "expected": "abstain",
+      "got": "abstain",
+      "verdict": "correct",
+      "held_out_style_score": 0,
+      "checks": [],
+      "cited": {},
+      "claims": [],
+      "labels": [],
+      "route": "abstain_no_corpus"
+    },
+    {
+      "id": "Q11",
+      "question": "Per the clinic's own protocol, when are empirical antibiotics started in adult acute undifferentiated fever — and does the national workflow pack say the same? Label your sources.",
+      "expected": "answer",
+      "got": "answer",
+      "verdict": "correct",
+      "held_out_style_score": 1,
+      "checks": [],
+      "cited": {
+        "SOP-CLIN-014": [
+          "2.1"
+        ]
+      },
+      "claims": [
+        "Day 2: if fever persists beyond 48 hours without a localizing source, start empirical Azithromycin 500 mg once daily for 3 days.",
+        "Documentation: record fever chart and medication reconciliation at each visit.",
+        "Day 0–1: Paracetamol per standard reference dosing; hydration advice; CBC + peripheral smear if fever > 48h; dengue NS1 in season.",
+        "Day 3–4: review with reports; escalate per findings; admit if warning signs."
+      ],
+      "labels": [
+        "CLINIC PROTOCOL (Sunrise Multi-speciality Clinic, SOP-CLIN-014 v2.1, approved 2026-03-10) — organization-level knowledge, not national guidance"
+      ],
+      "route": "retrieval"
+    }
+  ]
+}

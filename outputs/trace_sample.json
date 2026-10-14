@@ -1,0 +1,890 @@
+{
+  "trace_id": "21bf761c-94b5-441e-b2bf-cc277a6a6f72",
+  "schema_version": "1.0",
+  "created_at": "2026-10-14T08:41:40+00:00",
+  "as_of": "2026-10-14",
+  "input": {
+    "prescription": {
+      "rx_id": "TRACE-DEMO-01",
+      "patient_population": "adult",
+      "items": [
+        {
+          "item_no": 1,
+          "written_product": "Dolo 650",
+          "strength_as_written": "650 mg",
+          "dose_frequency": "1-1-1 x 3d",
+          "clinical_note": "fever"
+        },
+        {
+          "item_no": 2,
+          "written_product": "Sinarest Tablet",
+          "strength_as_written": null,
+          "dose_frequency": "1-0-1 x 5d",
+          "clinical_note": "cold"
+        },
+        {
+          "item_no": 3,
+          "written_product": "Warf 5",
+          "strength_as_written": "5 mg",
+          "dose_frequency": "0-0-1",
+          "clinical_note": "AF, ongoing"
+        },
+        {
+          "item_no": 4,
+          "written_product": "Azee 500",
+          "strength_as_written": "500 mg",
+          "dose_frequency": "1-0-0 x 3d",
+          "clinical_note": "RTI"
+        },
+        {
+          "item_no": 5,
+          "written_product": "Telma",
+          "strength_as_written": null,
+          "dose_frequency": "1-0-0",
+          "clinical_note": "HTN"
+        }
+      ]
+    },
+    "question": "Which analgesic class must be avoided in suspected dengue, and why?"
+  },
+  "normalization": {
+    "items": [
+      {
+        "item_no": 1,
+        "written_product": "Dolo 650",
+        "strength_as_written": "650 mg",
+        "dose_frequency": "1-1-1 x 3d",
+        "frequency_parsed": {
+          "raw": "1-1-1 x 3d",
+          "units_per_day": 3.0,
+          "kind": "schedule",
+          "duration_days": 3
+        },
+        "resolution_status": "RESOLVED",
+        "method": "exact_brand_strength",
+        "confidence": 0.97,
+        "reason_code": null,
+        "reason_detail": "",
+        "review_item_id": null,
+        "product": {
+          "product_id": "CD1000",
+          "batch_id": "cdci:2026-06-30:8f7cdf39",
+          "brand_name": "Dolo 650",
+          "dose_form": "Tablet",
+          "strength_text": "Paracetamol 650 mg",
+          "is_fdc": false,
+          "salts": [
+            {
+              "ingredient": "Paracetamol",
+              "strength_value": 650.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            }
+          ],
+          "equivalent_product_ids": [
+            "CD1000"
+          ]
+        }
+      },
+      {
+        "item_no": 2,
+        "written_product": "Sinarest Tablet",
+        "strength_as_written": null,
+        "dose_frequency": "1-0-1 x 5d",
+        "frequency_parsed": {
+          "raw": "1-0-1 x 5d",
+          "units_per_day": 2.0,
+          "kind": "schedule",
+          "duration_days": 5
+        },
+        "resolution_status": "RESOLVED",
+        "method": "exact_brand_unique",
+        "confidence": 0.95,
+        "reason_code": null,
+        "reason_detail": "",
+        "review_item_id": null,
+        "product": {
+          "product_id": "CD1021",
+          "batch_id": "cdci:2026-06-30:8f7cdf39",
+          "brand_name": "Sinarest Tablet",
+          "dose_form": "Tablet",
+          "strength_text": "Paracetamol 500 mg + Chlorpheniramine 2 mg + Phenylephrine 10 mg",
+          "is_fdc": true,
+          "salts": [
+            {
+              "ingredient": "Paracetamol",
+              "strength_value": 500.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            },
+            {
+              "ingredient": "Chlorpheniramine",
+              "strength_value": 2.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            },
+            {
+              "ingredient": "Phenylephrine",
+              "strength_value": 10.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            }
+          ],
+          "equivalent_product_ids": [
+            "CD1021"
+          ]
+        }
+      },
+      {
+        "item_no": 3,
+        "written_product": "Warf 5",
+        "strength_as_written": "5 mg",
+        "dose_frequency": "0-0-1",
+        "frequency_parsed": {
+          "raw": "0-0-1",
+          "units_per_day": 1.0,
+          "kind": "schedule",
+          "duration_days": null
+        },
+        "resolution_status": "RESOLVED",
+        "method": "exact_brand_strength",
+        "confidence": 0.97,
+        "reason_code": null,
+        "reason_detail": "",
+        "review_item_id": null,
+        "product": {
+          "product_id": "CD1015",
+          "batch_id": "cdci:2026-06-30:8f7cdf39",
+          "brand_name": "Warf 5",
+          "dose_form": "Tablet",
+          "strength_text": "Warfarin 5 mg",
+          "is_fdc": false,
+          "salts": [
+            {
+              "ingredient": "Warfarin",
+              "strength_value": 5.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            }
+          ],
+          "equivalent_product_ids": [
+            "CD1015"
+          ]
+        }
+      },
+      {
+        "item_no": 4,
+        "written_product": "Azee 500",
+        "strength_as_written": "500 mg",
+        "dose_frequency": "1-0-0 x 3d",
+        "frequency_parsed": {
+          "raw": "1-0-0 x 3d",
+          "units_per_day": 1.0,
+          "kind": "schedule",
+          "duration_days": 3
+        },
+        "resolution_status": "RESOLVED",
+        "method": "exact_brand_strength",
+        "confidence": 0.97,
+        "reason_code": null,
+        "reason_detail": "",
+        "review_item_id": null,
+        "product": {
+          "product_id": "CD1007",
+          "batch_id": "cdci:2026-06-30:8f7cdf39",
+          "brand_name": "Azee 500",
+          "dose_form": "Tablet",
+          "strength_text": "Azithromycin 500 mg",
+          "is_fdc": false,
+          "salts": [
+            {
+              "ingredient": "Azithromycin",
+              "strength_value": 500.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            }
+          ],
+          "equivalent_product_ids": [
+            "CD1007"
+          ]
+        }
+      },
+      {
+        "item_no": 5,
+        "written_product": "Telma",
+        "strength_as_written": null,
+        "dose_frequency": "1-0-0",
+        "frequency_parsed": {
+          "raw": "1-0-0",
+          "units_per_day": 1.0,
+          "kind": "schedule",
+          "duration_days": null
+        },
+        "resolution_status": "AMBIGUOUS",
+        "method": "brand_family",
+        "confidence": 0.0,
+        "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+        "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+        "review_item_id": 752,
+        "candidates": [
+          {
+            "product_id": "CD1009",
+            "brand_name": "Telma 20",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 20 mg",
+            "score": 1.0
+          },
+          {
+            "product_id": "CD1010",
+            "brand_name": "Telma 40",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 40 mg",
+            "score": 1.0
+          },
+          {
+            "product_id": "CD1011",
+            "brand_name": "Telma 80",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 80 mg",
+            "score": 1.0
+          },
+          {
+            "product_id": "CD1024",
+            "brand_name": "Telma-H 40",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg",
+            "score": 1.0
+          }
+        ]
+      }
+    ],
+    "unresolved_count": 1
+  },
+  "safety_checks": [
+    {
+      "check_id": "DUP-001",
+      "name": "duplicate_active_ingredient",
+      "rule_version": "1.0.0",
+      "status": "HIT",
+      "severity": "MODERATE",
+      "summary": "1 ingredient(s) appear in more than one item: Paracetamol",
+      "evidence": {
+        "hits": [
+          {
+            "ingredient": "Paracetamol",
+            "items": [
+              {
+                "item_no": 1,
+                "written_product": "Dolo 650",
+                "product_id": "CD1000",
+                "brand_name": "Dolo 650",
+                "is_fdc": false,
+                "strength_per_unit": 650.0,
+                "unit": "mg",
+                "units_per_day": 3.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1950.0
+              },
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 500.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1000.0
+              }
+            ],
+            "aggregate_mg_per_day": 2950.0,
+            "aggregate_is_lower_bound": false,
+            "aggregate_note": "all contributions quantified",
+            "visible_only_after_fdc_decomposition": true,
+            "reference_ceiling": {
+              "found": true,
+              "citation": {
+                "source_doc": "STW-GP-01",
+                "source_version": "2025.1",
+                "section": "FIRST-LINE MANAGEMENT",
+                "as_written": "max 3 g/day adult",
+                "population": "adult"
+              },
+              "max_mg_per_day": 3000,
+              "exceeds": false,
+              "population_matches_input": false,
+              "note": "aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+            }
+          }
+        ]
+      },
+      "unverified_items": [
+        {
+          "item_no": 5,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": [
+        "one or more items are unresolved; further duplicates may exist"
+      ]
+    },
+    {
+      "check_id": "FDC-001",
+      "name": "prohibited_or_restricted_product",
+      "rule_version": "1.1.0",
+      "status": "UNVERIFIED_INPUT",
+      "severity": "NONE",
+      "summary": "1 item(s) unresolved; regulatory status cannot be checked for them",
+      "evidence": {
+        "items": [
+          {
+            "item_no": 1,
+            "written_product": "Dolo 650",
+            "product_id": "CD1000",
+            "ingredients": [
+              "paracetamol"
+            ],
+            "status_as_of": "NONE",
+            "governing_events": [],
+            "supersession_chains": [],
+            "superseded_events": [],
+            "pending_events": [],
+            "excluded_by_qualifier": [],
+            "uncertain_applicability": [],
+            "register_gaps": []
+          },
+          {
+            "item_no": 2,
+            "written_product": "Sinarest Tablet",
+            "product_id": "CD1021",
+            "ingredients": [
+              "paracetamol",
+              "chlorpheniramine",
+              "phenylephrine"
+            ],
+            "status_as_of": "NONE",
+            "governing_events": [],
+            "supersession_chains": [],
+            "superseded_events": [],
+            "pending_events": [],
+            "excluded_by_qualifier": [],
+            "uncertain_applicability": [],
+            "register_gaps": []
+          },
+          {
+            "item_no": 3,
+            "written_product": "Warf 5",
+            "product_id": "CD1015",
+            "ingredients": [
+              "warfarin"
+            ],
+            "status_as_of": "NONE",
+            "governing_events": [],
+            "supersession_chains": [],
+            "superseded_events": [],
+            "pending_events": [],
+            "excluded_by_qualifier": [],
+            "uncertain_applicability": [],
+            "register_gaps": []
+          },
+          {
+            "item_no": 4,
+            "written_product": "Azee 500",
+            "product_id": "CD1007",
+            "ingredients": [
+              "azithromycin"
+            ],
+            "status_as_of": "NONE",
+            "governing_events": [],
+            "supersession_chains": [],
+            "superseded_events": [],
+            "pending_events": [],
+            "excluded_by_qualifier": [],
+            "uncertain_applicability": [],
+            "register_gaps": []
+          }
+        ],
+        "partial": []
+      },
+      "unverified_items": [
+        {
+          "item_no": 5,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "INT-001",
+      "name": "severe_interaction_seed",
+      "rule_version": "1.0.0",
+      "status": "HIT",
+      "severity": "SEVERE",
+      "summary": "Warfarin + Azithromycin (SEVERE: INR elevation; bleeding)",
+      "evidence": {
+        "pairs_evaluated": 14,
+        "seed_pairs_available": 15,
+        "ingredients_not_in_seed": [
+          "Chlorpheniramine",
+          "Paracetamol",
+          "Phenylephrine"
+        ],
+        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions",
+        "hits": [
+          {
+            "ingredient_a": "Warfarin",
+            "ingredient_b": "Azithromycin",
+            "items": [
+              3,
+              4
+            ],
+            "within_single_product": false,
+            "severity": "SEVERE",
+            "note": "INR elevation; bleeding",
+            "source_tag": "public-high-priority-2026",
+            "seed_pair": "Warfarin + Azithromycin",
+            "matched_via_class": false
+          }
+        ]
+      },
+      "unverified_items": [
+        {
+          "item_no": 5,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "CUM-001",
+      "name": "cumulative_ingredient_exposure",
+      "rule_version": "1.0.0",
+      "status": "UNVERIFIED_INPUT",
+      "severity": "NONE",
+      "summary": "1 item(s) unresolved; totals exclude them",
+      "evidence": {
+        "per_ingredient": [
+          {
+            "ingredient": "Paracetamol",
+            "distinct_items": 2,
+            "shared_across_items": true,
+            "total_mg_per_day": 2950.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 1,
+                "written_product": "Dolo 650",
+                "product_id": "CD1000",
+                "brand_name": "Dolo 650",
+                "is_fdc": false,
+                "strength_per_unit": 650.0,
+                "unit": "mg",
+                "units_per_day": 3.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1950.0
+              },
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 500.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1000.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": true,
+              "citation": {
+                "source_doc": "STW-GP-01",
+                "source_version": "2025.1",
+                "section": "FIRST-LINE MANAGEMENT",
+                "as_written": "max 3 g/day adult",
+                "population": "adult"
+              },
+              "max_mg_per_day": 3000,
+              "exceeds": false,
+              "population_matches_input": true,
+              "note": "aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1)"
+            }
+          },
+          {
+            "ingredient": "Chlorpheniramine",
+            "distinct_items": 1,
+            "shared_across_items": false,
+            "total_mg_per_day": 4.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 2.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 4.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": false,
+              "note": "no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+            }
+          },
+          {
+            "ingredient": "Phenylephrine",
+            "distinct_items": 1,
+            "shared_across_items": false,
+            "total_mg_per_day": 20.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 10.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 20.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": false,
+              "note": "no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+            }
+          },
+          {
+            "ingredient": "Warfarin",
+            "distinct_items": 1,
+            "shared_across_items": false,
+            "total_mg_per_day": 5.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 3,
+                "written_product": "Warf 5",
+                "product_id": "CD1015",
+                "brand_name": "Warf 5",
+                "is_fdc": false,
+                "strength_per_unit": 5.0,
+                "unit": "mg",
+                "units_per_day": 1.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 5.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": false,
+              "note": "no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+            }
+          },
+          {
+            "ingredient": "Azithromycin",
+            "distinct_items": 1,
+            "shared_across_items": false,
+            "total_mg_per_day": 500.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 4,
+                "written_product": "Azee 500",
+                "product_id": "CD1007",
+                "brand_name": "Azee 500",
+                "is_fdc": false,
+                "strength_per_unit": 500.0,
+                "unit": "mg",
+                "units_per_day": 1.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 500.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": false,
+              "note": "no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+            }
+          }
+        ],
+        "method": "sum over items of (units/day x strength per unit); frequency parsed from dose_frequency with config/frequency_patterns.json"
+      },
+      "unverified_items": [
+        {
+          "item_no": 5,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    }
+  ],
+  "safety_overall": "HIT",
+  "item_states": [
+    {
+      "item_no": 1,
+      "state": "HIT",
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2950.0 mg/day; aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+    },
+    {
+      "item_no": 2,
+      "state": "HIT",
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2950.0 mg/day; aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+    },
+    {
+      "item_no": 3,
+      "state": "HIT",
+      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026)"
+    },
+    {
+      "item_no": 4,
+      "state": "HIT",
+      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026)"
+    },
+    {
+      "item_no": 5,
+      "state": "UNVERIFIED_INPUT",
+      "note": "AMBIGUOUS_STRENGTH_MISSING: 'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one"
+    }
+  ],
+  "grounded_answer": {
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "AVOID Ibuprofen, Diclofenac, Aspirin and all NSAIDs — bleeding risk",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-04:2024.2:opd_management:5",
+            "source_type": "national_stw",
+            "document": "STW-GP-04",
+            "title": "Dengue Fever — OPD Management",
+            "version": "2024.2",
+            "effective_date": "2024-07-01",
+            "section": "OPD MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/opd_management/5",
+            "file": "STW_GP_04_Dengue_OPD.pdf",
+            "file_sha256": "b3c1a7b4a358",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management",
+        "verbatim": true
+      },
+      {
+        "text": "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-04:2024.2:suspect:1",
+            "source_type": "national_stw",
+            "document": "STW-GP-04",
+            "title": "Dengue Fever — OPD Management",
+            "version": "2024.2",
+            "effective_date": "2024-07-01",
+            "section": "SUSPECT",
+            "page": 1,
+            "anchor": "p1/suspect/1",
+            "file": "STW_GP_04_Dengue_OPD.pdf",
+            "file_sha256": "b3c1a7b4a358",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management"
+    ],
+    "notes": [],
+    "abstention": null,
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "analysis": {
+      "question": "Which analgesic class must be avoided in suspected dengue, and why?",
+      "conditions_in_corpus": [
+        "dengue"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    }
+  },
+  "versions": {
+    "package": "0.1.0",
+    "rail_engine": "rail-engine-1.0.0",
+    "rule_set": {
+      "id": "brahmo-rail-rules",
+      "version": "1.0.0",
+      "rules": {
+        "DUP-001": "1.0.0",
+        "FDC-001": "1.1.0",
+        "INT-001": "1.0.0",
+        "CUM-001": "1.0.0"
+      }
+    },
+    "datasets": {
+      "cdci": {
+        "batch_id": "cdci:2026-06-30:8f7cdf39",
+        "source": "CDCI-SUBSET-2026Q2",
+        "source_version": "2026-06-30",
+        "file_sha256": "8f7cdf39bded99adff6fb58d7305b1c99ffaa3483ed8ab628e8a14d6f95afed7",
+        "loaded_at": "2026-10-14T08:36:53+00:00"
+      },
+      "ingredient_supplement": {
+        "batch_id": "ingredient_supplement:2026-10-14:b83d8fc4",
+        "source": "candidate-added ingredient vocabulary",
+        "source_version": "2026-10-14",
+        "file_sha256": "b83d8fc4a1377cc30025f92a946f50a69cf574bcfa36d0381454752c721a545a",
+        "loaded_at": "2026-10-14T08:36:53+00:00"
+      },
+      "nlem": {
+        "batch_id": "nlem:NLEM 2022:e212cce8",
+        "source": "NLEM extract",
+        "source_version": "NLEM 2022",
+        "file_sha256": "e212cce8d4a5eb44d8825856fe4e869e89c09e24669a975596311805957328c8",
+        "loaded_at": "2026-10-14T08:36:53+00:00"
+      },
+      "jan_aushadhi": {
+        "batch_id": "jan_aushadhi:PMBJP-2026-05:1bb7228d",
+        "source": "Jan Aushadhi (PMBJP) extract",
+        "source_version": "PMBJP-2026-05",
+        "file_sha256": "1bb7228d8b6f377bfaab4d46402f93f035d8adc4391087670e00d5943a0e4506",
+        "loaded_at": "2026-10-14T08:36:53+00:00"
+      },
+      "gazette": {
+        "batch_id": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "source": "Gazette of India notifications (assessment extract)",
+        "source_version": "extract-through-2025-11-02",
+        "file_sha256": "a57b5a9dd4e93714d184b1bc444f03b738bb6aa2afe0fc27200be8fd73a818f5",
+        "loaded_at": "2026-10-14T08:36:53+00:00"
+      },
+      "interactions": {
+        "batch_id": "interactions:public-high-priority-2026:a68f50eb",
+        "source": "severe interaction seed (ingredient-level)",
+        "source_version": "public-high-priority-2026",
+        "file_sha256": "a68f50ebe14b902e185d3f94122ff684d0fbf790c8a9a6be73298511ffc836d9",
+        "loaded_at": "2026-10-14T08:36:53+00:00"
+      },
+      "pharmacy_stock": {
+        "batch_id": "pharmacy_stock:snapshot-ref-2026-10-14:fcb9f617",
+        "source": "clinic pharmacy stock export",
+        "source_version": "snapshot-ref-2026-10-14",
+        "file_sha256": "fcb9f6175e5b87d6b2da3d3e8fd9464d5b4285bca7399ea40cd4e1172a50162f",
+        "loaded_at": "2026-10-14T08:36:53+00:00"
+      }
+    },
+    "freshness": {
+      "cdci": {
+        "present": true,
+        "batch_id": "cdci:2026-06-30:8f7cdf39",
+        "source_version": "2026-06-30",
+        "version_date": "2026-06-30",
+        "age_days_at_as_of": 106,
+        "max_age_days": 400,
+        "expired": false,
+        "reason": null
+      },
+      "gazette": {
+        "present": true,
+        "batch_id": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "source_version": "extract-through-2025-11-02",
+        "version_date": "2025-11-02",
+        "age_days_at_as_of": 346,
+        "max_age_days": 400,
+        "expired": false,
+        "reason": null
+      },
+      "interactions": {
+        "present": true,
+        "batch_id": "interactions:public-high-priority-2026:a68f50eb",
+        "source_version": "public-high-priority-2026",
+        "version_date": "2026-01-01",
+        "age_days_at_as_of": 286,
+        "max_age_days": 400,
+        "expired": false,
+        "reason": null
+      }
+    },
+    "rag_index": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+    "chunker": "chunker-1.0.0",
+    "embedding": {
+      "provider": "local_hashed",
+      "model": "local-hashed-char-ngram-v1"
+    },
+    "answering": {
+      "mode": "extractive",
+      "model": null,
+      "prompt_version": null,
+      "prompt_file_sha256": "73e57a8defc4"
+    },
+    "config_sha256": "bd32b79c308a"
+  },
+  "run_ids": {
+    "rail_run_id": "f08f169d-44df-4cc8-9a76-26cd6d71b7cf",
+    "qa_run_id": "aec3907c-3af6-45bf-ba00-131367a49a9c"
+  },
+  "doctor_decides": "Nothing here is final. Every state above is a draft check or a cited excerpt for the prescribing doctor to confirm or reject."
+}

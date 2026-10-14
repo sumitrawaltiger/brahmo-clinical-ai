@@ -1,0 +1,2708 @@
+[
+  {
+    "run_id": "7cb15a25-fec5-45c4-8147-142d2c1da6f9",
+    "question": "What is the first-line antibiotic, dose basis, and duration for acute otitis media in a child?",
+    "analysis": {
+      "question": "What is the first-line antibiotic, dose basis, and duration for acute otitis media in a child?",
+      "conditions_in_corpus": [
+        "acute_otitis_media"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": true,
+        "paediatric": true,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "Pain: Paracetamol 15 mg/kg per dose every 6 h as needed",
+        "citations": [
+          {
+            "chunk_id": "STW-PED-01:2024.1:first_line_management:4",
+            "source_type": "national_stw",
+            "document": "STW-PED-01",
+            "title": "Acute Otitis Media — Child OPD",
+            "version": "2024.1",
+            "effective_date": "2024-05-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/4",
+            "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+            "file_sha256": "eabcbbb2966f",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD",
+        "verbatim": true
+      },
+      {
+        "text": "Amoxicillin 40 mg/kg/day in three divided doses for 5 days",
+        "citations": [
+          {
+            "chunk_id": "STW-PED-01:2024.1:first_line_management:2",
+            "source_type": "national_stw",
+            "document": "STW-PED-01",
+            "title": "Acute Otitis Media — Child OPD",
+            "version": "2024.1",
+            "effective_date": "2024-05-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/2",
+            "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+            "file_sha256": "eabcbbb2966f",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD",
+        "verbatim": true
+      },
+      {
+        "text": "Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)",
+        "citations": [
+          {
+            "chunk_id": "STW-PED-01:2024.1:first_line_management:3",
+            "source_type": "national_stw",
+            "document": "STW-PED-01",
+            "title": "Acute Otitis Media — Child OPD",
+            "version": "2024.1",
+            "effective_date": "2024-05-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/3",
+            "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+            "file_sha256": "eabcbbb2966f",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-PED-01 v2024.1 (effective 2024-05-01) — Acute Otitis Media — Child OPD"
+    ],
+    "notes": [
+      "Dose text is quoted exactly as written in the source. No dose has been calculated for any patient; mg/kg figures are not converted."
+    ],
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-PED-01:2024.1:first_line_management:2",
+          "source_type": "national_stw",
+          "document": "STW-PED-01",
+          "title": "Acute Otitis Media — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-05-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/2",
+          "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+          "file_sha256": "eabcbbb2966f",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03252,
+            "bm25": 14.7499,
+            "cosine": 0.4989,
+            "lex_rank": 2,
+            "sem_rank": 1
+          },
+          "text": "Amoxicillin 40 mg/kg/day in three divided doses for 5 days"
+        },
+        {
+          "chunk_id": "STW-PED-01:2024.1:first_line_management:4",
+          "source_type": "national_stw",
+          "document": "STW-PED-01",
+          "title": "Acute Otitis Media — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-05-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/4",
+          "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+          "file_sha256": "eabcbbb2966f",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03252,
+            "bm25": 14.7755,
+            "cosine": 0.4805,
+            "lex_rank": 1,
+            "sem_rank": 2
+          },
+          "text": "Pain: Paracetamol 15 mg/kg per dose every 6 h as needed"
+        },
+        {
+          "chunk_id": "STW-PED-01:2024.1:assess:1",
+          "source_type": "national_stw",
+          "document": "STW-PED-01",
+          "title": "Acute Otitis Media — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-05-01",
+          "section": "ASSESS",
+          "page": 1,
+          "anchor": "p1/assess/1",
+          "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+          "file_sha256": "eabcbbb2966f",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 11.2104,
+            "cosine": 0.3886,
+            "lex_rank": 4,
+            "sem_rank": 3
+          },
+          "text": "Ear pain, fever, red bulging tympanic membrane on otoscopy"
+        },
+        {
+          "chunk_id": "STW-PED-01:2024.1:first_line_management:3",
+          "source_type": "national_stw",
+          "document": "STW-PED-01",
+          "title": "Acute Otitis Media — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-05-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/3",
+          "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+          "file_sha256": "eabcbbb2966f",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 11.8327,
+            "cosine": 0.3797,
+            "lex_rank": 3,
+            "sem_rank": 4
+          },
+          "text": "Severe or <6 months: Amoxicillin–Clavulanate 40 mg/kg/day (amoxicillin component)"
+        },
+        {
+          "chunk_id": "STW-PED-01:2024.1:refer:5",
+          "source_type": "national_stw",
+          "document": "STW-PED-01",
+          "title": "Acute Otitis Media — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-05-01",
+          "section": "REFER",
+          "page": 1,
+          "anchor": "p1/refer/5",
+          "file": "STW_PED_01_Acute_Otitis_Media.pdf",
+          "file_sha256": "eabcbbb2966f",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03077,
+            "bm25": 10.8224,
+            "cosine": 0.3752,
+            "lex_rank": 5,
+            "sem_rank": 5
+          },
+          "text": "Mastoid tenderness, facial palsy, failure after 48–72 h of antibiotics"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "acute_otitis_media"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "57374de9-d6c8-41ba-9695-d67b6d20e81c",
+    "question": "A 6-year-old with non-severe community pneumonia: what is the amoxicillin dose exactly as the workflow states it? (Dose question — retrieve and cite the text as written; do not compute for any specific child.)",
+    "analysis": {
+      "question": "A 6-year-old with non-severe community pneumonia: what is the amoxicillin dose exactly as the workflow states it? (Dose question — retrieve and cite the text as written; do not compute for any specific child.)",
+      "conditions_in_corpus": [
+        "childhood_pneumonia"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": true,
+        "paediatric": true,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": true
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "Fever: Paracetamol 15 mg/kg per dose every 6 h as needed",
+        "citations": [
+          {
+            "chunk_id": "STW-PED-02:2023.2:first_line_management:4",
+            "source_type": "national_stw",
+            "document": "STW-PED-02",
+            "title": "Community Pneumonia — Child OPD (Non-severe)",
+            "version": "2023.2",
+            "effective_date": "2023-11-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/4",
+            "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+            "file_sha256": "2586c1533165",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)",
+        "verbatim": true
+      },
+      {
+        "text": "Amoxicillin 40 mg/kg/day in three divided doses for 5 days",
+        "citations": [
+          {
+            "chunk_id": "STW-PED-02:2023.2:first_line_management:3",
+            "source_type": "national_stw",
+            "document": "STW-PED-02",
+            "title": "Community Pneumonia — Child OPD (Non-severe)",
+            "version": "2023.2",
+            "effective_date": "2023-11-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/3",
+            "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+            "file_sha256": "2586c1533165",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-PED-02 v2023.2 (effective 2023-11-01) — Community Pneumonia — Child OPD (Non-severe)"
+    ],
+    "notes": [
+      "Dose text is quoted exactly as written in the source. No dose has been calculated for any patient; mg/kg figures are not converted."
+    ],
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-PED-02:2023.2:first_line_management:4",
+          "source_type": "national_stw",
+          "document": "STW-PED-02",
+          "title": "Community Pneumonia — Child OPD (Non-severe)",
+          "version": "2023.2",
+          "effective_date": "2023-11-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/4",
+          "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+          "file_sha256": "2586c1533165",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03252,
+            "bm25": 24.5714,
+            "cosine": 0.351,
+            "lex_rank": 1,
+            "sem_rank": 2
+          },
+          "text": "Fever: Paracetamol 15 mg/kg per dose every 6 h as needed"
+        },
+        {
+          "chunk_id": "STW-PED-02:2023.2:first_line_management:3",
+          "source_type": "national_stw",
+          "document": "STW-PED-02",
+          "title": "Community Pneumonia — Child OPD (Non-severe)",
+          "version": "2023.2",
+          "effective_date": "2023-11-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/3",
+          "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+          "file_sha256": "2586c1533165",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03178,
+            "bm25": 16.1004,
+            "cosine": 0.3534,
+            "lex_rank": 5,
+            "sem_rank": 1
+          },
+          "text": "Amoxicillin 40 mg/kg/day in three divided doses for 5 days"
+        },
+        {
+          "chunk_id": "STW-PED-02:2023.2:do_not:6",
+          "source_type": "national_stw",
+          "document": "STW-PED-02",
+          "title": "Community Pneumonia — Child OPD (Non-severe)",
+          "version": "2023.2",
+          "effective_date": "2023-11-01",
+          "section": "DO NOT",
+          "page": 1,
+          "anchor": "p1/do_not/6",
+          "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+          "file_sha256": "2586c1533165",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03175,
+            "bm25": 18.3028,
+            "cosine": 0.2756,
+            "lex_rank": 2,
+            "sem_rank": 4
+          },
+          "text": "No cough syrups under 5 years; no routine chest X-ray in OPD non-severe cases"
+        },
+        {
+          "chunk_id": "STW-PED-02:2023.2:classify:1",
+          "source_type": "national_stw",
+          "document": "STW-PED-02",
+          "title": "Community Pneumonia — Child OPD (Non-severe)",
+          "version": "2023.2",
+          "effective_date": "2023-11-01",
+          "section": "CLASSIFY",
+          "page": 1,
+          "anchor": "p1/classify/1",
+          "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+          "file_sha256": "2586c1533165",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03175,
+            "bm25": 17.2325,
+            "cosine": 0.3031,
+            "lex_rank": 3,
+            "sem_rank": 3
+          },
+          "text": "Fast breathing for age without danger signs = non-severe pneumonia"
+        },
+        {
+          "chunk_id": "STW-PED-02:2023.2:classify:2",
+          "source_type": "national_stw",
+          "document": "STW-PED-02",
+          "title": "Community Pneumonia — Child OPD (Non-severe)",
+          "version": "2023.2",
+          "effective_date": "2023-11-01",
+          "section": "CLASSIFY",
+          "page": 1,
+          "anchor": "p1/classify/2",
+          "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+          "file_sha256": "2586c1533165",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03078,
+            "bm25": 16.3939,
+            "cosine": 0.1929,
+            "lex_rank": 4,
+            "sem_rank": 6
+          },
+          "text": "Any danger sign (unable to drink, convulsions, chest indrawing) = REFER"
+        },
+        {
+          "chunk_id": "STW-PED-02:2023.2:first_line_management:5",
+          "source_type": "national_stw",
+          "document": "STW-PED-02",
+          "title": "Community Pneumonia — Child OPD (Non-severe)",
+          "version": "2023.2",
+          "effective_date": "2023-11-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/5",
+          "file": "STW_PED_02_Childhood_Pneumonia_OPD.pdf",
+          "file_sha256": "2586c1533165",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03054,
+            "bm25": 12.8359,
+            "cosine": 0.2517,
+            "lex_rank": 6,
+            "sem_rank": 5
+          },
+          "text": "Reassess at 48–72 h; no improvement = referral"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "childhood_pneumonia"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "0f36568b-e366-40bb-aac0-18339b6b55fd",
+    "question": "What is the first-line initial drug therapy for newly diagnosed adult hypertension? (Note: the pack may contain more than one edition of this workflow.)",
+    "analysis": {
+      "question": "What is the first-line initial drug therapy for newly diagnosed adult hypertension? (Note: the pack may contain more than one edition of this workflow.)",
+      "conditions_in_corpus": [
+        "hypertension"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": true,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "Uncontrolled at 4 weeks: combine Amlodipine + Telmisartan",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-02:2025.2:first_line_management_current:4",
+            "source_type": "national_stw",
+            "document": "STW-GP-02",
+            "title": "Hypertension — Initial Management (Adult)",
+            "version": "2025.2",
+            "effective_date": "2025-06-01",
+            "section": "FIRST-LINE MANAGEMENT (CURRENT)",
+            "page": 1,
+            "anchor": "p1/first_line_management_current/4",
+            "file": "STW_GP_02_Hypertension_Initial.pdf",
+            "file_sha256": "20af43c6651a",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)",
+        "verbatim": true
+      },
+      {
+        "text": "Add Hydrochlorothiazide 12.5 mg if still uncontrolled",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-02:2025.2:first_line_management_current:5",
+            "source_type": "national_stw",
+            "document": "STW-GP-02",
+            "title": "Hypertension — Initial Management (Adult)",
+            "version": "2025.2",
+            "effective_date": "2025-06-01",
+            "section": "FIRST-LINE MANAGEMENT (CURRENT)",
+            "page": 1,
+            "anchor": "p1/first_line_management_current/5",
+            "file": "STW_GP_02_Hypertension_Initial.pdf",
+            "file_sha256": "20af43c6651a",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)",
+        "verbatim": true
+      },
+      {
+        "text": "Start Amlodipine 5 mg once daily OR Telmisartan 40 mg once daily",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-02:2025.2:first_line_management_current:3",
+            "source_type": "national_stw",
+            "document": "STW-GP-02",
+            "title": "Hypertension — Initial Management (Adult)",
+            "version": "2025.2",
+            "effective_date": "2025-06-01",
+            "section": "FIRST-LINE MANAGEMENT (CURRENT)",
+            "page": 1,
+            "anchor": "p1/first_line_management_current/3",
+            "file": "STW_GP_02_Hypertension_Initial.pdf",
+            "file_sha256": "20af43c6651a",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)",
+        "verbatim": true
+      },
+      {
+        "text": "Resistant HTN on 3 drugs; suspected secondary cause; pregnancy",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-02:2025.2:refer:7",
+            "source_type": "national_stw",
+            "document": "STW-GP-02",
+            "title": "Hypertension — Initial Management (Adult)",
+            "version": "2025.2",
+            "effective_date": "2025-06-01",
+            "section": "REFER",
+            "page": 1,
+            "anchor": "p1/refer/7",
+            "file": "STW_GP_02_Hypertension_Initial.pdf",
+            "file_sha256": "20af43c6651a",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)",
+        "verbatim": true
+      },
+      {
+        "text": "Baseline: creatinine, potassium, lipids, ECG, urine albumin",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-02:2025.2:confirm:2",
+            "source_type": "national_stw",
+            "document": "STW-GP-02",
+            "title": "Hypertension — Initial Management (Adult)",
+            "version": "2025.2",
+            "effective_date": "2025-06-01",
+            "section": "CONFIRM",
+            "page": 1,
+            "anchor": "p1/confirm/2",
+            "file": "STW_GP_02_Hypertension_Initial.pdf",
+            "file_sha256": "20af43c6651a",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-GP-02 v2025.2 (effective 2025-06-01) — Hypertension — Initial Management (Adult)"
+    ],
+    "notes": [],
+    "superseded_editions": [
+      {
+        "text": "Start Atenolol 50 mg once daily as initial monotherapy",
+        "citation": {
+          "chunk_id": "STW-GP-02:2021.1:first_line_management_this_2021_edition:2",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2021.1",
+          "effective_date": "2021-02-01",
+          "section": "FIRST-LINE MANAGEMENT (THIS 2021 EDITION)",
+          "page": 1,
+          "anchor": "p1/first_line_management_this_2021_edition/2",
+          "file": "STW_GP_02_Hypertension_Initial_v2021.pdf",
+          "file_sha256": "25b577a05e10",
+          "organization": null,
+          "is_current": false,
+          "superseded_by": "STW-GP-02 v2025.2",
+          "label": "NATIONAL STW"
+        },
+        "note": "archived edition STW-GP-02 v2021.1 (effective 2021-02-01), superseded by STW-GP-02 v2025.2; shown for transparency, not merged into the answer"
+      },
+      {
+        "text": "Alternative: Hydrochlorothiazide 25 mg once daily",
+        "citation": {
+          "chunk_id": "STW-GP-02:2021.1:first_line_management_this_2021_edition:3",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2021.1",
+          "effective_date": "2021-02-01",
+          "section": "FIRST-LINE MANAGEMENT (THIS 2021 EDITION)",
+          "page": 1,
+          "anchor": "p1/first_line_management_this_2021_edition/3",
+          "file": "STW_GP_02_Hypertension_Initial_v2021.pdf",
+          "file_sha256": "25b577a05e10",
+          "organization": null,
+          "is_current": false,
+          "superseded_by": "STW-GP-02 v2025.2",
+          "label": "NATIONAL STW"
+        },
+        "note": "archived edition STW-GP-02 v2021.1 (effective 2021-02-01), superseded by STW-GP-02 v2025.2; shown for transparency, not merged into the answer"
+      },
+      {
+        "text": "Review at 6 weeks",
+        "citation": {
+          "chunk_id": "STW-GP-02:2021.1:first_line_management_this_2021_edition:4",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2021.1",
+          "effective_date": "2021-02-01",
+          "section": "FIRST-LINE MANAGEMENT (THIS 2021 EDITION)",
+          "page": 1,
+          "anchor": "p1/first_line_management_this_2021_edition/4",
+          "file": "STW_GP_02_Hypertension_Initial_v2021.pdf",
+          "file_sha256": "25b577a05e10",
+          "organization": null,
+          "is_current": false,
+          "superseded_by": "STW-GP-02 v2025.2",
+          "label": "NATIONAL STW"
+        },
+        "note": "archived edition STW-GP-02 v2021.1 (effective 2021-02-01), superseded by STW-GP-02 v2025.2; shown for transparency, not merged into the answer"
+      }
+    ],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-GP-02:2025.2:first_line_management_current:4",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2025.2",
+          "effective_date": "2025-06-01",
+          "section": "FIRST-LINE MANAGEMENT (CURRENT)",
+          "page": 1,
+          "anchor": "p1/first_line_management_current/4",
+          "file": "STW_GP_02_Hypertension_Initial.pdf",
+          "file_sha256": "20af43c6651a",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03252,
+            "bm25": 7.268,
+            "cosine": 0.3626,
+            "lex_rank": 1,
+            "sem_rank": 2
+          },
+          "text": "Uncontrolled at 4 weeks: combine Amlodipine + Telmisartan"
+        },
+        {
+          "chunk_id": "STW-GP-02:2025.2:confirm:2",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2025.2",
+          "effective_date": "2025-06-01",
+          "section": "CONFIRM",
+          "page": 1,
+          "anchor": "p1/confirm/2",
+          "file": "STW_GP_02_Hypertension_Initial.pdf",
+          "file_sha256": "20af43c6651a",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03202,
+            "bm25": 5.8249,
+            "cosine": 0.3709,
+            "lex_rank": 4,
+            "sem_rank": 1
+          },
+          "text": "Baseline: creatinine, potassium, lipids, ECG, urine albumin"
+        },
+        {
+          "chunk_id": "STW-GP-02:2025.2:first_line_management_current:5",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2025.2",
+          "effective_date": "2025-06-01",
+          "section": "FIRST-LINE MANAGEMENT (CURRENT)",
+          "page": 1,
+          "anchor": "p1/first_line_management_current/5",
+          "file": "STW_GP_02_Hypertension_Initial.pdf",
+          "file_sha256": "20af43c6651a",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.032,
+            "bm25": 7.268,
+            "cosine": 0.3522,
+            "lex_rank": 2,
+            "sem_rank": 3
+          },
+          "text": "Add Hydrochlorothiazide 12.5 mg if still uncontrolled"
+        },
+        {
+          "chunk_id": "STW-GP-02:2025.2:first_line_management_current:3",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2025.2",
+          "effective_date": "2025-06-01",
+          "section": "FIRST-LINE MANAGEMENT (CURRENT)",
+          "page": 1,
+          "anchor": "p1/first_line_management_current/3",
+          "file": "STW_GP_02_Hypertension_Initial.pdf",
+          "file_sha256": "20af43c6651a",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03126,
+            "bm25": 6.5443,
+            "cosine": 0.3409,
+            "lex_rank": 3,
+            "sem_rank": 5
+          },
+          "text": "Start Amlodipine 5 mg once daily OR Telmisartan 40 mg once daily"
+        },
+        {
+          "chunk_id": "STW-GP-02:2025.2:targets:6",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2025.2",
+          "effective_date": "2025-06-01",
+          "section": "TARGETS",
+          "page": 1,
+          "anchor": "p1/targets/6",
+          "file": "STW_GP_02_Hypertension_Initial.pdf",
+          "file_sha256": "20af43c6651a",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03078,
+            "bm25": 5.4534,
+            "cosine": 0.3422,
+            "lex_rank": 6,
+            "sem_rank": 4
+          },
+          "text": "<140/90 general; <130/80 if diabetes or CKD (individualize)"
+        },
+        {
+          "chunk_id": "STW-GP-02:2025.2:refer:7",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2025.2",
+          "effective_date": "2025-06-01",
+          "section": "REFER",
+          "page": 1,
+          "anchor": "p1/refer/7",
+          "file": "STW_GP_02_Hypertension_Initial.pdf",
+          "file_sha256": "20af43c6651a",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03054,
+            "bm25": 5.5716,
+            "cosine": 0.3238,
+            "lex_rank": 5,
+            "sem_rank": 6
+          },
+          "text": "Resistant HTN on 3 drugs; suspected secondary cause; pregnancy"
+        },
+        {
+          "chunk_id": "STW-GP-02:2025.2:confirm:1",
+          "source_type": "national_stw",
+          "document": "STW-GP-02",
+          "title": "Hypertension — Initial Management (Adult)",
+          "version": "2025.2",
+          "effective_date": "2025-06-01",
+          "section": "CONFIRM",
+          "page": 1,
+          "anchor": "p1/confirm/1",
+          "file": "STW_GP_02_Hypertension_Initial.pdf",
+          "file_sha256": "20af43c6651a",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.02985,
+            "bm25": 5.3402,
+            "cosine": 0.29,
+            "lex_rank": 7,
+            "sem_rank": 7
+          },
+          "text": "Two readings, two occasions; rule out secondary causes if <30 y"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "hypertension"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "0bad8d67-bc90-450e-ab06-5881ae51e0ef",
+    "question": "Which analgesic class must be avoided in suspected dengue, and why?",
+    "analysis": {
+      "question": "Which analgesic class must be avoided in suspected dengue, and why?",
+      "conditions_in_corpus": [
+        "dengue"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "AVOID Ibuprofen, Diclofenac, Aspirin and all NSAIDs — bleeding risk",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-04:2024.2:opd_management:5",
+            "source_type": "national_stw",
+            "document": "STW-GP-04",
+            "title": "Dengue Fever — OPD Management",
+            "version": "2024.2",
+            "effective_date": "2024-07-01",
+            "section": "OPD MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/opd_management/5",
+            "file": "STW_GP_04_Dengue_OPD.pdf",
+            "file_sha256": "b3c1a7b4a358",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management",
+        "verbatim": true
+      },
+      {
+        "text": "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-04:2024.2:suspect:1",
+            "source_type": "national_stw",
+            "document": "STW-GP-04",
+            "title": "Dengue Fever — OPD Management",
+            "version": "2024.2",
+            "effective_date": "2024-07-01",
+            "section": "SUSPECT",
+            "page": 1,
+            "anchor": "p1/suspect/1",
+            "file": "STW_GP_04_Dengue_OPD.pdf",
+            "file_sha256": "b3c1a7b4a358",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-GP-04 v2024.2 (effective 2024-07-01) — Dengue Fever — OPD Management"
+    ],
+    "notes": [],
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-GP-04:2024.2:opd_management:5",
+          "source_type": "national_stw",
+          "document": "STW-GP-04",
+          "title": "Dengue Fever — OPD Management",
+          "version": "2024.2",
+          "effective_date": "2024-07-01",
+          "section": "OPD MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/opd_management/5",
+          "file": "STW_GP_04_Dengue_OPD.pdf",
+          "file_sha256": "b3c1a7b4a358",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03279,
+            "bm25": 6.1042,
+            "cosine": 0.1926,
+            "lex_rank": 1,
+            "sem_rank": 1
+          },
+          "text": "AVOID Ibuprofen, Diclofenac, Aspirin and all NSAIDs — bleeding risk"
+        },
+        {
+          "chunk_id": "STW-GP-04:2024.2:follow_up:7",
+          "source_type": "national_stw",
+          "document": "STW-GP-04",
+          "title": "Dengue Fever — OPD Management",
+          "version": "2024.2",
+          "effective_date": "2024-07-01",
+          "section": "FOLLOW-UP",
+          "page": 1,
+          "anchor": "p1/follow_up/7",
+          "file": "STW_GP_04_Dengue_OPD.pdf",
+          "file_sha256": "b3c1a7b4a358",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03175,
+            "bm25": 3.6002,
+            "cosine": 0.1884,
+            "lex_rank": 4,
+            "sem_rank": 2
+          },
+          "text": "Immediate return if any warning sign appears"
+        },
+        {
+          "chunk_id": "STW-GP-04:2024.2:warning_signs_admit:2",
+          "source_type": "national_stw",
+          "document": "STW-GP-04",
+          "title": "Dengue Fever — OPD Management",
+          "version": "2024.2",
+          "effective_date": "2024-07-01",
+          "section": "WARNING SIGNS — ADMIT",
+          "page": 1,
+          "anchor": "p1/warning_signs_admit/2",
+          "file": "STW_GP_04_Dengue_OPD.pdf",
+          "file_sha256": "b3c1a7b4a358",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03128,
+            "bm25": 3.6002,
+            "cosine": 0.1671,
+            "lex_rank": 2,
+            "sem_rank": 6
+          },
+          "text": "Persistent vomiting, abdominal pain, mucosal bleed"
+        },
+        {
+          "chunk_id": "STW-GP-04:2024.2:opd_management:6",
+          "source_type": "national_stw",
+          "document": "STW-GP-04",
+          "title": "Dengue Fever — OPD Management",
+          "version": "2024.2",
+          "effective_date": "2024-07-01",
+          "section": "OPD MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/opd_management/6",
+          "file": "STW_GP_04_Dengue_OPD.pdf",
+          "file_sha256": "b3c1a7b4a358",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03126,
+            "bm25": 3.6002,
+            "cosine": 0.1711,
+            "lex_rank": 3,
+            "sem_rank": 5
+          },
+          "text": "Daily CBC from day 3 of illness"
+        },
+        {
+          "chunk_id": "STW-GP-04:2024.2:suspect:1",
+          "source_type": "national_stw",
+          "document": "STW-GP-04",
+          "title": "Dengue Fever — OPD Management",
+          "version": "2024.2",
+          "effective_date": "2024-07-01",
+          "section": "SUSPECT",
+          "page": 1,
+          "anchor": "p1/suspect/1",
+          "file": "STW_GP_04_Dengue_OPD.pdf",
+          "file_sha256": "b3c1a7b4a358",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03102,
+            "bm25": 3.4744,
+            "cosine": 0.1778,
+            "lex_rank": 6,
+            "sem_rank": 3
+          },
+          "text": "Fever + two of: headache, retro-orbital pain, myalgia, rash, leukopenia"
+        },
+        {
+          "chunk_id": "STW-GP-04:2024.2:warning_signs_admit:3",
+          "source_type": "national_stw",
+          "document": "STW-GP-04",
+          "title": "Dengue Fever — OPD Management",
+          "version": "2024.2",
+          "effective_date": "2024-07-01",
+          "section": "WARNING SIGNS — ADMIT",
+          "page": 1,
+          "anchor": "p1/warning_signs_admit/3",
+          "file": "STW_GP_04_Dengue_OPD.pdf",
+          "file_sha256": "b3c1a7b4a358",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03101,
+            "bm25": 3.5361,
+            "cosine": 0.1737,
+            "lex_rank": 5,
+            "sem_rank": 4
+          },
+          "text": "Lethargy, hepatomegaly, rising haematocrit with falling platelets"
+        },
+        {
+          "chunk_id": "STW-GP-04:2024.2:opd_management:4",
+          "source_type": "national_stw",
+          "document": "STW-GP-04",
+          "title": "Dengue Fever — OPD Management",
+          "version": "2024.2",
+          "effective_date": "2024-07-01",
+          "section": "OPD MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/opd_management/4",
+          "file": "STW_GP_04_Dengue_OPD.pdf",
+          "file_sha256": "b3c1a7b4a358",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.02985,
+            "bm25": 3.0957,
+            "cosine": 0.1162,
+            "lex_rank": 7,
+            "sem_rank": 7
+          },
+          "text": "Paracetamol 500–650 mg every 6 h for fever (max 3 g/day); adequate oral fluids"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "dengue"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "acb9b1b6-6b2e-4d3c-804a-1d50687515b4",
+    "question": "What are the ORS volumes after each loose stool for a child aged 2–10 years, and what zinc course accompanies it?",
+    "analysis": {
+      "question": "What are the ORS volumes after each loose stool for a child aged 2–10 years, and what zinc course accompanies it?",
+      "conditions_in_corpus": [
+        "acute_gastroenteritis"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": true,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "ORS after every loose stool: 50–100 ml (<2 y), 100–200 ml (2–10 y)",
+        "citations": [
+          {
+            "chunk_id": "STW-PED-03:2024.1:first_line_management:2",
+            "source_type": "national_stw",
+            "document": "STW-PED-03",
+            "title": "Acute Gastroenteritis — Child OPD",
+            "version": "2024.1",
+            "effective_date": "2024-03-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/2",
+            "file": "STW_PED_03_Acute_Gastroenteritis.pdf",
+            "file_sha256": "209e7e252d86",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD",
+        "verbatim": true
+      },
+      {
+        "text": "Zinc 20 mg once daily for 14 days (10 mg if <6 months)",
+        "citations": [
+          {
+            "chunk_id": "STW-PED-03:2024.1:first_line_management:3",
+            "source_type": "national_stw",
+            "document": "STW-PED-03",
+            "title": "Acute Gastroenteritis — Child OPD",
+            "version": "2024.1",
+            "effective_date": "2024-03-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/3",
+            "file": "STW_PED_03_Acute_Gastroenteritis.pdf",
+            "file_sha256": "209e7e252d86",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-PED-03 v2024.1 (effective 2024-03-01) — Acute Gastroenteritis — Child OPD"
+    ],
+    "notes": [],
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-PED-03:2024.1:first_line_management:2",
+          "source_type": "national_stw",
+          "document": "STW-PED-03",
+          "title": "Acute Gastroenteritis — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-03-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/2",
+          "file": "STW_PED_03_Acute_Gastroenteritis.pdf",
+          "file_sha256": "209e7e252d86",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03279,
+            "bm25": 20.1211,
+            "cosine": 0.265,
+            "lex_rank": 1,
+            "sem_rank": 1
+          },
+          "text": "ORS after every loose stool: 50–100 ml (<2 y), 100–200 ml (2–10 y)"
+        },
+        {
+          "chunk_id": "STW-PED-03:2024.1:first_line_management:3",
+          "source_type": "national_stw",
+          "document": "STW-PED-03",
+          "title": "Acute Gastroenteritis — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-03-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/3",
+          "file": "STW_PED_03_Acute_Gastroenteritis.pdf",
+          "file_sha256": "209e7e252d86",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03226,
+            "bm25": 9.9543,
+            "cosine": 0.1687,
+            "lex_rank": 2,
+            "sem_rank": 2
+          },
+          "text": "Zinc 20 mg once daily for 14 days (10 mg if <6 months)"
+        },
+        {
+          "chunk_id": "STW-PED-03:2024.1:assess_dehydration:1",
+          "source_type": "national_stw",
+          "document": "STW-PED-03",
+          "title": "Acute Gastroenteritis — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-03-01",
+          "section": "ASSESS DEHYDRATION",
+          "page": 1,
+          "anchor": "p1/assess_dehydration/1",
+          "file": "STW_PED_03_Acute_Gastroenteritis.pdf",
+          "file_sha256": "209e7e252d86",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 3.3585,
+            "cosine": 0.1335,
+            "lex_rank": 3,
+            "sem_rank": 4
+          },
+          "text": "No/ some/ severe dehydration per standard signs; severe = REFER for IV"
+        },
+        {
+          "chunk_id": "STW-PED-03:2024.1:first_line_management:4",
+          "source_type": "national_stw",
+          "document": "STW-PED-03",
+          "title": "Acute Gastroenteritis — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-03-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/4",
+          "file": "STW_PED_03_Acute_Gastroenteritis.pdf",
+          "file_sha256": "209e7e252d86",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 3.2088,
+            "cosine": 0.1444,
+            "lex_rank": 4,
+            "sem_rank": 3
+          },
+          "text": "Continue feeding; ondansetron 0.15 mg/kg single dose only for persistent vomiting"
+        },
+        {
+          "chunk_id": "STW-PED-03:2024.1:do_not:5",
+          "source_type": "national_stw",
+          "document": "STW-PED-03",
+          "title": "Acute Gastroenteritis — Child OPD",
+          "version": "2024.1",
+          "effective_date": "2024-03-01",
+          "section": "DO NOT",
+          "page": 1,
+          "anchor": "p1/do_not/5",
+          "file": "STW_PED_03_Acute_Gastroenteritis.pdf",
+          "file_sha256": "209e7e252d86",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03077,
+            "bm25": 1.7716,
+            "cosine": 0.0989,
+            "lex_rank": 5,
+            "sem_rank": 5
+          },
+          "text": "No routine antibiotics; no antimotility agents in children"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "acute_gastroenteritis"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "5cd19df0-610f-4060-b097-2438248480f8",
+    "question": "Which red flags in acute low back pain mandate imaging or referral?",
+    "analysis": {
+      "question": "Which red flags in acute low back pain mandate imaging or referral?",
+      "conditions_in_corpus": [
+        "acute_low_back_pain"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "Fever with spinal tenderness; significant trauma; age >65 with new pain + weight loss",
+        "citations": [
+          {
+            "chunk_id": "STW-ORT-01:2023.1:red_flags_image_refer:2",
+            "source_type": "national_stw",
+            "document": "STW-ORT-01",
+            "title": "Acute Low Back Pain — Adult OPD",
+            "version": "2023.1",
+            "effective_date": "2023-09-01",
+            "section": "RED FLAGS — IMAGE/REFER",
+            "page": 1,
+            "anchor": "p1/red_flags_image_refer/2",
+            "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+            "file_sha256": "1c85401375e5",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-ORT-01 v2023.1 (effective 2023-09-01) — Acute Low Back Pain — Adult OPD",
+        "verbatim": true
+      },
+      {
+        "text": "Saddle anaesthesia, bladder/bowel involvement, progressive weakness",
+        "citations": [
+          {
+            "chunk_id": "STW-ORT-01:2023.1:red_flags_image_refer:1",
+            "source_type": "national_stw",
+            "document": "STW-ORT-01",
+            "title": "Acute Low Back Pain — Adult OPD",
+            "version": "2023.1",
+            "effective_date": "2023-09-01",
+            "section": "RED FLAGS — IMAGE/REFER",
+            "page": 1,
+            "anchor": "p1/red_flags_image_refer/1",
+            "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+            "file_sha256": "1c85401375e5",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-ORT-01 v2023.1 (effective 2023-09-01) — Acute Low Back Pain — Adult OPD",
+        "verbatim": true
+      },
+      {
+        "text": "Reassess at 2 weeks; persistent >6 weeks = imaging pathway",
+        "citations": [
+          {
+            "chunk_id": "STW-ORT-01:2023.1:review:6",
+            "source_type": "national_stw",
+            "document": "STW-ORT-01",
+            "title": "Acute Low Back Pain — Adult OPD",
+            "version": "2023.1",
+            "effective_date": "2023-09-01",
+            "section": "REVIEW",
+            "page": 1,
+            "anchor": "p1/review/6",
+            "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+            "file_sha256": "1c85401375e5",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-ORT-01 v2023.1 (effective 2023-09-01) — Acute Low Back Pain — Adult OPD",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-ORT-01 v2023.1 (effective 2023-09-01) — Acute Low Back Pain — Adult OPD"
+    ],
+    "notes": [],
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-ORT-01:2023.1:red_flags_image_refer:1",
+          "source_type": "national_stw",
+          "document": "STW-ORT-01",
+          "title": "Acute Low Back Pain — Adult OPD",
+          "version": "2023.1",
+          "effective_date": "2023-09-01",
+          "section": "RED FLAGS — IMAGE/REFER",
+          "page": 1,
+          "anchor": "p1/red_flags_image_refer/1",
+          "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+          "file_sha256": "1c85401375e5",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03279,
+            "bm25": 16.4163,
+            "cosine": 0.5415,
+            "lex_rank": 1,
+            "sem_rank": 1
+          },
+          "text": "Saddle anaesthesia, bladder/bowel involvement, progressive weakness"
+        },
+        {
+          "chunk_id": "STW-ORT-01:2023.1:red_flags_image_refer:2",
+          "source_type": "national_stw",
+          "document": "STW-ORT-01",
+          "title": "Acute Low Back Pain — Adult OPD",
+          "version": "2023.1",
+          "effective_date": "2023-09-01",
+          "section": "RED FLAGS — IMAGE/REFER",
+          "page": 1,
+          "anchor": "p1/red_flags_image_refer/2",
+          "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+          "file_sha256": "1c85401375e5",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.032,
+            "bm25": 15.2639,
+            "cosine": 0.4905,
+            "lex_rank": 2,
+            "sem_rank": 3
+          },
+          "text": "Fever with spinal tenderness; significant trauma; age >65 with new pain + weight loss"
+        },
+        {
+          "chunk_id": "STW-ORT-01:2023.1:review:6",
+          "source_type": "national_stw",
+          "document": "STW-ORT-01",
+          "title": "Acute Low Back Pain — Adult OPD",
+          "version": "2023.1",
+          "effective_date": "2023-09-01",
+          "section": "REVIEW",
+          "page": 1,
+          "anchor": "p1/review/6",
+          "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+          "file_sha256": "1c85401375e5",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.032,
+            "bm25": 15.1097,
+            "cosine": 0.4942,
+            "lex_rank": 3,
+            "sem_rank": 2
+          },
+          "text": "Reassess at 2 weeks; persistent >6 weeks = imaging pathway"
+        },
+        {
+          "chunk_id": "STW-ORT-01:2023.1:first_line_management:4",
+          "source_type": "national_stw",
+          "document": "STW-ORT-01",
+          "title": "Acute Low Back Pain — Adult OPD",
+          "version": "2023.1",
+          "effective_date": "2023-09-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/4",
+          "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+          "file_sha256": "1c85401375e5",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03078,
+            "bm25": 11.5117,
+            "cosine": 0.2965,
+            "lex_rank": 4,
+            "sem_rank": 6
+          },
+          "text": "Paracetamol 650 mg every 8 h OR Ibuprofen 400 mg every 8 h after food (short course)"
+        },
+        {
+          "chunk_id": "STW-ORT-01:2023.1:first_line_management:5",
+          "source_type": "national_stw",
+          "document": "STW-ORT-01",
+          "title": "Acute Low Back Pain — Adult OPD",
+          "version": "2023.1",
+          "effective_date": "2023-09-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/5",
+          "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+          "file_sha256": "1c85401375e5",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03078,
+            "bm25": 10.7755,
+            "cosine": 0.4326,
+            "lex_rank": 6,
+            "sem_rank": 4
+          },
+          "text": "Muscle spasm: consider short course only per local formulary"
+        },
+        {
+          "chunk_id": "STW-ORT-01:2023.1:first_line_management:3",
+          "source_type": "national_stw",
+          "document": "STW-ORT-01",
+          "title": "Acute Low Back Pain — Adult OPD",
+          "version": "2023.1",
+          "effective_date": "2023-09-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/3",
+          "file": "STW_ORT_01_Acute_Low_Back_Pain.pdf",
+          "file_sha256": "1c85401375e5",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03077,
+            "bm25": 10.9487,
+            "cosine": 0.4075,
+            "lex_rank": 5,
+            "sem_rank": 5
+          },
+          "text": "Stay active; avoid bed rest beyond 48 h"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "acute_low_back_pain"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "2dd86b2a-4b19-47ec-a017-bc545537d8d8",
+    "question": "Which urinary antibiotic is avoided at 36+ weeks of pregnancy, and what is the stated alternative?",
+    "analysis": {
+      "question": "Which urinary antibiotic is avoided at 36+ weeks of pregnancy, and what is the stated alternative?",
+      "conditions_in_corpus": [
+        "uti_pregnancy"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": true,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "Nitrofurantoin near term (36+ weeks)",
+        "citations": [
+          {
+            "chunk_id": "STW-GYN-02:2023.1:avoid:6",
+            "source_type": "national_stw",
+            "document": "STW-GYN-02",
+            "title": "Urinary Tract Infection in Pregnancy",
+            "version": "2023.1",
+            "effective_date": "2023-06-01",
+            "section": "AVOID",
+            "page": 1,
+            "anchor": "p1/avoid/6",
+            "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+            "file_sha256": "214e172dafce",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy",
+        "verbatim": true
+      },
+      {
+        "text": "Nitrofurantoin 100 mg twice daily for 5 days (avoid at 36+ weeks)",
+        "citations": [
+          {
+            "chunk_id": "STW-GYN-02:2023.1:first_line_management:2",
+            "source_type": "national_stw",
+            "document": "STW-GYN-02",
+            "title": "Urinary Tract Infection in Pregnancy",
+            "version": "2023.1",
+            "effective_date": "2023-06-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/2",
+            "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+            "file_sha256": "214e172dafce",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy",
+        "verbatim": true
+      },
+      {
+        "text": "Ciprofloxacin and other fluoroquinolones throughout pregnancy",
+        "citations": [
+          {
+            "chunk_id": "STW-GYN-02:2023.1:avoid:5",
+            "source_type": "national_stw",
+            "document": "STW-GYN-02",
+            "title": "Urinary Tract Infection in Pregnancy",
+            "version": "2023.1",
+            "effective_date": "2023-06-01",
+            "section": "AVOID",
+            "page": 1,
+            "anchor": "p1/avoid/5",
+            "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+            "file_sha256": "214e172dafce",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy",
+        "verbatim": true
+      },
+      {
+        "text": "Alternative: Cefixime 200 mg twice daily for 5 days",
+        "citations": [
+          {
+            "chunk_id": "STW-GYN-02:2023.1:first_line_management:3",
+            "source_type": "national_stw",
+            "document": "STW-GYN-02",
+            "title": "Urinary Tract Infection in Pregnancy",
+            "version": "2023.1",
+            "effective_date": "2023-06-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/3",
+            "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+            "file_sha256": "214e172dafce",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy",
+        "verbatim": true
+      },
+      {
+        "text": "Dysuria/frequency; urine routine + culture before antibiotics where possible",
+        "citations": [
+          {
+            "chunk_id": "STW-GYN-02:2023.1:assess:1",
+            "source_type": "national_stw",
+            "document": "STW-GYN-02",
+            "title": "Urinary Tract Infection in Pregnancy",
+            "version": "2023.1",
+            "effective_date": "2023-06-01",
+            "section": "ASSESS",
+            "page": 1,
+            "anchor": "p1/assess/1",
+            "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+            "file_sha256": "214e172dafce",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-GYN-02 v2023.1 (effective 2023-06-01) — Urinary Tract Infection in Pregnancy"
+    ],
+    "notes": [],
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-GYN-02:2023.1:avoid:6",
+          "source_type": "national_stw",
+          "document": "STW-GYN-02",
+          "title": "Urinary Tract Infection in Pregnancy",
+          "version": "2023.1",
+          "effective_date": "2023-06-01",
+          "section": "AVOID",
+          "page": 1,
+          "anchor": "p1/avoid/6",
+          "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+          "file_sha256": "214e172dafce",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03279,
+            "bm25": 12.6363,
+            "cosine": 0.4142,
+            "lex_rank": 1,
+            "sem_rank": 1
+          },
+          "text": "Nitrofurantoin near term (36+ weeks)"
+        },
+        {
+          "chunk_id": "STW-GYN-02:2023.1:first_line_management:2",
+          "source_type": "national_stw",
+          "document": "STW-GYN-02",
+          "title": "Urinary Tract Infection in Pregnancy",
+          "version": "2023.1",
+          "effective_date": "2023-06-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/2",
+          "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+          "file_sha256": "214e172dafce",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03226,
+            "bm25": 12.2759,
+            "cosine": 0.3847,
+            "lex_rank": 2,
+            "sem_rank": 2
+          },
+          "text": "Nitrofurantoin 100 mg twice daily for 5 days (avoid at 36+ weeks)"
+        },
+        {
+          "chunk_id": "STW-GYN-02:2023.1:first_line_management:3",
+          "source_type": "national_stw",
+          "document": "STW-GYN-02",
+          "title": "Urinary Tract Infection in Pregnancy",
+          "version": "2023.1",
+          "effective_date": "2023-06-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/3",
+          "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+          "file_sha256": "214e172dafce",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 8.5354,
+            "cosine": 0.3654,
+            "lex_rank": 4,
+            "sem_rank": 3
+          },
+          "text": "Alternative: Cefixime 200 mg twice daily for 5 days"
+        },
+        {
+          "chunk_id": "STW-GYN-02:2023.1:avoid:5",
+          "source_type": "national_stw",
+          "document": "STW-GYN-02",
+          "title": "Urinary Tract Infection in Pregnancy",
+          "version": "2023.1",
+          "effective_date": "2023-06-01",
+          "section": "AVOID",
+          "page": 1,
+          "anchor": "p1/avoid/5",
+          "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+          "file_sha256": "214e172dafce",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 8.6882,
+            "cosine": 0.3585,
+            "lex_rank": 3,
+            "sem_rank": 4
+          },
+          "text": "Ciprofloxacin and other fluoroquinolones throughout pregnancy"
+        },
+        {
+          "chunk_id": "STW-GYN-02:2023.1:first_line_management:4",
+          "source_type": "national_stw",
+          "document": "STW-GYN-02",
+          "title": "Urinary Tract Infection in Pregnancy",
+          "version": "2023.1",
+          "effective_date": "2023-06-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/4",
+          "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+          "file_sha256": "214e172dafce",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03054,
+            "bm25": 7.9015,
+            "cosine": 0.2637,
+            "lex_rank": 5,
+            "sem_rank": 6
+          },
+          "text": "Repeat culture after treatment (test of cure)"
+        },
+        {
+          "chunk_id": "STW-GYN-02:2023.1:assess:1",
+          "source_type": "national_stw",
+          "document": "STW-GYN-02",
+          "title": "Urinary Tract Infection in Pregnancy",
+          "version": "2023.1",
+          "effective_date": "2023-06-01",
+          "section": "ASSESS",
+          "page": 1,
+          "anchor": "p1/assess/1",
+          "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+          "file_sha256": "214e172dafce",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03031,
+            "bm25": 5.184,
+            "cosine": 0.2948,
+            "lex_rank": 7,
+            "sem_rank": 5
+          },
+          "text": "Dysuria/frequency; urine routine + culture before antibiotics where possible"
+        },
+        {
+          "chunk_id": "STW-GYN-02:2023.1:refer:7",
+          "source_type": "national_stw",
+          "document": "STW-GYN-02",
+          "title": "Urinary Tract Infection in Pregnancy",
+          "version": "2023.1",
+          "effective_date": "2023-06-01",
+          "section": "REFER",
+          "page": 1,
+          "anchor": "p1/refer/7",
+          "file": "STW_GYN_02_UTI_Pregnancy.pdf",
+          "file_sha256": "214e172dafce",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03008,
+            "bm25": 5.5295,
+            "cosine": 0.2481,
+            "lex_rank": 6,
+            "sem_rank": 7
+          },
+          "text": "Fever with flank pain (pyelonephritis) — admit"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "uti_pregnancy"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "425426d7-69c6-46eb-a7c6-aa943439934c",
+    "question": "At what HbA1c threshold at diagnosis does the workflow add a second agent to metformin, and which agent?",
+    "analysis": {
+      "question": "At what HbA1c threshold at diagnosis does the workflow add a second agent to metformin, and which agent?",
+      "conditions_in_corpus": [
+        "type_2_diabetes"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "HbA1c ≥8.5% at diagnosis: add Glimepiride 1 mg before breakfast",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-03:2024.1:first_line_management:3",
+            "source_type": "national_stw",
+            "document": "STW-GP-03",
+            "title": "Type 2 Diabetes — Diagnosis & Initiation",
+            "version": "2024.1",
+            "effective_date": "2024-09-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/3",
+            "file": "STW_GP_03_T2DM_Initiation.pdf",
+            "file_sha256": "0c367e0161e6",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation",
+        "verbatim": true
+      },
+      {
+        "text": "HbA1c every 3 months until at goal; annual creatinine and urine albumin",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-03:2024.1:monitor:5",
+            "source_type": "national_stw",
+            "document": "STW-GP-03",
+            "title": "Type 2 Diabetes — Diagnosis & Initiation",
+            "version": "2024.1",
+            "effective_date": "2024-09-01",
+            "section": "MONITOR",
+            "page": 1,
+            "anchor": "p1/monitor/5",
+            "file": "STW_GP_03_T2DM_Initiation.pdf",
+            "file_sha256": "0c367e0161e6",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation",
+        "verbatim": true
+      },
+      {
+        "text": "Metformin 500 mg once daily with dinner; up-titrate weekly to 500 mg twice daily as tolerated",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-03:2024.1:first_line_management:2",
+            "source_type": "national_stw",
+            "document": "STW-GP-03",
+            "title": "Type 2 Diabetes — Diagnosis & Initiation",
+            "version": "2024.1",
+            "effective_date": "2024-09-01",
+            "section": "FIRST-LINE MANAGEMENT",
+            "page": 1,
+            "anchor": "p1/first_line_management/2",
+            "file": "STW_GP_03_T2DM_Initiation.pdf",
+            "file_sha256": "0c367e0161e6",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation",
+        "verbatim": true
+      },
+      {
+        "text": "FPG ≥126 mg/dL or HbA1c ≥6.5% on two occasions, or RPG ≥200 with symptoms",
+        "citations": [
+          {
+            "chunk_id": "STW-GP-03:2024.1:diagnose:1",
+            "source_type": "national_stw",
+            "document": "STW-GP-03",
+            "title": "Type 2 Diabetes — Diagnosis & Initiation",
+            "version": "2024.1",
+            "effective_date": "2024-09-01",
+            "section": "DIAGNOSE",
+            "page": 1,
+            "anchor": "p1/diagnose/1",
+            "file": "STW_GP_03_T2DM_Initiation.pdf",
+            "file_sha256": "0c367e0161e6",
+            "organization": null,
+            "is_current": true,
+            "superseded_by": null,
+            "label": "NATIONAL STW"
+          }
+        ],
+        "label": "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "NATIONAL STW STW-GP-03 v2024.1 (effective 2024-09-01) — Type 2 Diabetes — Diagnosis & Initiation"
+    ],
+    "notes": [],
+    "superseded_editions": [],
+    "comparison": null,
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "STW-GP-03:2024.1:first_line_management:3",
+          "source_type": "national_stw",
+          "document": "STW-GP-03",
+          "title": "Type 2 Diabetes — Diagnosis & Initiation",
+          "version": "2024.1",
+          "effective_date": "2024-09-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/3",
+          "file": "STW_GP_03_T2DM_Initiation.pdf",
+          "file_sha256": "0c367e0161e6",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03279,
+            "bm25": 14.0654,
+            "cosine": 0.185,
+            "lex_rank": 1,
+            "sem_rank": 1
+          },
+          "text": "HbA1c ≥8.5% at diagnosis: add Glimepiride 1 mg before breakfast"
+        },
+        {
+          "chunk_id": "STW-GP-03:2024.1:monitor:5",
+          "source_type": "national_stw",
+          "document": "STW-GP-03",
+          "title": "Type 2 Diabetes — Diagnosis & Initiation",
+          "version": "2024.1",
+          "effective_date": "2024-09-01",
+          "section": "MONITOR",
+          "page": 1,
+          "anchor": "p1/monitor/5",
+          "file": "STW_GP_03_T2DM_Initiation.pdf",
+          "file_sha256": "0c367e0161e6",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03226,
+            "bm25": 11.9085,
+            "cosine": 0.1653,
+            "lex_rank": 2,
+            "sem_rank": 2
+          },
+          "text": "HbA1c every 3 months until at goal; annual creatinine and urine albumin"
+        },
+        {
+          "chunk_id": "STW-GP-03:2024.1:first_line_management:2",
+          "source_type": "national_stw",
+          "document": "STW-GP-03",
+          "title": "Type 2 Diabetes — Diagnosis & Initiation",
+          "version": "2024.1",
+          "effective_date": "2024-09-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/2",
+          "file": "STW_GP_03_T2DM_Initiation.pdf",
+          "file_sha256": "0c367e0161e6",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 7.7409,
+            "cosine": 0.1058,
+            "lex_rank": 3,
+            "sem_rank": 4
+          },
+          "text": "Metformin 500 mg once daily with dinner; up-titrate weekly to 500 mg twice daily as tolerated"
+        },
+        {
+          "chunk_id": "STW-GP-03:2024.1:first_line_management:4",
+          "source_type": "national_stw",
+          "document": "STW-GP-03",
+          "title": "Type 2 Diabetes — Diagnosis & Initiation",
+          "version": "2024.1",
+          "effective_date": "2024-09-01",
+          "section": "FIRST-LINE MANAGEMENT",
+          "page": 1,
+          "anchor": "p1/first_line_management/4",
+          "file": "STW_GP_03_T2DM_Initiation.pdf",
+          "file_sha256": "0c367e0161e6",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0315,
+            "bm25": 7.3127,
+            "cosine": 0.1248,
+            "lex_rank": 4,
+            "sem_rank": 3
+          },
+          "text": "Lifestyle counselling at every visit"
+        },
+        {
+          "chunk_id": "STW-GP-03:2024.1:diagnose:1",
+          "source_type": "national_stw",
+          "document": "STW-GP-03",
+          "title": "Type 2 Diabetes — Diagnosis & Initiation",
+          "version": "2024.1",
+          "effective_date": "2024-09-01",
+          "section": "DIAGNOSE",
+          "page": 1,
+          "anchor": "p1/diagnose/1",
+          "file": "STW_GP_03_T2DM_Initiation.pdf",
+          "file_sha256": "0c367e0161e6",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.03077,
+            "bm25": 5.2014,
+            "cosine": 0.1024,
+            "lex_rank": 5,
+            "sem_rank": 5
+          },
+          "text": "FPG ≥126 mg/dL or HbA1c ≥6.5% on two occasions, or RPG ≥200 with symptoms"
+        },
+        {
+          "chunk_id": "STW-GP-03:2024.1:refer:6",
+          "source_type": "national_stw",
+          "document": "STW-GP-03",
+          "title": "Type 2 Diabetes — Diagnosis & Initiation",
+          "version": "2024.1",
+          "effective_date": "2024-09-01",
+          "section": "REFER",
+          "page": 1,
+          "anchor": "p1/refer/6",
+          "file": "STW_GP_03_T2DM_Initiation.pdf",
+          "file_sha256": "0c367e0161e6",
+          "organization": null,
+          "is_current": true,
+          "superseded_by": null,
+          "label": "NATIONAL STW",
+          "scores": {
+            "fused": 0.0303,
+            "bm25": 2.7174,
+            "cosine": 0.082,
+            "lex_rank": 6,
+            "sem_rank": 6
+          },
+          "text": "Type 1 suspicion, pregnancy, eGFR <30, recurrent hypoglycemia"
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "type_2_diabetes"
+        ],
+        "current_only": true
+      }
+    }
+  },
+  {
+    "run_id": "ca5f369c-3eb0-4f27-b7f2-32c01a0e0856",
+    "question": "What is the first-line prophylactic drug for migraine in adults?",
+    "analysis": {
+      "question": "What is the first-line prophylactic drug for migraine in adults?",
+      "conditions_in_corpus": [],
+      "conditions_absent_from_corpus": [
+        "migraine"
+      ],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "abstain_no_corpus"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "abstain_no_corpus",
+    "answer_type": "abstain",
+    "claims": [],
+    "abstention": {
+      "reason": "the provided corpus has no workflow for migraine",
+      "missing": "a national STW page or clinic protocol covering migraine",
+      "corpus_covers": [
+        "acute_gastroenteritis",
+        "acute_low_back_pain",
+        "acute_otitis_media",
+        "acute_pharyngitis",
+        "acute_undifferentiated_fever_adult",
+        "childhood_pneumonia",
+        "dengue",
+        "hypertension",
+        "iron_deficiency_anemia_pregnancy",
+        "knee_osteoarthritis",
+        "pcos",
+        "type_2_diabetes",
+        "uti_pregnancy"
+      ]
+    },
+    "retrieval": {
+      "considered": []
+    }
+  },
+  {
+    "run_id": "eb81eb1d-f8bc-4e46-815d-26e27b5600d6",
+    "question": "What is the standard drug regimen for newly diagnosed pulmonary tuberculosis?",
+    "analysis": {
+      "question": "What is the standard drug regimen for newly diagnosed pulmonary tuberculosis?",
+      "conditions_in_corpus": [],
+      "conditions_absent_from_corpus": [
+        "pulmonary_tuberculosis"
+      ],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": false,
+        "national": false,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "abstain_no_corpus"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "abstain_no_corpus",
+    "answer_type": "abstain",
+    "claims": [],
+    "abstention": {
+      "reason": "the provided corpus has no workflow for pulmonary_tuberculosis",
+      "missing": "a national STW page or clinic protocol covering pulmonary_tuberculosis",
+      "corpus_covers": [
+        "acute_gastroenteritis",
+        "acute_low_back_pain",
+        "acute_otitis_media",
+        "acute_pharyngitis",
+        "acute_undifferentiated_fever_adult",
+        "childhood_pneumonia",
+        "dengue",
+        "hypertension",
+        "iron_deficiency_anemia_pregnancy",
+        "knee_osteoarthritis",
+        "pcos",
+        "type_2_diabetes",
+        "uti_pregnancy"
+      ]
+    },
+    "retrieval": {
+      "considered": []
+    }
+  },
+  {
+    "run_id": "64c2892a-3166-4c09-8668-450c7f52c9e6",
+    "question": "Per the clinic's own protocol, when are empirical antibiotics started in adult acute undifferentiated fever — and does the national workflow pack say the same? Label your sources.",
+    "analysis": {
+      "question": "Per the clinic's own protocol, when are empirical antibiotics started in adult acute undifferentiated fever — and does the national workflow pack say the same? Label your sources.",
+      "conditions_in_corpus": [
+        "acute_undifferentiated_fever_adult"
+      ],
+      "conditions_absent_from_corpus": [],
+      "markers": {
+        "dose": false,
+        "paediatric": false,
+        "pregnancy": false,
+        "local_protocol": true,
+        "national": true,
+        "editions": false,
+        "patient_specific": false
+      },
+      "route": "retrieval"
+    },
+    "mode": "extractive",
+    "versions": {
+      "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
+      "answerer_version": "answerer-1.0.0",
+      "embedding_model": "local-hashed-char-ngram-v1",
+      "prompt_version": null,
+      "model": null
+    },
+    "route": "retrieval",
+    "answer_type": "answer",
+    "claims": [
+      {
+        "text": "Day 2: if fever persists beyond 48 hours without a localizing source, start empirical Azithromycin 500 mg once daily for 3 days.",
+        "citations": [
+          {
+            "chunk_id": "SOP-CLIN-014:2.1:step:2",
+            "source_type": "local_protocol",
+            "document": "SOP-CLIN-014",
+            "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+            "version": "2.1",
+            "effective_date": "2026-03-10",
+            "section": "Protocol step 2",
+            "page": 1,
+            "anchor": "p1/step/2",
+            "file": "local_protocol_acute_fever.md",
+            "file_sha256": "d9782feaed0b",
+            "organization": "Sunrise Multi-speciality Clinic",
+            "is_current": true,
+            "superseded_by": null,
+            "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic"
+          }
+        ],
+        "label": "CLINIC PROTOCOL (Sunrise Multi-speciality Clinic, SOP-CLIN-014 v2.1, approved 2026-03-10) — organization-level knowledge, not national guidance",
+        "verbatim": true
+      },
+      {
+        "text": "Documentation: record fever chart and medication reconciliation at each visit.",
+        "citations": [
+          {
+            "chunk_id": "SOP-CLIN-014:2.1:step:4",
+            "source_type": "local_protocol",
+            "document": "SOP-CLIN-014",
+            "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+            "version": "2.1",
+            "effective_date": "2026-03-10",
+            "section": "Protocol step 4",
+            "page": 1,
+            "anchor": "p1/step/4",
+            "file": "local_protocol_acute_fever.md",
+            "file_sha256": "d9782feaed0b",
+            "organization": "Sunrise Multi-speciality Clinic",
+            "is_current": true,
+            "superseded_by": null,
+            "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic"
+          }
+        ],
+        "label": "CLINIC PROTOCOL (Sunrise Multi-speciality Clinic, SOP-CLIN-014 v2.1, approved 2026-03-10) — organization-level knowledge, not national guidance",
+        "verbatim": true
+      },
+      {
+        "text": "Day 0–1: Paracetamol per standard reference dosing; hydration advice; CBC + peripheral smear if fever > 48h; dengue NS1 in season.",
+        "citations": [
+          {
+            "chunk_id": "SOP-CLIN-014:2.1:step:1",
+            "source_type": "local_protocol",
+            "document": "SOP-CLIN-014",
+            "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+            "version": "2.1",
+            "effective_date": "2026-03-10",
+            "section": "Protocol step 1",
+            "page": 1,
+            "anchor": "p1/step/1",
+            "file": "local_protocol_acute_fever.md",
+            "file_sha256": "d9782feaed0b",
+            "organization": "Sunrise Multi-speciality Clinic",
+            "is_current": true,
+            "superseded_by": null,
+            "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic"
+          }
+        ],
+        "label": "CLINIC PROTOCOL (Sunrise Multi-speciality Clinic, SOP-CLIN-014 v2.1, approved 2026-03-10) — organization-level knowledge, not national guidance",
+        "verbatim": true
+      },
+      {
+        "text": "Day 3–4: review with reports; escalate per findings; admit if warning signs.",
+        "citations": [
+          {
+            "chunk_id": "SOP-CLIN-014:2.1:step:3",
+            "source_type": "local_protocol",
+            "document": "SOP-CLIN-014",
+            "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+            "version": "2.1",
+            "effective_date": "2026-03-10",
+            "section": "Protocol step 3",
+            "page": 1,
+            "anchor": "p1/step/3",
+            "file": "local_protocol_acute_fever.md",
+            "file_sha256": "d9782feaed0b",
+            "organization": "Sunrise Multi-speciality Clinic",
+            "is_current": true,
+            "superseded_by": null,
+            "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic"
+          }
+        ],
+        "label": "CLINIC PROTOCOL (Sunrise Multi-speciality Clinic, SOP-CLIN-014 v2.1, approved 2026-03-10) — organization-level knowledge, not national guidance",
+        "verbatim": true
+      }
+    ],
+    "labels": [
+      "CLINIC PROTOCOL (Sunrise Multi-speciality Clinic, SOP-CLIN-014 v2.1, approved 2026-03-10) — organization-level knowledge, not national guidance"
+    ],
+    "notes": [],
+    "superseded_editions": [],
+    "comparison": {
+      "national_units": [],
+      "statement": "The provided national STW pack contains no workflow for acute undifferentiated fever adult. It therefore neither confirms nor contradicts the clinic protocol; the clinic protocol stands as organization-level guidance only.",
+      "nearest_national_pages": [
+        "STW-GP-01 v2025.1 (Acute Pharyngitis — Adult OPD) — different condition, not applicable",
+        "STW-ORT-01 v2023.1 (Acute Low Back Pain — Adult OPD) — different condition, not applicable",
+        "STW-PED-03 v2024.1 (Acute Gastroenteritis — Child OPD) — different condition, not applicable"
+      ]
+    },
+    "guard": {
+      "dropped": [],
+      "model_abstained": null
+    },
+    "retrieval": {
+      "considered": [
+        {
+          "chunk_id": "SOP-CLIN-014:2.1:step:4",
+          "source_type": "local_protocol",
+          "document": "SOP-CLIN-014",
+          "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+          "version": "2.1",
+          "effective_date": "2026-03-10",
+          "section": "Protocol step 4",
+          "page": 1,
+          "anchor": "p1/step/4",
+          "file": "local_protocol_acute_fever.md",
+          "file_sha256": "d9782feaed0b",
+          "organization": "Sunrise Multi-speciality Clinic",
+          "is_current": true,
+          "superseded_by": null,
+          "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic",
+          "scores": {
+            "fused": 0.03227,
+            "bm25": 16.759,
+            "cosine": 0.421,
+            "lex_rank": 1,
+            "sem_rank": 3
+          },
+          "text": "Documentation: record fever chart and medication reconciliation at each visit."
+        },
+        {
+          "chunk_id": "SOP-CLIN-014:2.1:step:2",
+          "source_type": "local_protocol",
+          "document": "SOP-CLIN-014",
+          "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+          "version": "2.1",
+          "effective_date": "2026-03-10",
+          "section": "Protocol step 2",
+          "page": 1,
+          "anchor": "p1/step/2",
+          "file": "local_protocol_acute_fever.md",
+          "file_sha256": "d9782feaed0b",
+          "organization": "Sunrise Multi-speciality Clinic",
+          "is_current": true,
+          "superseded_by": null,
+          "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic",
+          "scores": {
+            "fused": 0.03202,
+            "bm25": 15.261,
+            "cosine": 0.4452,
+            "lex_rank": 4,
+            "sem_rank": 1
+          },
+          "text": "Day 2: if fever persists beyond 48 hours without a localizing source, start empirical Azithromycin 500 mg once daily for 3 days."
+        },
+        {
+          "chunk_id": "SOP-CLIN-014:2.1:step:1",
+          "source_type": "local_protocol",
+          "document": "SOP-CLIN-014",
+          "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+          "version": "2.1",
+          "effective_date": "2026-03-10",
+          "section": "Protocol step 1",
+          "page": 1,
+          "anchor": "p1/step/1",
+          "file": "local_protocol_acute_fever.md",
+          "file_sha256": "d9782feaed0b",
+          "organization": "Sunrise Multi-speciality Clinic",
+          "is_current": true,
+          "superseded_by": null,
+          "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic",
+          "scores": {
+            "fused": 0.032,
+            "bm25": 15.5654,
+            "cosine": 0.4356,
+            "lex_rank": 3,
+            "sem_rank": 2
+          },
+          "text": "Day 0–1: Paracetamol per standard reference dosing; hydration advice; CBC + peripheral smear if fever > 48h; dengue NS1 in season."
+        },
+        {
+          "chunk_id": "SOP-CLIN-014:2.1:step:3",
+          "source_type": "local_protocol",
+          "document": "SOP-CLIN-014",
+          "title": "Sunrise Multi-speciality Clinic — Adult Acute Undifferentiated Fever: Local Treatment Protocol",
+          "version": "2.1",
+          "effective_date": "2026-03-10",
+          "section": "Protocol step 3",
+          "page": 1,
+          "anchor": "p1/step/3",
+          "file": "local_protocol_acute_fever.md",
+          "file_sha256": "d9782feaed0b",
+          "organization": "Sunrise Multi-speciality Clinic",
+          "is_current": true,
+          "superseded_by": null,
+          "label": "CLINIC PROTOCOL — Sunrise Multi-speciality Clinic",
+          "scores": {
+            "fused": 0.03175,
+            "bm25": 15.6145,
+            "cosine": 0.4054,
+            "lex_rank": 2,
+            "sem_rank": 4
+          },
+          "text": "Day 3–4: review with reports; escalate per findings; admit if warning signs."
+        }
+      ],
+      "filters": {
+        "conditions": [
+          "acute_undifferentiated_fever_adult"
+        ],
+        "current_only": true
+      }
+    }
+  }
+]

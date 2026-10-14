@@ -1,0 +1,220 @@
+{
+  "run_id": "d652c513-b9bc-46e2-84c6-0b00995abd3c",
+  "rx_id": "RX04",
+  "as_of": "2026-10-14",
+  "engine_version": "rail-engine-1.0.0",
+  "rule_set": {
+    "id": "brahmo-rail-rules",
+    "version": "1.0.0"
+  },
+  "patient_population": null,
+  "normalization": {
+    "items": [
+      {
+        "item_no": 1,
+        "written_product": "Telma",
+        "strength_as_written": null,
+        "dose_frequency": "1-0-0",
+        "frequency_parsed": {
+          "raw": "1-0-0",
+          "units_per_day": 1.0,
+          "kind": "schedule",
+          "duration_days": null
+        },
+        "resolution_status": "AMBIGUOUS",
+        "method": "brand_family",
+        "confidence": 0.0,
+        "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+        "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+        "review_item_id": 752,
+        "candidates": [
+          {
+            "product_id": "CD1009",
+            "brand_name": "Telma 20",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 20 mg",
+            "score": 1.0
+          },
+          {
+            "product_id": "CD1010",
+            "brand_name": "Telma 40",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 40 mg",
+            "score": 1.0
+          },
+          {
+            "product_id": "CD1011",
+            "brand_name": "Telma 80",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 80 mg",
+            "score": 1.0
+          },
+          {
+            "product_id": "CD1024",
+            "brand_name": "Telma-H 40",
+            "dose_form": "Tablet",
+            "strength_text": "Telmisartan 40 mg + Hydrochlorothiazide 12.5 mg",
+            "score": 1.0
+          }
+        ]
+      }
+    ],
+    "unresolved_count": 1
+  },
+  "freshness": {
+    "cdci": {
+      "present": true,
+      "batch_id": "cdci:2026-06-30:8f7cdf39",
+      "source_version": "2026-06-30",
+      "version_date": "2026-06-30",
+      "age_days_at_as_of": 106,
+      "max_age_days": 400,
+      "expired": false,
+      "reason": null
+    },
+    "gazette": {
+      "present": true,
+      "batch_id": "gazette:extract-through-2025-11-02:a57b5a9d",
+      "source_version": "extract-through-2025-11-02",
+      "version_date": "2025-11-02",
+      "age_days_at_as_of": 346,
+      "max_age_days": 400,
+      "expired": false,
+      "reason": null
+    },
+    "interactions": {
+      "present": true,
+      "batch_id": "interactions:public-high-priority-2026:a68f50eb",
+      "source_version": "public-high-priority-2026",
+      "version_date": "2026-01-01",
+      "age_days_at_as_of": 286,
+      "max_age_days": 400,
+      "expired": false,
+      "reason": null
+    }
+  },
+  "checks": [
+    {
+      "check_id": "DUP-001",
+      "name": "duplicate_active_ingredient",
+      "rule_version": "1.0.0",
+      "status": "UNVERIFIED_INPUT",
+      "severity": "NONE",
+      "summary": "1 item(s) could not be resolved to a product; duplicate check incomplete",
+      "evidence": {
+        "resolved_ingredients": []
+      },
+      "unverified_items": [
+        {
+          "item_no": 1,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "FDC-001",
+      "name": "prohibited_or_restricted_product",
+      "rule_version": "1.1.0",
+      "status": "UNVERIFIED_INPUT",
+      "severity": "NONE",
+      "summary": "1 item(s) unresolved; regulatory status cannot be checked for them",
+      "evidence": {
+        "items": [],
+        "partial": []
+      },
+      "unverified_items": [
+        {
+          "item_no": 1,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "INT-001",
+      "name": "severe_interaction_seed",
+      "rule_version": "1.0.0",
+      "status": "UNVERIFIED_INPUT",
+      "severity": "NONE",
+      "summary": "1 item(s) unresolved; their ingredients could not be screened",
+      "evidence": {
+        "pairs_evaluated": 0,
+        "seed_pairs_available": 15,
+        "ingredients_not_in_seed": [],
+        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
+      },
+      "unverified_items": [
+        {
+          "item_no": 1,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "CUM-001",
+      "name": "cumulative_ingredient_exposure",
+      "rule_version": "1.0.0",
+      "status": "UNVERIFIED_INPUT",
+      "severity": "NONE",
+      "summary": "1 item(s) unresolved; totals exclude them",
+      "evidence": {
+        "per_ingredient": [],
+        "method": "sum over items of (units/day x strength per unit); frequency parsed from dose_frequency with config/frequency_patterns.json"
+      },
+      "unverified_items": [
+        {
+          "item_no": 1,
+          "written_product": "Telma",
+          "reason_code": "AMBIGUOUS_STRENGTH_MISSING",
+          "reason_detail": "'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one",
+          "review_item_id": 752
+        }
+      ],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    }
+  ],
+  "data_versions": {
+    "cdci": "cdci:2026-06-30:8f7cdf39",
+    "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+    "interactions": "interactions:public-high-priority-2026:a68f50eb"
+  },
+  "overall": "UNVERIFIED_INPUT",
+  "item_states": [
+    {
+      "item_no": 1,
+      "state": "UNVERIFIED_INPUT",
+      "note": "AMBIGUOUS_STRENGTH_MISSING: 'telma' names a brand family with 4 variants (['Telma 20', 'Telma 40', 'Telma 80', 'Telma-H 40']); strength/variant needed to pick one"
+    }
+  ]
+}

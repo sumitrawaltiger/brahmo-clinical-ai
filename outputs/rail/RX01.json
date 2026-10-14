@@ -1,0 +1,419 @@
+{
+  "run_id": "1a0a88ca-b025-4d33-8bab-ea1802467ffe",
+  "rx_id": "RX01",
+  "as_of": "2026-10-14",
+  "engine_version": "rail-engine-1.0.0",
+  "rule_set": {
+    "id": "brahmo-rail-rules",
+    "version": "1.0.0"
+  },
+  "patient_population": null,
+  "normalization": {
+    "items": [
+      {
+        "item_no": 1,
+        "written_product": "Dolo 650",
+        "strength_as_written": "650 mg",
+        "dose_frequency": "1-0-1 x 5d",
+        "frequency_parsed": {
+          "raw": "1-0-1 x 5d",
+          "units_per_day": 2.0,
+          "kind": "schedule",
+          "duration_days": 5
+        },
+        "resolution_status": "RESOLVED",
+        "method": "exact_brand_strength",
+        "confidence": 0.97,
+        "reason_code": null,
+        "reason_detail": "",
+        "review_item_id": null,
+        "product": {
+          "product_id": "CD1000",
+          "batch_id": "cdci:2026-06-30:8f7cdf39",
+          "brand_name": "Dolo 650",
+          "dose_form": "Tablet",
+          "strength_text": "Paracetamol 650 mg",
+          "is_fdc": false,
+          "salts": [
+            {
+              "ingredient": "Paracetamol",
+              "strength_value": 650.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            }
+          ],
+          "equivalent_product_ids": [
+            "CD1000"
+          ]
+        }
+      },
+      {
+        "item_no": 2,
+        "written_product": "Sinarest Tablet",
+        "strength_as_written": null,
+        "dose_frequency": "1-0-1 x 5d",
+        "frequency_parsed": {
+          "raw": "1-0-1 x 5d",
+          "units_per_day": 2.0,
+          "kind": "schedule",
+          "duration_days": 5
+        },
+        "resolution_status": "RESOLVED",
+        "method": "exact_brand_unique",
+        "confidence": 0.95,
+        "reason_code": null,
+        "reason_detail": "",
+        "review_item_id": null,
+        "product": {
+          "product_id": "CD1021",
+          "batch_id": "cdci:2026-06-30:8f7cdf39",
+          "brand_name": "Sinarest Tablet",
+          "dose_form": "Tablet",
+          "strength_text": "Paracetamol 500 mg + Chlorpheniramine 2 mg + Phenylephrine 10 mg",
+          "is_fdc": true,
+          "salts": [
+            {
+              "ingredient": "Paracetamol",
+              "strength_value": 500.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            },
+            {
+              "ingredient": "Chlorpheniramine",
+              "strength_value": 2.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            },
+            {
+              "ingredient": "Phenylephrine",
+              "strength_value": 10.0,
+              "strength_unit": "mg",
+              "decomposition_confidence": 0.98,
+              "decomposition_method": "structured_columns"
+            }
+          ],
+          "equivalent_product_ids": [
+            "CD1021"
+          ]
+        }
+      }
+    ],
+    "unresolved_count": 0
+  },
+  "freshness": {
+    "cdci": {
+      "present": true,
+      "batch_id": "cdci:2026-06-30:8f7cdf39",
+      "source_version": "2026-06-30",
+      "version_date": "2026-06-30",
+      "age_days_at_as_of": 106,
+      "max_age_days": 400,
+      "expired": false,
+      "reason": null
+    },
+    "gazette": {
+      "present": true,
+      "batch_id": "gazette:extract-through-2025-11-02:a57b5a9d",
+      "source_version": "extract-through-2025-11-02",
+      "version_date": "2025-11-02",
+      "age_days_at_as_of": 346,
+      "max_age_days": 400,
+      "expired": false,
+      "reason": null
+    },
+    "interactions": {
+      "present": true,
+      "batch_id": "interactions:public-high-priority-2026:a68f50eb",
+      "source_version": "public-high-priority-2026",
+      "version_date": "2026-01-01",
+      "age_days_at_as_of": 286,
+      "max_age_days": 400,
+      "expired": false,
+      "reason": null
+    }
+  },
+  "checks": [
+    {
+      "check_id": "DUP-001",
+      "name": "duplicate_active_ingredient",
+      "rule_version": "1.0.0",
+      "status": "HIT",
+      "severity": "MODERATE",
+      "summary": "1 ingredient(s) appear in more than one item: Paracetamol",
+      "evidence": {
+        "hits": [
+          {
+            "ingredient": "Paracetamol",
+            "items": [
+              {
+                "item_no": 1,
+                "written_product": "Dolo 650",
+                "product_id": "CD1000",
+                "brand_name": "Dolo 650",
+                "is_fdc": false,
+                "strength_per_unit": 650.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1300.0
+              },
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 500.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1000.0
+              }
+            ],
+            "aggregate_mg_per_day": 2300.0,
+            "aggregate_is_lower_bound": false,
+            "aggregate_note": "all contributions quantified",
+            "visible_only_after_fdc_decomposition": true,
+            "reference_ceiling": {
+              "found": true,
+              "citation": {
+                "source_doc": "STW-GP-01",
+                "source_version": "2025.1",
+                "section": "FIRST-LINE MANAGEMENT",
+                "as_written": "max 3 g/day adult",
+                "population": "adult"
+              },
+              "max_mg_per_day": 3000,
+              "exceeds": false,
+              "population_matches_input": false,
+              "note": "aggregate 2300.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+            }
+          }
+        ]
+      },
+      "unverified_items": [],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "FDC-001",
+      "name": "prohibited_or_restricted_product",
+      "rule_version": "1.1.0",
+      "status": "CHECKED_NO_HIT",
+      "severity": "NONE",
+      "summary": "no in-force PROHIBITED/RESTRICTED/WITHDRAWN event matches any item as of 2026-10-14",
+      "evidence": {
+        "items": [
+          {
+            "item_no": 1,
+            "written_product": "Dolo 650",
+            "product_id": "CD1000",
+            "ingredients": [
+              "paracetamol"
+            ],
+            "status_as_of": "NONE",
+            "governing_events": [],
+            "supersession_chains": [],
+            "superseded_events": [],
+            "pending_events": [],
+            "excluded_by_qualifier": [],
+            "uncertain_applicability": [],
+            "register_gaps": []
+          },
+          {
+            "item_no": 2,
+            "written_product": "Sinarest Tablet",
+            "product_id": "CD1021",
+            "ingredients": [
+              "paracetamol",
+              "chlorpheniramine",
+              "phenylephrine"
+            ],
+            "status_as_of": "NONE",
+            "governing_events": [],
+            "supersession_chains": [],
+            "superseded_events": [],
+            "pending_events": [],
+            "excluded_by_qualifier": [],
+            "uncertain_applicability": [],
+            "register_gaps": []
+          }
+        ]
+      },
+      "unverified_items": [],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "INT-001",
+      "name": "severe_interaction_seed",
+      "rule_version": "1.0.0",
+      "status": "PARTIAL_COVERAGE",
+      "severity": "NONE",
+      "summary": "no seed pair matched, but 3 ingredient(s) are not covered by the seed list: Chlorpheniramine, Paracetamol, Phenylephrine",
+      "evidence": {
+        "pairs_evaluated": 5,
+        "seed_pairs_available": 15,
+        "ingredients_not_in_seed": [
+          "Chlorpheniramine",
+          "Paracetamol",
+          "Phenylephrine"
+        ],
+        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
+      },
+      "unverified_items": [],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    },
+    {
+      "check_id": "CUM-001",
+      "name": "cumulative_ingredient_exposure",
+      "rule_version": "1.0.0",
+      "status": "PARTIAL_COVERAGE",
+      "severity": "NONE",
+      "summary": "Paracetamol: ceiling is for 'adult' and the prescription does not state the patient population",
+      "evidence": {
+        "per_ingredient": [
+          {
+            "ingredient": "Paracetamol",
+            "distinct_items": 2,
+            "shared_across_items": true,
+            "total_mg_per_day": 2300.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 1,
+                "written_product": "Dolo 650",
+                "product_id": "CD1000",
+                "brand_name": "Dolo 650",
+                "is_fdc": false,
+                "strength_per_unit": 650.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1300.0
+              },
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 500.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 1000.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": true,
+              "citation": {
+                "source_doc": "STW-GP-01",
+                "source_version": "2025.1",
+                "section": "FIRST-LINE MANAGEMENT",
+                "as_written": "max 3 g/day adult",
+                "population": "adult"
+              },
+              "max_mg_per_day": 3000,
+              "exceeds": false,
+              "population_matches_input": false,
+              "note": "aggregate 2300.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+            }
+          },
+          {
+            "ingredient": "Chlorpheniramine",
+            "distinct_items": 1,
+            "shared_across_items": false,
+            "total_mg_per_day": 4.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 2.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 4.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": false,
+              "note": "no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+            }
+          },
+          {
+            "ingredient": "Phenylephrine",
+            "distinct_items": 1,
+            "shared_across_items": false,
+            "total_mg_per_day": 20.0,
+            "is_lower_bound": false,
+            "contributions": [
+              {
+                "item_no": 2,
+                "written_product": "Sinarest Tablet",
+                "product_id": "CD1021",
+                "brand_name": "Sinarest Tablet",
+                "is_fdc": true,
+                "strength_per_unit": 10.0,
+                "unit": "mg",
+                "units_per_day": 2.0,
+                "frequency_kind": "schedule",
+                "mg_per_day": 20.0
+              }
+            ],
+            "reference_ceiling": {
+              "found": false,
+              "note": "no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+            }
+          }
+        ],
+        "method": "sum over items of (units/day x strength per unit); frequency parsed from dose_frequency with config/frequency_patterns.json"
+      },
+      "unverified_items": [],
+      "data_versions": {
+        "cdci": "cdci:2026-06-30:8f7cdf39",
+        "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+        "interactions": "interactions:public-high-priority-2026:a68f50eb"
+      },
+      "notes": []
+    }
+  ],
+  "data_versions": {
+    "cdci": "cdci:2026-06-30:8f7cdf39",
+    "gazette": "gazette:extract-through-2025-11-02:a57b5a9d",
+    "interactions": "interactions:public-high-priority-2026:a68f50eb"
+  },
+  "overall": "HIT",
+  "item_states": [
+    {
+      "item_no": 1,
+      "state": "HIT",
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2300.0 mg/day; aggregate 2300.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+    },
+    {
+      "item_no": 2,
+      "state": "HIT",
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2300.0 mg/day; aggregate 2300.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "rx_id": "TRACE-DEMO-01",
+  "patient_population": "adult",
+  "items": [
+    {"item_no": 1, "written_product": "Dolo 650", "strength_as_written": "650 mg", "dose_frequency": "1-1-1 x 3d", "clinical_note": "fever"},
+    {"item_no": 2, "written_product": "Sinarest Tablet", "strength_as_written": null, "dose_frequency": "1-0-1 x 5d", "clinical_note": "cold"},
+    {"item_no": 3, "written_product": "Warf 5", "strength_as_written": "5 mg", "dose_frequency": "0-0-1", "clinical_note": "AF, ongoing"},
+    {"item_no": 4, "written_product": "Azee 500", "strength_as_written": "500 mg", "dose_frequency": "1-0-0 x 3d", "clinical_note": "RTI"},
+    {"item_no": 5, "written_product": "Telma", "strength_as_written": null, "dose_frequency": "1-0-0", "clinical_note": "HTN"}
+  ]
+}

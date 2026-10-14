@@ -164,6 +164,32 @@ def resolve(
             cands = _load_candidates(conn, alias_target, batch_id)
             method = "alias_table"
 
+    # brand family: "Telma" -> Telma 20 / Telma 40 / Telma 80 / Telma-H 40. A family is a real, nameable ambiguity
+    # (strength or variant missing), which is more useful to a reviewer than a fuzzy near-miss.
+    if not cands:
+        family = [b for b in _all_brand_norms(conn, batch_id) if b.startswith(key + " ")]
+        if family:
+            fam_cands: List[Candidate] = []
+            for b in family:
+                fam_cands.extend(_load_candidates(conn, b, batch_id))
+            # apply the strength filter to the family if a strength was written
+            if strength and strength.get("parseable") and strength.get("value") is not None:
+                sv, su = strength["value"], strength.get("unit")
+                narrowed = [c for c in fam_cands if any(i["strength_value"] is not None and abs(float(i["strength_value"]) - sv) < 1e-9
+                                                        and (su is None or (i["strength_unit"] or "").lower() == su) for i in c.ingredients)]
+                if len({c.brand_name for c in narrowed}) == 1:
+                    cands = narrowed
+                    key = norm_key(narrowed[0].brand_name)
+                    method = "brand_family_strength"
+            if not cands:
+                res.status = AMBIGUOUS
+                res.candidates = [_cand_dict(c) for c in fam_cands]
+                res.reason_code = reasons.AMBIGUOUS_STRENGTH_MISSING
+                res.reason_detail = (f"'{key}' names a brand family with {len({c.brand_name for c in fam_cands})} variants "
+                                     f"({sorted({c.brand_name for c in fam_cands})[:6]}); strength/variant needed to pick one")
+                res.method = "brand_family"
+                return res
+
     if not cands:
         pool = _all_brand_norms(conn, batch_id)
         sugg = difflib.get_close_matches(key, pool, n=int(cfg["resolver.fuzzy_max_candidates"]), cutoff=float(cfg["resolver.fuzzy_cutoff"]))
@@ -247,6 +273,8 @@ def resolve(
             res.method, res.confidence = "exact_brand_form", mconf["exact_brand_form"]
         elif method.startswith("alias_table"):
             res.method, res.confidence = "alias_table", mconf["alias_table"]
+        elif method.startswith("brand_family_strength"):
+            res.method, res.confidence = "exact_brand_strength", mconf["exact_brand_strength"]
         else:
             res.method, res.confidence = "exact_brand_unique", mconf["exact_brand_unique"]
         if res.confidence < float(cfg["resolver.auto_accept_min"]):

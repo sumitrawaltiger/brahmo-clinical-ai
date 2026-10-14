@@ -12,6 +12,9 @@
     "pharmacy_stock": "data/pharmacy_stock.csv",
     "interactions": "data/severe_interaction_seed.csv",
     "seed_prescriptions": "data/seed_prescriptions_template.csv",
+    "ingredient_supplement": "data/supplements/ingredient_supplement.csv",
+    "supplements_enabled": true,
+    "_supplements_note": "Candidate-added ingredient names (no products). Set supplements_enabled=false to run on the provided files only.",
     "stock_reference_date": "2026-10-14",
     "_stock_reference_date_note": "Date against which stock expiry is judged; the packet carries no 'as of' date for the stock file."
   },
@@ -19,6 +22,7 @@
     "dir": "corpus",
     "stw_glob": "STW_*.pdf",
     "local_protocols": ["corpus/local_protocol_acute_fever.md"],
+    "metadata_path": "config/corpus_metadata.json",
     "index_path": "build/rag_index.json"
   },
   "freshness": {
@@ -76,6 +80,9 @@
     "prompt_path": "prompts/runtime/grounded_answer_v1.md",
     "max_claims": 8,
     "numeric_guard": true
+  },
+  "eval": {
+    "expected_path": "data/eval/sample_questions_expected.json"
   },
   "trace": {
     "schema_version": "1.0",
