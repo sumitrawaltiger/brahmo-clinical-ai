@@ -1,5 +1,5 @@
 {
-  "run_id": "edcdcd5d-fd99-40bf-84dd-13436f2ab699",
+  "run_id": "rail-92b122527d26c685",
   "rx_id": "RX10",
   "as_of": "2026-10-14",
   "engine_version": "rail-engine-1.0.0",
@@ -193,10 +193,12 @@
       "evidence": {
         "pairs_evaluated": 0,
         "seed_pairs_available": 15,
+        "seed_batch": "interactions:public-high-priority-2026:a68f50eb",
         "ingredients_not_in_seed": [
           "Pantoprazole"
         ],
-        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
+        "unsigned_class_matches": [],
+        "coverage_note": "the seed list has 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
       },
       "unverified_items": [
         {
@@ -277,8 +279,8 @@
   "item_states": [
     {
       "item_no": 1,
-      "state": "CHECKED_NO_HIT",
-      "note": "resolved; DUP-001=UNVERIFIED_INPUT, FDC-001=UNVERIFIED_INPUT, INT-001=UNVERIFIED_INPUT, CUM-001=UNVERIFIED_INPUT"
+      "state": "UNVERIFIED_INPUT",
+      "note": "resolved, but not fully screened (DUP-001=UNVERIFIED_INPUT, FDC-001=UNVERIFIED_INPUT, INT-001=UNVERIFIED_INPUT, CUM-001=UNVERIFIED_INPUT); DUP-001: 1 item(s) could not be resolved to a product; duplicate check incomplete | FDC-001: 1 item(s) unresolved; regulatory status cannot be checked for them | INT-001: 1 item(s) unresolved; their ingredients could not be screened | CUM-001: 1 item(s) unresolved; totals exclude them"
     },
     {
       "item_no": 2,

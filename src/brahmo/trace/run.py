@@ -2,15 +2,13 @@
 from __future__ import annotations
 
 import sqlite3
-import uuid
 from datetime import date
 from typing import Any, Dict, Optional
 
 from .. import __version__
 from ..config import Config, load_config
-from ..db import utcnow_iso
 from ..ingest.batches import data_versions
-from ..normalize.text import sha256_file
+from ..normalize.text import sha256_file, sha256_text
 from ..rag.answer import answer_question
 from ..rag.index import load_index
 from ..rail.engine import ENGINE_VERSION, Rail
@@ -25,9 +23,9 @@ def trace(conn: sqlite3.Connection, rx: Dict[str, Any], question: str, cfg: Opti
     rules = cfg.load_json("rail.rule_set_path")
     prompt_path = cfg.path("answering.prompt_path")
     return {
-        "trace_id": str(uuid.uuid4()),
+        # deterministic: the trace is a pure function of its two run replay keys, so checked-in traces are stable
+        "trace_id": "trace-" + sha256_text(rail_out["run_id"] + "|" + qa_out["run_id"])[:16],
         "schema_version": cfg["trace.schema_version"],
-        "created_at": utcnow_iso(),
         "as_of": as_of,
         "input": {"prescription": rx, "question": question},
         "normalization": rail_out["normalization"],

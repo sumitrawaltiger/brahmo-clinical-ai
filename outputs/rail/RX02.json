@@ -1,5 +1,5 @@
 {
-  "run_id": "5d267868-0490-4404-a7c4-864eea90840b",
+  "run_id": "rail-8f15a36c47bc1f1c",
   "rx_id": "RX02",
   "as_of": "2026-10-14",
   "engine_version": "rail-engine-1.0.0",
@@ -389,11 +389,13 @@
       "evidence": {
         "pairs_evaluated": 1,
         "seed_pairs_available": 15,
+        "seed_batch": "interactions:public-high-priority-2026:a68f50eb",
         "ingredients_not_in_seed": [
           "Nimesulide",
           "Paracetamol"
         ],
-        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
+        "unsigned_class_matches": [],
+        "coverage_note": "the seed list has 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
       },
       "unverified_items": [],
       "data_versions": {
@@ -494,7 +496,7 @@
     {
       "item_no": 1,
       "state": "HIT",
-      "note": "FDC-001 SEVERE: PROHIBITED — GSR 411(E) published 2023-06-02 effective 2023-06-15"
+      "note": "FDC-001 SEVERE: PROHIBITED — GSR 411(E) published 2023-06-02 effective 2023-06-15 (DUP-001=CHECKED_NO_HIT, FDC-001=HIT, INT-001=PARTIAL_COVERAGE, CUM-001=CHECKED_NO_HIT)"
     }
   ]
 }

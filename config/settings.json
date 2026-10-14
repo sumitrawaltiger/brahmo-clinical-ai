@@ -21,7 +21,9 @@
   "corpus": {
     "dir": "corpus",
     "stw_glob": "STW_*.pdf",
-    "local_protocols": ["corpus/local_protocol_acute_fever.md"],
+    "local_protocols": [
+      "corpus/local_protocol_acute_fever.md"
+    ],
     "metadata_path": "config/corpus_metadata.json",
     "index_path": "build/rag_index.json"
   },
@@ -33,7 +35,7 @@
   },
   "resolver": {
     "_comment": "Confidence values attached to each resolution method; nothing below auto_accept_min is ever auto-resolved.",
-    "auto_accept_min": 0.90,
+    "auto_accept_min": 0.9,
     "method_confidence": {
       "exact_brand_strength_form": 0.99,
       "exact_brand_strength": 0.97,
@@ -41,8 +43,8 @@
       "exact_brand_unique": 0.95,
       "normalized_billing_string": 0.93,
       "alias_table": 0.92,
-      "fuzzy_suggestion": 0.50,
-      "llm_suggestion": 0.60
+      "fuzzy_suggestion": 0.5,
+      "llm_suggestion": 0.6
     },
     "fuzzy_cutoff": 0.72,
     "fuzzy_max_candidates": 5,
@@ -56,7 +58,9 @@
     "prohibited_severity": "SEVERE",
     "withdrawn_severity": "SEVERE",
     "duplicate_severity": "MODERATE",
-    "interaction_require_ingredient_coverage": true
+    "interaction_require_ingredient_coverage": true,
+    "allow_unsigned_class_members": false,
+    "_allow_unsigned_class_members_note": "Candidate-added class->member mappings (requires_signoff=1) never produce a HIT unless this is true; they are reported as PARTIAL_COVERAGE instead."
   },
   "retrieval": {
     "bm25_k1": 1.5,
@@ -87,5 +91,73 @@
   "trace": {
     "schema_version": "1.0",
     "output_dir": "outputs"
+  },
+  "ingest": {
+    "_comment": "Loader thresholds and confidences. Changing any of these changes every batch loaded afterwards; the config sha256 is recorded in every trace.",
+    "decomposition_confidence": {
+      "structured_columns": 0.98,
+      "source_row_inconsistent": 0.6,
+      "implausible_strength": 0.7
+    },
+    "strength_plausible_max_mg": 5000,
+    "gazette_parse_confidence": {
+      "default": 0.95,
+      "unresolved_terms": 0.4,
+      "ratio_qualifier": 0.5
+    },
+    "stock_expiring_window_months": 3,
+    "jan_aushadhi_plausibility": {
+      "solid_strength_suspicious_from_mg": 500,
+      "generics_never_at_high_solid_strength": [
+        "losartan",
+        "rosuvastatin",
+        "clopidogrel",
+        "ondansetron",
+        "levocetirizine",
+        "chlorpheniramine",
+        "sertraline",
+        "prednisolone",
+        "folic acid",
+        "omeprazole",
+        "domperidone",
+        "glimepiride",
+        "montelukast",
+        "calcium carbonate",
+        "iron (ferrous ascorbate)",
+        "vitamin d3",
+        "nimesulide",
+        "serratiopeptidase",
+        "trypsin-chymotrypsin",
+        "thyroxine",
+        "aceclofenac",
+        "rabeprazole",
+        "salbutamol",
+        "telmisartan",
+        "amlodipine",
+        "hydrochlorothiazide",
+        "phenylephrine",
+        "nitrofurantoin",
+        "clavulanic acid",
+        "sitagliptin",
+        "atenolol",
+        "cefixime",
+        "ciprofloxacin",
+        "ofloxacin",
+        "metformin"
+      ],
+      "generics_not_marketed_as_syrup": [
+        "telmisartan",
+        "amlodipine",
+        "losartan",
+        "sertraline",
+        "montelukast",
+        "calcium carbonate",
+        "prednisolone",
+        "aceclofenac",
+        "cefixime",
+        "iron (ferrous ascorbate)",
+        "clavulanic acid"
+      ]
+    }
   }
 }

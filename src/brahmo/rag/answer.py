@@ -74,9 +74,10 @@ def answer_question(conn: Optional[sqlite3.Connection], question: str, cfg: Opti
     mode = mode or cfg["answering.mode"]
     index = index or load_index(cfg)
     analysis = analyze(question, cfg)
-    run_id = str(uuid.uuid4())
+    # replay key: same question + index + mode + as-of => same run_id (audit rows carry their own uuid)
+    run_id = "qa-" + sha256_text(json.dumps({"q": question, "index": index.version, "mode": mode, "as_of": as_of}, sort_keys=True))[:16]
     base: Dict[str, Any] = {
-        "run_id": run_id, "question": question, "analysis": analysis, "mode": mode,
+        "run_id": run_id, "question": question, "as_of": as_of, "analysis": analysis, "mode": mode,
         "versions": {"index_version": index.version, "answerer_version": ANSWERER_VERSION, "embedding_model": index.meta["embedding_model"],
                      "prompt_version": None, "model": None},
     }
@@ -207,14 +208,13 @@ def _compose_llm(question: str, units: List[Dict[str, Any]], cfg: Config) -> Dic
 
 
 def _audit(conn: Optional[sqlite3.Connection], out: Dict[str, Any]) -> None:
+    """Write the audit row. A failure raises (law 11): an answer whose audit record could not be written must not
+    look like a normal answer. conn=None means the caller explicitly runs without a database (e.g. corpus-only tools)."""
     if conn is None:
         return
-    try:
-        conn.execute(
-            "INSERT INTO qa_run(run_id, question, index_version, prompt_version, model, mode, output_json, created_at) VALUES (?,?,?,?,?,?,?,?)",
-            (out["run_id"], out["question"], out["versions"]["index_version"], out["versions"].get("prompt_version"), out["versions"].get("model"),
-             out["mode"], json.dumps(out, ensure_ascii=False, default=str), utcnow_iso()),
-        )
-        conn.commit()
-    except sqlite3.Error:
-        pass
+    conn.execute(
+        "INSERT INTO qa_run(audit_id, run_id, question, as_of, index_version, prompt_version, model, mode, output_json, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+        (str(uuid.uuid4()), out["run_id"], out["question"], out.get("as_of"), out["versions"]["index_version"], out["versions"].get("prompt_version"),
+         out["versions"].get("model"), out["mode"], json.dumps(out, ensure_ascii=False, default=str), utcnow_iso()),
+    )
+    conn.commit()

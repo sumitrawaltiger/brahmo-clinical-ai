@@ -1,5 +1,5 @@
 {
-  "run_id": "f0bcbc2e-6ad0-497b-b680-28bc6dd8ff87",
+  "run_id": "rail-5f99202b776c120a",
   "rx_id": "RX09",
   "as_of": "2026-10-14",
   "engine_version": "rail-engine-1.0.0",
@@ -247,11 +247,13 @@
       "evidence": {
         "pairs_evaluated": 2,
         "seed_pairs_available": 15,
+        "seed_batch": "interactions:public-high-priority-2026:a68f50eb",
         "ingredients_not_in_seed": [
           "Hydrochlorothiazide",
           "Telmisartan"
         ],
-        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
+        "unsigned_class_matches": [],
+        "coverage_note": "the seed list has 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
       },
       "unverified_items": [],
       "data_versions": {
@@ -354,12 +356,12 @@
     {
       "item_no": 1,
       "state": "HIT",
-      "note": "DUP-001 MODERATE: Telmisartan in items [1, 2]; aggregate 80.0 mg/day; no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+      "note": "DUP-001 MODERATE: Telmisartan in items [1, 2]; aggregate 80.0 mg/day; no cited reference ceiling in the corpus for this ingredient; total reported without judgement (DUP-001=HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=PARTIAL_COVERAGE)"
     },
     {
       "item_no": 2,
       "state": "HIT",
-      "note": "DUP-001 MODERATE: Telmisartan in items [1, 2]; aggregate 80.0 mg/day; no cited reference ceiling in the corpus for this ingredient; total reported without judgement"
+      "note": "DUP-001 MODERATE: Telmisartan in items [1, 2]; aggregate 80.0 mg/day; no cited reference ceiling in the corpus for this ingredient; total reported without judgement (DUP-001=HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=PARTIAL_COVERAGE)"
     }
   ]
 }

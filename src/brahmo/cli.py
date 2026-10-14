@@ -109,7 +109,7 @@ def cmd_eval(args) -> int:
 
     cfg = load_config()
     conn = connect(cfg)
-    _print(run_eval(conn, cfg, mode=args.mode, out_dir=args.out))
+    _print(run_eval(conn, cfg, mode=args.mode, out_dir=args.out, as_of=args.as_of))
     return 0
 
 
@@ -179,6 +179,7 @@ def main(argv=None) -> int:
     ev = sub.add_parser("eval", help="run the Module B mini-eval")
     ev.add_argument("--mode", default=None)
     ev.add_argument("--out", default=None)
+    ev.add_argument("--as-of", dest="as_of", default=None, help="date for any structured-fact (regulatory) question in the set")
     ev.set_defaults(fn=cmd_eval)
 
     tr = sub.add_parser("trace", help="Module C: one prescription + one question -> one JSON trace")

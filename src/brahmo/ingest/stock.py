@@ -34,7 +34,7 @@ def parse_billing_string(s: str) -> Dict[str, Optional[str]]:
     return {"brand_text": " ".join(brand), "form": form, "pack": " ".join(pack) or None}
 
 
-def _expiry_flag(expiry: str, ref: date) -> Optional[str]:
+def _expiry_flag(expiry: str, ref: date, window_months: int) -> Optional[str]:
     try:
         y, m = expiry.split("-")[:2]
         exp = date(int(y), int(m), 1)
@@ -44,7 +44,7 @@ def _expiry_flag(expiry: str, ref: date) -> Optional[str]:
     if (exp.year, exp.month) < (ref.year, ref.month):
         return "EXPIRED"
     months_ahead = (exp.year - ref.year) * 12 + (exp.month - ref.month)
-    if months_ahead <= 3:
+    if months_ahead <= window_months:
         return "EXPIRING_90D"
     return None
 
@@ -74,7 +74,7 @@ def load(conn: sqlite3.Connection, cfg: Optional[Config] = None, path: Optional[
             stats["ambiguous" if res.status == "AMBIGUOUS" else "unresolved"] += 1
         else:
             stats["resolved"] += 1
-        flag = _expiry_flag(r.get("expiry", ""), ref)
+        flag = _expiry_flag(r.get("expiry", ""), ref, int(cfg.get("ingest.stock_expiring_window_months", 3)))
         if flag == "EXPIRED":
             stats["expired"] += 1
             enqueue(conn, batch_id, "stock_item", name, reasons.EXPIRED_STOCK, f"expiry {r.get('expiry')} is before reference month {ref.isoformat()[:7]}",

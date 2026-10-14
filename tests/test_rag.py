@@ -71,3 +71,35 @@ def test_mini_eval_has_no_wrong_and_no_uncited_numbers(conn, cfg, index):
     assert summary["tally"]["wrong"] == 0
     assert summary["uncited_numbers_total"] == 0
     assert summary["tally"]["correct"] >= 9
+
+
+def test_condition_matching_is_word_bounded(conn, cfg, index):
+    # 'uti' must not fire inside 'routine', 'ors' not inside 'factors'
+    out = answer_question(conn, "What is the routine treatment for malaria?", cfg, index=index)
+    assert out["answer_type"] == "abstain" and out["route"] == "abstain_no_corpus"
+    out = answer_question(conn, "What are the risk factors for typhoid fever?", cfg, index=index)
+    assert out["answer_type"] == "abstain"
+    out = answer_question(conn, "ORS volumes for a child with diarrhoea?", cfg, index=index)
+    assert out["answer_type"] == "answer" and out["claims"][0]["citations"][0]["document"] == "STW-PED-03"
+
+
+def test_qa_run_id_is_a_replay_key(conn, cfg, index):
+    q = "Which analgesic class must be avoided in suspected dengue, and why?"
+    a = answer_question(conn, q, cfg, index=index, as_of="2026-10-14")
+    b = answer_question(conn, q, cfg, index=index, as_of="2026-10-14")
+    assert a["run_id"] == b["run_id"] and a["run_id"].startswith("qa-")
+
+
+def test_index_rebuilds_when_a_corpus_file_changes(cfg, tmp_path, monkeypatch):
+    import shutil
+    from brahmo.rag.index import load_index
+    corpus = tmp_path / "corpus"
+    shutil.copytree(cfg.path("corpus.dir"), corpus)
+    monkeypatch.setenv("BRAHMO_CORPUS__DIR", str(corpus))
+    monkeypatch.setenv("BRAHMO_CORPUS__INDEX_PATH", str(tmp_path / "idx.json"))
+    from brahmo.config import load_config
+    c2 = load_config(fresh=True)
+    v1 = load_index(c2).version
+    (corpus / "STW_GYN_03_PCOS_Initial.pdf").unlink()          # the corpus changed on disk; nothing else did
+    idx2 = load_index(c2)
+    assert idx2.version != v1 and not any(c["code"] == "STW-GYN-03" for c in idx2.chunks)

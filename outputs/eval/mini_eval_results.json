@@ -1,6 +1,7 @@
 {
   "eval_version": "mini-eval-1.0.0",
   "mode": "extractive",
+  "as_of": "2026-10-14",
   "index_version": "rag-index-1.0:chunker-1.0.0:local-hashed-char-ngram-v1:f311f98775e8da86",
   "n": 11,
   "tally": {

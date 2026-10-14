@@ -25,8 +25,7 @@ ACTION_TO_STATUS = {
     "RESTRICTED": "RESTRICTED",
     "WITHDRAWN": "WITHDRAWN",
     "STAY_GRANTED": "STAYED",     # a stay suspends the superseded prohibition; the product is not legally prohibited while it holds
-    "REVOKED": "NONE",
-    "LIFTED": "NONE",
+    # REVOKED / LIFTED never govern by themselves; see derive_status for what they restore
 }
 
 
@@ -59,11 +58,13 @@ class EventView:
 
 
 def load_events(conn: sqlite3.Connection) -> List[Dict[str, Any]]:
+    """Events of the serving (latest) gazette batch only. A reloaded register never mixes with an older one."""
     out = []
     for r in conn.execute(
         """SELECT e.*, t.ingredient_set, t.match_mode, t.form_qualifier, t.population_qualifier, t.ratio_qualifier,
                   t.parse_confidence, t.parse_method, t.unresolved_terms
            FROM regulatory_event e JOIN regulatory_target t ON t.event_id = e.event_id AND t.batch_id = e.batch_id
+           WHERE e.batch_id = (SELECT batch_id FROM load_batch WHERE dataset='gazette' ORDER BY loaded_at DESC, batch_id DESC LIMIT 1)
            ORDER BY e.effective_date, e.event_id"""
     ):
         d = dict(r)
@@ -117,6 +118,22 @@ def derive_status(matching: List[Dict[str, Any]], all_events: List[Dict[str, Any
     # supersession is global: any effective event (matching or not) can supersede
     superseded_ids = {e["supersedes_event_id"] for e in all_events if e["effective_date"] <= as_of and e.get("supersedes_event_id")}
     in_force = [e for e in effective if e["event_id"] not in superseded_ids]
+
+    # REVOKED / LIFTED semantics: such an event removes what it supersedes. If what it supersedes is a STAY, the
+    # instrument the stay had suspended comes back into force (a vacated stay restores the prohibition). If it
+    # supersedes a prohibition/restriction, nothing is restored. The revocation itself never governs.
+    restored: List[Dict[str, Any]] = []
+    for e in list(in_force):
+        if e["action"] not in ("REVOKED", "LIFTED"):
+            continue
+        in_force.remove(e)
+        target = by_id.get(e.get("supersedes_event_id") or "")
+        if target and target["action"] == "STAY_GRANTED" and target.get("supersedes_event_id"):
+            orig_id = target["supersedes_event_id"]
+            orig = next((m for m in effective if m["event_id"] == orig_id), None)
+            if orig and all(x["event_id"] != orig_id for x in in_force):
+                in_force.append(orig)
+                restored.append(orig)
     uncertain = [e for e in in_force if e.get("_match", {}).get("uncertain")]
     actions = {ACTION_TO_STATUS.get(e["action"], e["action"]) for e in in_force}
 
@@ -133,7 +150,8 @@ def derive_status(matching: List[Dict[str, Any]], all_events: List[Dict[str, Any
         "status": "NONE",
         "governing_events": [_cite(e) for e in in_force],
         "supersession_chains": [chain(e) for e in in_force],
-        "superseded_events": [_cite(e) for e in effective if e["event_id"] in superseded_ids],
+        "superseded_events": [_cite(e) for e in effective if e["event_id"] in superseded_ids and all(x["event_id"] != e["event_id"] for x in in_force)],
+        "restored_by_revocation": [_cite(e) for e in restored],
         "pending_events": [_cite(e) for e in pending],
         "uncertain_applicability": [dict(_cite(e), reason=e["_match"]["uncertain"]) for e in uncertain],
         "conflict": False,

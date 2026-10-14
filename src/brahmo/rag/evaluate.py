@@ -81,19 +81,20 @@ def score_one(spec: Dict[str, Any], out: Dict[str, Any], index) -> Dict[str, Any
             "claims": texts, "labels": out.get("labels", []), "route": out.get("route")}
 
 
-def run_eval(conn: Optional[sqlite3.Connection], cfg: Optional[Config] = None, mode: Optional[str] = None, out_dir: Optional[str] = None) -> Dict[str, Any]:
+def run_eval(conn: Optional[sqlite3.Connection], cfg: Optional[Config] = None, mode: Optional[str] = None, out_dir: Optional[str] = None,
+             as_of: Optional[str] = None) -> Dict[str, Any]:
     cfg = cfg or load_config()
     spec = cfg.load_json("eval.expected_path")
     index = load_index(cfg)
     results = []
     full = []
     for q in spec["questions"]:
-        out = answer_question(conn, q["question"], cfg, mode=mode, index=index)
+        out = answer_question(conn, q["question"], cfg, mode=mode, index=index, as_of=as_of)
         full.append(out)
         results.append(score_one(q, out, index))
     tally = {"correct": sum(r["verdict"] == "correct" for r in results), "abstained": sum(r["verdict"] == "abstained" for r in results),
              "wrong": sum(r["verdict"] == "wrong" for r in results)}
-    summary = {"eval_version": EVAL_VERSION, "mode": mode or cfg["answering.mode"], "index_version": index.version, "n": len(results), "tally": tally,
+    summary = {"eval_version": EVAL_VERSION, "mode": mode or cfg["answering.mode"], "as_of": as_of, "index_version": index.version, "n": len(results), "tally": tally,
                "held_out_style_total": sum(r["held_out_style_score"] for r in results), "uncited_numbers_total": sum(1 for r in results for c in r["checks"] if c.startswith("uncited")),
                "results": results}
     od = Path(out_dir) if out_dir else cfg.path("trace.output_dir") / "eval"

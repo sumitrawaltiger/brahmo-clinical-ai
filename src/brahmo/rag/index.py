@@ -82,6 +82,7 @@ def build_index(cfg: Optional[Config] = None) -> Dict[str, Any]:
         "embedding_provider": emb.provider,
         "embedding_model": emb.model,
         "corpus_fingerprint": fp,
+        "corpus_files": corpus_file_shas(cfg),
         "index_version": f"{INDEX_FORMAT}:{CHUNKER_VERSION}:{emb.model}:{fp}",
         "chunk_count": len(chunks),
         "documents": sorted({f"{c.code} v{c.version} ({'current' if c.is_current else 'superseded by ' + str(c.superseded_by)})" for c in chunks}),
@@ -100,9 +101,20 @@ def load_index(cfg: Optional[Config] = None, build_if_missing: bool = True) -> R
             raise FileNotFoundError(path)
         build_index(cfg)
     data = json.loads(path.read_text(encoding="utf-8"))
-    # no silent upgrades: an index built with a different chunker/embedder is rebuilt, and the version is visible in every answer
+    # no silent upgrades: an index built with a different chunker/embedder OR from different corpus files is rebuilt,
+    # and the resulting index version is visible in every answer
     emb = get_embedder(cfg)
-    if data["meta"].get("chunker_version") != CHUNKER_VERSION or data["meta"].get("embedding_model") != emb.model:
+    stale = (data["meta"].get("chunker_version") != CHUNKER_VERSION
+             or data["meta"].get("embedding_model") != emb.model
+             or data["meta"].get("corpus_files") != corpus_file_shas(cfg))
+    if stale:
         build_index(cfg)
         data = json.loads(path.read_text(encoding="utf-8"))
     return RagIndex(data, cfg)
+
+
+def corpus_file_shas(cfg: Config) -> Dict[str, str]:
+    from ..normalize.text import sha256_file
+
+    files = sorted(cfg.path("corpus.dir").glob(cfg["corpus.stw_glob"])) + [cfg.resolve_path(p) for p in cfg["corpus.local_protocols"]]
+    return {p.name: sha256_file(p) for p in files if p.exists()}

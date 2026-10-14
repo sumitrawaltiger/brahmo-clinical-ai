@@ -60,3 +60,22 @@ def test_events_loaded_with_targets(conn):
     evs = load_events(conn)
     assert len(evs) == 12
     assert all("ingredient_set" in e for e in evs)
+
+
+def test_revoking_a_stay_restores_the_prohibition():
+    base = {"notification_id": "X", "date_published": "2018-01-01", "target_description": "t", "target_type": "FDC", "batch_id": "b", "note": "", "parse_confidence": 1.0}
+    p = dict(base, event_id="P", action="PROHIBITED", effective_date="2018-02-01", supersedes_event_id=None)
+    s = dict(base, event_id="S", action="STAY_GRANTED", effective_date="2019-02-01", supersedes_event_id="P")
+    r = dict(base, event_id="R", action="REVOKED", effective_date="2020-02-01", supersedes_event_id="S")
+    assert derive_status([p, s], [p, s, r], "2019-06-01")["status"] == "STAYED"
+    out = derive_status([p, s, r], [p, s, r], "2020-06-01")
+    assert out["status"] == "PROHIBITED" and out["governing_events"][0]["event_id"] == "P"
+    assert [e["event_id"] for e in out["restored_by_revocation"]] == ["P"]
+
+
+def test_lifting_a_prohibition_leaves_nothing_in_force():
+    base = {"notification_id": "X", "date_published": "2018-01-01", "target_description": "t", "target_type": "FDC", "batch_id": "b", "note": "", "parse_confidence": 1.0}
+    p = dict(base, event_id="P", action="PROHIBITED", effective_date="2018-02-01", supersedes_event_id=None)
+    l = dict(base, event_id="L", action="LIFTED", effective_date="2020-02-01", supersedes_event_id="P")
+    out = derive_status([p, l], [p, l], "2020-06-01")
+    assert out["status"] == "NONE" and out["governing_events"] == []

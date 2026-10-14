@@ -57,3 +57,16 @@ def test_every_non_resolved_stock_row_is_in_review_queue(conn):
 def test_review_queue_reason_codes_are_from_vocabulary(conn):
     codes = {r[0] for r in conn.execute("SELECT DISTINCT reason_code FROM review_queue")}
     assert codes <= set(reasons.ALL)
+
+
+def test_unparseable_written_strength_is_never_ignored(conn, cfg):
+    r = resolve(conn, "Dolo 650", "650mg/5ml", None, cfg)
+    assert r.status == UNRESOLVED and r.reason_code == reasons.STRENGTH_UNPARSEABLE
+    r2 = resolve(conn, "Dolo 650", "1 tab", None, cfg)
+    assert r2.status == UNRESOLVED and r2.reason_code == reasons.STRENGTH_UNPARSEABLE
+
+
+def test_resolver_reads_only_the_latest_batch(conn, cfg):
+    from brahmo.ingest.batches import latest_batch
+    r = resolve(conn, "Dolo 650", "650 mg", None, cfg)
+    assert r.product["batch_id"] == latest_batch(conn, "cdci")["batch_id"]

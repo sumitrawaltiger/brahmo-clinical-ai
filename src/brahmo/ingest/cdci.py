@@ -64,6 +64,9 @@ def load(conn: sqlite3.Connection, cfg: Optional[Config] = None, path: Optional[
     batch_id = register_batch(conn, DATASET, sources[0] if sources else "CDCI", source_version, path, len(rows),
                               notes=f"declared sources={sources} versions={versions}")
 
+    dc = cfg.get("ingest.decomposition_confidence", {})
+    c_ok, c_bad, c_impl = float(dc.get("structured_columns", 0.98)), float(dc.get("source_row_inconsistent", 0.6)), float(dc.get("implausible_strength", 0.7))
+    max_mg = float(cfg.get("ingest.strength_plausible_max_mg", 5000))
     cache: Dict[str, int] = {}
     stats = {"products": 0, "fdc": 0, "ingredient_rows": 0, "review_items": 0, "duplicate_product_ids": 0}
     seen_ids = set()
@@ -88,23 +91,23 @@ def load(conn: sqlite3.Connection, cfg: Optional[Config] = None, path: Optional[
                 structured.append((name, val, "mg" if val is not None else None))
         parsed = parse_strength_text(r.get("strength_text", ""))
 
-        confidence, method, problem = 0.98, "structured_columns", ""
+        confidence, method, problem = c_ok, "structured_columns", ""
         if not structured:
             problem = "no structured ingredient columns"
             confidence, method = 0.0, "none"
         elif len(parsed) != len(structured):
             problem = f"strength_text has {len(parsed)} parts, structured columns have {len(structured)}"
-            confidence = 0.6
+            confidence = c_bad
         else:
             for (pn, pv, pu), (sn, sv, su) in zip(parsed, structured):
                 if norm_key(pn) != norm_key(sn) or (pv is not None and sv is not None and abs(pv - sv) > 1e-9) or (pu and su and pu != su):
                     problem = f"strength_text part '{pn} {pv}{pu}' disagrees with structured '{sn} {sv}{su}'"
-                    confidence = 0.6
+                    confidence = c_bad
                     break
         for name, val, unit in structured:
-            if val is not None and (val <= 0 or val > 5000):
+            if val is not None and (val <= 0 or val > max_mg):
                 problem = problem or f"implausible strength {val} {unit} for {name}"
-                confidence = min(confidence, 0.7)
+                confidence = min(confidence, c_impl)
 
         brand = r["brand_name"].strip()
         conn.execute(

@@ -6,6 +6,7 @@ Input: a draft prescription (brand-level items). Output: normalization results +
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import re
 import sqlite3
@@ -74,6 +75,11 @@ def _freshness(conn: sqlite3.Connection, cfg: Config, as_of: date) -> Dict[str, 
     return out
 
 
+def _replay_key(rx: Dict[str, Any], as_of: str, rule_version: str, data_versions: Dict[str, Any]) -> str:
+    payload = json.dumps({"rx": rx, "as_of": as_of, "rules": rule_version, "data": data_versions}, sort_keys=True, ensure_ascii=False, default=str)
+    return "rail-" + hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
+
+
 def _dedup_enqueue(conn: sqlite3.Connection, batch_id: str, entity_type: str, raw: str, reason: str, detail: str, candidates, context) -> int:
     row = conn.execute(
         "SELECT item_id FROM review_queue WHERE status='OPEN' AND entity_type=? AND raw_input=? AND reason_code=?",
@@ -122,10 +128,12 @@ class Rail:
         fresh = _freshness(self.conn, self.cfg, as_of_d)
         data_versions = {ds: f.get("batch_id") for ds, f in fresh.items() if f.get("present")}
         items = self._normalize(rx, rx_id)
-        events = load_events(self.conn)
+        events = load_events(self.conn)   # latest gazette batch only (see regulatory.status.load_events)
 
+        # replay key: same prescription + date + rule set + data batches => same run_id (audit rows keep their own uuid)
+        base["run_id"] = _replay_key(rx, as_of_d.isoformat(), self.rules["rule_set_version"], data_versions)
         checks: List[CheckResult] = [
-            self._check_duplicate(items, fresh),
+            self._check_duplicate(items, fresh, rx.get("patient_population")),
             self._check_regulatory(items, events, as_of_d.isoformat(), fresh),
             self._check_interactions(items, fresh),
             self._check_cumulative(items, fresh, rx.get("patient_population")),
@@ -271,7 +279,7 @@ class Rail:
         return {"found": False, "note": "no cited reference ceiling in the corpus for this ingredient; total reported without judgement"}
 
     # ----- checks
-    def _check_duplicate(self, items: List[Dict[str, Any]], fresh: Dict[str, Any]) -> CheckResult:
+    def _check_duplicate(self, items: List[Dict[str, Any]], fresh: Dict[str, Any], population: Optional[str]) -> CheckResult:
         name, ver = self._rule("DUP-001")
         exp = self._expired(fresh, "cdci")
         if exp:
@@ -280,7 +288,7 @@ class Rail:
         hits = []
         for key, ent in table.items():
             if ent["distinct_items"] >= 2:
-                ceiling = self._ceiling_note(key, ent["total_mg_per_day"], ent["lower_bound"], None)
+                ceiling = self._ceiling_note(key, ent["total_mg_per_day"], ent["lower_bound"], population)
                 hits.append({
                     "ingredient": ent["ingredient"],
                     "items": ent["contributions"],
@@ -352,47 +360,64 @@ class Rail:
         exp = self._expired(fresh, "cdci", "interactions")
         if exp:
             return CheckResult("INT-001", name, ver, DATA_EXPIRED, summary=f"data expired: {exp}", unverified_items=self._unverified(items))
-        pairs = {r["pair_key"]: dict(r) for r in self.conn.execute("SELECT * FROM interaction_pair")}
+        ib = latest_batch(self.conn, "interactions")
+        pairs = {r["pair_key"]: dict(r) for r in self.conn.execute("SELECT * FROM interaction_pair WHERE batch_id=?", (ib["batch_id"] if ib else "",))}
         covered = set()
         for r in pairs.values():
             covered.add(r["a_norm"]); covered.add(r["b_norm"])
-        # class members (e.g. Nitrates -> nitroglycerin) loaded from the supplement, if present
+        # class members (e.g. Nitrates -> nitroglycerin) from the supplement. Only SIGNED mappings may fire; unsigned
+        # ones are reported as a coverage gap so a candidate-added reading of a class never produces a verdict.
         members: Dict[str, str] = {}
+        unsigned_members: Dict[str, str] = {}
         if table_exists(self.conn, "ingredient_class_member"):
-            for r in self.conn.execute("SELECT class_norm, member_norm FROM ingredient_class_member"):
-                members[r["member_norm"]] = r["class_norm"]
-                covered.add(r["member_norm"])
+            sb = latest_batch(self.conn, "ingredient_supplement")
+            for r in self.conn.execute("SELECT class_norm, member_norm, requires_signoff FROM ingredient_class_member WHERE batch_id=?", (sb["batch_id"] if sb else "",)):
+                if int(r["requires_signoff"]) and not bool(self.cfg.get("rail.allow_unsigned_class_members", False)):
+                    unsigned_members[r["member_norm"]] = r["class_norm"]
+                else:
+                    members[r["member_norm"]] = r["class_norm"]
+                    covered.add(r["member_norm"])
         present: List[Tuple[str, str, int, str]] = []  # (norm, display, item_no, product_id)
         for i in self._resolved(items):
             p = i["resolution"]["product"]
             for s in p["ingredients"]:
                 present.append((s["norm"], s["ingredient"], i["input"].get("item_no"), p["product_id"]))
-        hits, checked_pairs = [], 0
+        hits, unsigned_matches, checked_pairs = [], [], 0
         for (an, ad, ai, ap), (bn, bd, bi, bp) in combinations(present, 2):
             if an == bn:
                 continue
             checked_pairs += 1
-            keys = {"|".join(sorted([an, bn]))}
-            if an in members:
-                keys.add("|".join(sorted([members[an], bn])))
-            if bn in members:
-                keys.add("|".join(sorted([an, members[bn]])))
-            for k in keys:
-                if k in pairs:
-                    r = pairs[k]
-                    hits.append({"ingredient_a": ad, "ingredient_b": bd, "items": sorted({ai, bi}), "within_single_product": ai == bi,
-                                 "severity": r["severity"], "note": r["note"], "source_tag": r["source_tag"], "seed_pair": f"{r['ingredient_a']} + {r['ingredient_b']}",
-                                 "matched_via_class": k != "|".join(sorted([an, bn]))})
+            direct = "|".join(sorted([an, bn]))
+            keys = {direct: True}
+            for x, y, mapping, signed in ((an, bn, members, True), (bn, an, members, True), (an, bn, unsigned_members, False), (bn, an, unsigned_members, False)):
+                if x in mapping:
+                    keys.setdefault("|".join(sorted([mapping[x], y])), signed)
+            for k, signed in keys.items():
+                if k not in pairs:
+                    continue
+                r = pairs[k]
+                rec = {"ingredient_a": ad, "ingredient_b": bd, "items": sorted({ai, bi}), "within_single_product": ai == bi,
+                       "severity": r["severity"], "note": r["note"], "source_tag": r["source_tag"], "seed_pair": f"{r['ingredient_a']} + {r['ingredient_b']}",
+                       "matched_via_class": k != direct}
+                if signed:
+                    hits.append(rec)
+                else:
+                    unsigned_matches.append(dict(rec, blocked_reason="class membership is candidate-added and awaits clinical sign-off; not served as a verdict"))
         uncovered = sorted({d for n, d, _, _ in present if n not in covered})
         unverified = self._unverified(items)
-        ev = {"pairs_evaluated": checked_pairs, "seed_pairs_available": len(pairs), "ingredients_not_in_seed": uncovered,
-              "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"}
+        ev = {"pairs_evaluated": checked_pairs, "seed_pairs_available": len(pairs), "seed_batch": ib["batch_id"] if ib else None,
+              "ingredients_not_in_seed": uncovered, "unsigned_class_matches": unsigned_matches,
+              "coverage_note": f"the seed list has {len(pairs)} ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"}
         if hits:
             sev = SEVERE if any(h["severity"] == "SEVERE" for h in hits) else MODERATE
             return CheckResult("INT-001", name, ver, HIT, severity=sev, summary="; ".join(f"{h['ingredient_a']} + {h['ingredient_b']} ({h['severity']}: {h['note']})" for h in hits),
                                evidence=dict(ev, hits=hits), unverified_items=unverified)
         if unverified:
             return CheckResult("INT-001", name, ver, UNVERIFIED_INPUT, summary=f"{len(unverified)} item(s) unresolved; their ingredients could not be screened", evidence=ev, unverified_items=unverified)
+        if unsigned_matches:
+            return CheckResult("INT-001", name, ver, PARTIAL_COVERAGE,
+                               summary="a seed pair would match through a class mapping that awaits clinical sign-off: " + "; ".join(f"{u['ingredient_a']} + {u['ingredient_b']} via {u['seed_pair']}" for u in unsigned_matches),
+                               evidence=ev)
         if uncovered and bool(self.cfg["rail.interaction_require_ingredient_coverage"]):
             return CheckResult("INT-001", name, ver, PARTIAL_COVERAGE, summary=f"no seed pair matched, but {len(uncovered)} ingredient(s) are not covered by the seed list: {', '.join(uncovered)}", evidence=ev)
         return CheckResult("INT-001", name, ver, CHECKED_NO_HIT, summary="no severe seed interaction among the resolved ingredients", evidence=ev)
@@ -434,7 +459,21 @@ class Rail:
         return CheckResult("CUM-001", name, ver, CHECKED_NO_HIT, summary="no ingredient is contributed by more than one item", evidence=ev)
 
     # ----- per-item roll-up (for the seed template columns)
+    @staticmethod
+    def _hit_item_nos(h: Dict[str, Any]) -> set:
+        """Item numbers a hit record refers to, across the four checks' evidence shapes."""
+        if isinstance(h.get("items"), list):
+            return {x["item_no"] if isinstance(x, dict) else x for x in h["items"]}
+        if isinstance(h.get("contributions"), list):          # CUM-001
+            return {x["item_no"] for x in h["contributions"]}
+        if "item_no" in h:                                      # FDC-001
+            return {h["item_no"]}
+        return set()
+
     def _item_states(self, items: List[Dict[str, Any]], checks: List[CheckResult]) -> List[Dict[str, Any]]:
+        """Per-item roll-up for the seed template. A resolved item is CHECKED_NO_HIT only when every check actually
+        ran to completion for the whole prescription: a check that is UNVERIFIED_INPUT / PARTIAL_COVERAGE /
+        SOURCE_CONFLICT / DATA_EXPIRED because of *another* item still means this item was not fully screened."""
         out = []
         for i in items:
             no = i["input"].get("item_no")
@@ -445,22 +484,25 @@ class Rail:
             for c in checks:
                 if c.status == HIT:
                     for h in c.evidence.get("hits", []):
-                        nos = set()
-                        if "items" in h and isinstance(h["items"], list):
-                            nos = {x["item_no"] if isinstance(x, dict) else x for x in h["items"]}
-                        elif "item_no" in h:
-                            nos = {h["item_no"]}
-                        if no in nos:
+                        if no in self._hit_item_nos(h):
                             involved.append(c.check_id)
                             notes.append(f"{c.check_id} {c.severity}: {self._hit_note(c, h)}")
-            if involved:
-                out.append({"item_no": no, "state": HIT, "note": " | ".join(notes)})
-                continue
-            partial = [c for c in checks if c.status in (PARTIAL_COVERAGE, SOURCE_CONFLICT, DATA_EXPIRED)]
             per_check = ", ".join(f"{c.check_id}={c.status}" for c in checks)
-            if partial:
-                out.append({"item_no": no, "state": worst([c.status for c in partial]),
-                            "note": f"resolved ({per_check}); " + " | ".join(f"{c.check_id}: {c.summary}" for c in partial)})
+            if involved:
+                out.append({"item_no": no, "state": HIT, "note": " | ".join(notes) + f" ({per_check})"})
+                continue
+            # statuses that limit how completely THIS item was screened
+            limiting: List[str] = []
+            for c in checks:
+                if c.status == HIT:
+                    if c.unverified_items:       # the hit is real for other items; this one was not screened against the unresolved ones
+                        limiting.append(UNVERIFIED_INPUT)
+                elif c.status != CHECKED_NO_HIT:
+                    limiting.append(c.status)
+            if limiting:
+                state = worst(limiting)
+                reasons_txt = " | ".join(f"{c.check_id}: {c.summary}" for c in checks if c.status not in (CHECKED_NO_HIT, HIT))
+                out.append({"item_no": no, "state": state, "note": f"resolved, but not fully screened ({per_check}); {reasons_txt}".rstrip("; ")})
             else:
                 out.append({"item_no": no, "state": CHECKED_NO_HIT, "note": f"resolved; {per_check}"})
         return out
@@ -481,9 +523,9 @@ class Rail:
 
     def _audit(self, out: Dict[str, Any], rx: Dict[str, Any]) -> None:
         self.conn.execute(
-            "INSERT INTO rail_run(run_id, rx_id, as_of_date, rule_set_version, data_versions, input_json, output_json, created_at) VALUES (?,?,?,?,?,?,?,?)",
-            (out["run_id"], out["rx_id"], out["as_of"], out["rule_set"]["version"], json.dumps(out["data_versions"]), json.dumps(rx, ensure_ascii=False),
-             json.dumps(out, ensure_ascii=False, default=str), utcnow_iso()),
+            "INSERT INTO rail_run(audit_id, run_id, rx_id, as_of_date, rule_set_version, data_versions, input_json, output_json, created_at) VALUES (?,?,?,?,?,?,?,?,?)",
+            (str(uuid.uuid4()), out["run_id"], out["rx_id"], out["as_of"], out["rule_set"]["version"], json.dumps(out["data_versions"]),
+             json.dumps(rx, ensure_ascii=False), json.dumps(out, ensure_ascii=False, default=str), utcnow_iso()),
         )
         self.conn.commit()
 

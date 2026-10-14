@@ -88,10 +88,68 @@ def test_rx09_fdc_plus_plain_brand_share_telmisartan(seeds):
     assert hit["visible_only_after_fdc_decomposition"] is True
 
 
-def test_rx10_unit_conflict_is_unverified(seeds):
+def test_rx10_unit_conflict_is_unverified_for_both_lines(seeds):
+    # Thyronorm is unresolved, so Pan 40 was never screened against it: the sibling line must NOT read as clean
     res = seeds["RX10"]
     st = {s["item_no"]: s["state"] for s in res["item_states"]}
-    assert st[2] == UNVERIFIED_INPUT and st[1] in (CHECKED_NO_HIT, PARTIAL_COVERAGE, UNVERIFIED_INPUT)
+    assert st[2] == UNVERIFIED_INPUT and st[1] == UNVERIFIED_INPUT
+
+
+def test_no_line_reads_clean_when_any_check_is_unverified(seeds):
+    for rx, res in seeds.items():
+        if any(c["status"] == UNVERIFIED_INPUT for c in res["checks"]):
+            assert not any(s["state"] == CHECKED_NO_HIT for s in res["item_states"]), rx
+
+
+def test_run_id_is_a_replay_key(conn, cfg):
+    rail = Rail(conn, cfg)
+    rx = {"rx_id": "T", "items": [{"item_no": 1, "written_product": "Dolo 650", "strength_as_written": "650 mg", "dose_frequency": "1-0-1"}]}
+    a, b = rail.run(rx, AS_OF), rail.run(rx, AS_OF)
+    assert a["run_id"] == b["run_id"] and a["run_id"].startswith("rail-")
+    assert rail.run(rx, "2026-10-15")["run_id"] != a["run_id"]
+    assert conn.execute("SELECT COUNT(*) FROM rail_run WHERE run_id=?", (a["run_id"],)).fetchone()[0] >= 2  # audit keeps every execution
+
+
+def test_dup_uses_stated_population(conn, cfg):
+    rail = Rail(conn, cfg)
+    rx = {"rx_id": "T", "patient_population": "adult", "items": [
+        {"item_no": 1, "written_product": "Dolo 650", "strength_as_written": "650 mg", "dose_frequency": "1-0-1"},
+        {"item_no": 2, "written_product": "Sinarest Tablet", "dose_frequency": "1-0-1"}]}
+    d = next(c for c in rail.run(rx, AS_OF)["checks"] if c["check_id"] == "DUP-001")
+    assert d["evidence"]["hits"][0]["reference_ceiling"]["population_matches_input"] is True
+
+
+def test_cumulative_breach_is_attributed_to_items(conn, cfg):
+    rail = Rail(conn, cfg)
+    rx = {"rx_id": "T", "patient_population": "adult", "items": [
+        {"item_no": 1, "written_product": "Dolo 650", "strength_as_written": "650 mg", "dose_frequency": "1-1-1-1"},
+        {"item_no": 2, "written_product": "Combiflam", "dose_frequency": "1-1-1"}]}   # 2600 + 975 = 3575 mg/day paracetamol
+    res = rail.run(rx, AS_OF)
+    cum = next(c for c in res["checks"] if c["check_id"] == "CUM-001")
+    assert cum["status"] == HIT
+    assert all("CUM-001" in s["note"] for s in res["item_states"])
+
+
+def _fake_item(no, ingredient_norms):
+    return {"input": {"item_no": no, "written_product": ingredient_norms[0]}, "review_item_id": None,
+            "frequency": {"units_per_day": 1.0, "kind": "fixed", "raw": "OD", "duration_days": None},
+            "resolution": {"status": "RESOLVED", "reason_code": None, "reason_detail": "", "method": "test", "confidence": 1.0, "candidates": [],
+                           "product": {"product_id": f"T{no}", "batch_id": "t", "brand_name": ingredient_norms[0].title(), "dose_form": "Tablet", "strength_text": "",
+                                       "ingredients": [{"norm": n, "ingredient": n.title(), "strength_value": 10.0, "strength_unit": "mg", "confidence": 1.0, "method": "test"} for n in ingredient_norms]}}}
+
+
+def test_unsigned_class_mapping_never_fires_as_hit(conn, cfg, monkeypatch):
+    # Sildenafil + Isosorbide Dinitrate matches the seed pair Sildenafil+Nitrates ONLY through the candidate-added,
+    # unsigned 'Nitrates' class mapping -> must be PARTIAL_COVERAGE (named), never a HIT
+    rail = Rail(conn, cfg)
+    fresh = {"cdci": {"expired": False}, "interactions": {"expired": False}, "gazette": {"expired": False}}
+    items = [_fake_item(1, ["sildenafil"]), _fake_item(2, ["isosorbide dinitrate"])]
+    c = rail._check_interactions(items, fresh)
+    assert c.status == PARTIAL_COVERAGE and c.evidence["unsigned_class_matches"]
+    assert "sign-off" in c.summary
+    monkeypatch.setenv("BRAHMO_RAIL__ALLOW_UNSIGNED_CLASS_MEMBERS", "true")
+    c2 = Rail(conn, cfg)._check_interactions(items, fresh)
+    assert c2.status == HIT and c2.evidence["hits"][0]["matched_via_class"] is True
 
 
 def test_no_known_bad_seed_is_missed(seeds):

@@ -4,11 +4,11 @@ Repository: private, fresh, full commit history preserved. Read access granted t
 (see `QA_DAY2.md` Q12 for the account to confirm).
 
 - [x] **How to run:** [`README.md`](README.md) — `make reproduce` from a clean clone: venv, migrations, data loads,
-      index, 51 tests, seeded rail outputs, mini-eval, trace. Measured ≈ 16 seconds; no API key, no Docker, no downloads
+      index, 63 tests, seeded rail outputs, mini-eval, trace. Measured ≈ 16 seconds; no API key, no Docker, no downloads
       beyond `pypdf` and `pytest`.
 - [x] **DESIGN.md:** [`DESIGN.md`](DESIGN.md) — opens with the system restatement and the three riskiest assumptions;
-      24 decisions, each with why, rejected alternative(s) and implication; a section on what the coding agent got
-      wrong and how it was caught.
+      30 decisions, each with why, rejected alternative(s) and implication; a section on what the coding agent got
+      wrong and how it was caught, and the six behavioural fixes from the code review.
 - [x] **SCALE.md:** [`SCALE.md`](SCALE.md) — where this strains at 100× and 100 concurrent users, in failure order.
 - [x] **Gaps register:** [`GAPS_REGISTER.md`](GAPS_REGISTER.md) — 12 scope cuts/limitations, 21 data anomalies with
       what the system does about each.
@@ -37,7 +37,7 @@ Repository: private, fresh, full commit history preserved. Read access granted t
 | G1 fresh-machine < 1 h | `make reproduce`; README table |
 | G2 decomposition ≥ 95 % | 160 FDCs decomposed from structured columns, cross-checked against `strength_text` (0 disagreements); confidence + method on every row (`product_ingredient`) |
 | G3 zero silent resolutions | `tests/test_resolver.py`; 730/783 stock rows and 3/18 seed lines queued with reason codes; fuzzy never resolves |
-| G4 rail demonstration | `outputs/seed_rail_summary.md`: RX01/02/03/07/09 HIT; RX04/08/10 UNVERIFIED_INPUT; RX05/06 clean on DUP/FDC/CUM with INT coverage declared; `tests/test_rail.py` |
+| G4 rail demonstration | `outputs/seed_rail_summary.md`: RX01/02/03/07/09 HIT; RX04/08/10 UNVERIFIED_INPUT on every line (an unresolved sibling means the line was not fully screened); RX05/06 clean on DUP/FDC/CUM with INT coverage declared; `tests/test_rail.py` |
 | G5 100 % provenance | `tests/test_ingest_provenance.py`; every output carries `data_versions` |
 | G6 no uncited clinical number | extractive claims are verbatim; `uncited_numbers_total = 0` in the eval; guard enforced in LLM mode |
-| G7 decisions with why + rejected alternative | `DESIGN.md` D-001…D-024 |
+| G7 decisions with why + rejected alternative | `DESIGN.md` D-001…D-030 |

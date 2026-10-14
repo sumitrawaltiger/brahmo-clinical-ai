@@ -6,6 +6,7 @@ AMBIGUOUS_STRENGTH_MISSING = "AMBIGUOUS_STRENGTH_MISSING"  # brand family found,
 AMBIGUOUS_FORM_MISSING = "AMBIGUOUS_FORM_MISSING"      # brand+strength found in several dose forms, none given
 FORM_MISMATCH = "FORM_MISMATCH"                        # billed form token contradicts every master row for that brand
 STRENGTH_MISMATCH = "STRENGTH_MISMATCH"                # written strength matches no master row for that brand
+STRENGTH_UNPARSEABLE = "STRENGTH_UNPARSEABLE"          # a strength was written but could not be read (e.g. '650mg/5ml', '1 tab'); never ignored
 FUZZY_ONLY = "FUZZY_ONLY"                              # only near-miss candidates exist (possible typo); never auto-accepted
 LLM_SUGGESTION_UNVERIFIED = "LLM_SUGGESTION_UNVERIFIED" # an LLM proposed a mapping that deterministic checks could not confirm
 TARGET_PARSE_UNCERTAIN = "TARGET_PARSE_UNCERTAIN"      # regulatory target text has an unresolvable qualifier or unknown ingredient

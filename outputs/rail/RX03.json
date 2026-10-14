@@ -1,5 +1,5 @@
 {
-  "run_id": "c759c877-6a7d-4676-a02a-a95d356faf03",
+  "run_id": "rail-2d8e5809b9c73a66",
   "rx_id": "RX03",
   "as_of": "2026-10-14",
   "engine_version": "rail-engine-1.0.0",
@@ -204,8 +204,10 @@
       "evidence": {
         "pairs_evaluated": 1,
         "seed_pairs_available": 15,
+        "seed_batch": "interactions:public-high-priority-2026:a68f50eb",
         "ingredients_not_in_seed": [],
-        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions",
+        "unsigned_class_matches": [],
+        "coverage_note": "the seed list has 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions",
         "hits": [
           {
             "ingredient_a": "Warfarin",
@@ -312,12 +314,12 @@
     {
       "item_no": 1,
       "state": "HIT",
-      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026)"
+      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026) (DUP-001=CHECKED_NO_HIT, FDC-001=CHECKED_NO_HIT, INT-001=HIT, CUM-001=CHECKED_NO_HIT)"
     },
     {
       "item_no": 2,
       "state": "HIT",
-      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026)"
+      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026) (DUP-001=CHECKED_NO_HIT, FDC-001=CHECKED_NO_HIT, INT-001=HIT, CUM-001=CHECKED_NO_HIT)"
     }
   ]
 }

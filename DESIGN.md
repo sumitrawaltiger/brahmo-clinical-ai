@@ -276,3 +276,56 @@ into the product metric, rewards a system that abstains whenever coverage is thi
   chunk text with `repr`.
 * First rail pass showed RX01 as `PARTIAL_COVERAGE` on FDC-001 because EV004's "Caffeine" was unknown to the master;
   correct behaviour for the data as given, but the right engineering answer was D-006.
+
+## Decisions added after the code review (2026-10-14)
+
+An unanchored review of `src/`, `migrations/`, `config/` and `tests/` produced 14 findings; all were applied.
+The ones that changed behaviour are recorded here; the rest were hygiene (constants moved to `config/settings.json`
+→ `ingest.*`, audit errors no longer swallowed, `--as-of` on the eval, duplicate question field removed).
+
+### D-025 — A resolved line is CHECKED_NO_HIT only when the whole prescription was screened
+- **Decision:** In the per-line roll-up, a check that is `UNVERIFIED_INPUT`/`PARTIAL_COVERAGE`/`SOURCE_CONFLICT`/
+  `DATA_EXPIRED` because of *another* line limits this line too; a HIT check with unresolved siblings counts as
+  `UNVERIFIED_INPUT` for the lines not involved in the hit. RX10's Pan 40 now reads `UNVERIFIED_INPUT`, not clean.
+- **Why:** The duplicate and interaction screens are pairwise; Pan 40 was never screened against the unresolved
+  Thyronorm line, so "clean" was a claim the system had not earned. The review found it; the original test tolerated it.
+- **Rejected:** Keeping line-level cleanliness independent of siblings (reads well, lies).
+
+### D-026 — Condition and marker matching is word-bounded
+- **Decision:** `rag/analysis.py` matches synonyms on word boundaries (markers may be word prefixes). `uti` no longer
+  fires inside "routine", `ors` not inside "factors"; a malaria or typhoid question now abstains before retrieval.
+- **Why:** Verified live by the reviewer: a malaria question had been answered from the UTI-in-pregnancy page — a
+  confident wrong answer, the one outcome the held-out scoring punishes.
+
+### D-027 — Every check reads only the serving (latest) batch per dataset
+- **Decision:** Resolver, event loading, interaction pairs and class members filter on the latest `load_batch` of
+  their dataset; `data_versions` in each output therefore names exactly the rows that were consulted.
+- **Why:** Loading a corrected file is the mandated path (new batch, never in-place edits); without the filter the
+  second load would have silently mixed with the first. This closes gap A12.
+
+### D-028 — Candidate-added class mappings cannot produce a verdict until signed
+- **Decision:** `ingredient_class_member.requires_signoff=1` rows are excluded from matching; a pair that would match
+  only through such a mapping is reported as `PARTIAL_COVERAGE` with the pair named (`unsigned_class_matches`).
+  `rail.allow_unsigned_class_members=true` is the explicit override for development.
+- **Why:** The supplement file says the mapping needs clinical sign-off; the engine was not reading the flag.
+
+### D-029 — REVOKED / LIFTED semantics
+- **Decision:** A REVOKED/LIFTED event never governs. If it supersedes a STAY, the instrument the stay suspended is
+  restored to force (`restored_by_revocation` in the evidence). If it supersedes a prohibition/restriction, nothing
+  is restored. A REVOKED/LIFTED row with no `supersedes_event_id` is queued at load as uninterpretable.
+- **Why:** The flat "superseded = gone" model would have cleared a prohibition when its stay was vacated.
+- **Rejected:** Refusing REVOKED/LIFTED rows entirely (they are real gazette outcomes; better to model the one
+  unambiguous case and queue the rest).
+
+### D-030 — Replay keys instead of random run ids; corpus-file fingerprint in the index
+- **Decision:** `run_id` (rail), `run_id` (Q&A) and `trace_id` are sha256 replay keys over input + date + rule/index
+  version + data batches; audit rows keep their own uuid (`migration 007`). `load_index` rebuilds when any corpus
+  file's sha256 differs from the one recorded in the index, not only when the chunker/embedder version changes.
+- **Why:** Checked-in outputs were dirty on every regeneration, hiding real drift; an edited PDF was served stale
+  under a comment that promised the opposite. `make outputs` twice now yields no diff.
+
+### What the review caught that the tests had not
+Six of the fourteen findings were behavioural (D-025..D-030); the regression tests added for them bring the suite to
+63. The common thread: each was a place where the *shape* of the honest state existed but one path did not reach it
+(a flag not read, a filter not applied, a key name mismatch). The lesson for `CLAUDE.md`: every "never" in the rules
+needs a test that tries to do it.

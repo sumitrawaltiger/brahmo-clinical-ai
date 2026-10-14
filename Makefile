@@ -22,7 +22,7 @@ rail: ## seeded rail demonstration -> outputs/rail/*.json, outputs/seed_prescrip
 	$(BIN)/python -m brahmo rail --seed --as-of 2026-10-14
 
 eval: ## Module B mini-eval -> outputs/eval/
-	$(BIN)/python -m brahmo eval
+	$(BIN)/python -m brahmo eval --as-of 2026-10-14
 
 trace: ## Module C sample trace -> outputs/trace_sample.json
 	$(BIN)/python -m brahmo trace --rx data/trace_sample_rx.json --question "Which analgesic class must be avoided in suspected dengue, and why?" --as-of 2026-10-14 --out outputs/trace_sample.json > /dev/null

@@ -24,8 +24,9 @@ _PAREN_RE = re.compile(r"\(([^)]*)\)")
 _FORM_WORDS = {"suspension": "Suspension", "suspensions": "Suspension", "syrup": "Syrup", "tablet": "Tablet", "tablets": "Tablet", "capsule": "Capsule"}
 
 
-def parse_target(description: str, target_type: str, known_ingredients: Dict[str, str]) -> Dict[str, object]:
+def parse_target(description: str, target_type: str, known_ingredients: Dict[str, str], conf: Optional[Dict[str, float]] = None) -> Dict[str, object]:
     """Interpret a free-text gazette target. Returns dict for regulatory_target + a list of problems."""
+    conf = conf or {"default": 0.95, "unresolved_terms": 0.4, "ratio_qualifier": 0.5}
     problems: List[str] = []
     quals = [q.strip().lower() for q in _PAREN_RE.findall(description)]
     core = _PAREN_RE.sub("", description)
@@ -85,11 +86,11 @@ def parse_target(description: str, target_type: str, known_ingredients: Dict[str
     if fdc_only:
         match_mode = "contains_all_fdc_only"
 
-    confidence = 0.95
+    confidence = float(conf["default"])
     if unresolved:
-        confidence = 0.4
+        confidence = float(conf["unresolved_terms"])
     if ratio_q:
-        confidence = min(confidence, 0.5)
+        confidence = min(confidence, float(conf["ratio_qualifier"]))
     return {
         "ingredient_set": sorted(set(ing_set)),
         "match_mode": match_mode,
@@ -128,6 +129,8 @@ def load(conn: sqlite3.Connection, cfg: Optional[Config] = None, path: Optional[
             problems.append(f"unknown target_type '{ttype}'")
         if sup and sup not in ids:
             problems.append(f"supersedes unknown event '{sup}'")
+        if action in ("REVOKED", "LIFTED") and not sup:
+            problems.append("REVOKED/LIFTED event names nothing it revokes (no supersedes_event_id); it cannot be applied")
         if r["effective_date"] < r["date_published"]:
             problems.append("effective_date precedes date_published")
         conn.execute(
@@ -136,7 +139,7 @@ def load(conn: sqlite3.Connection, cfg: Optional[Config] = None, path: Optional[
             (r["event_id"].strip(), batch_id, r["notification_id"].strip(), r["date_published"].strip(), r["effective_date"].strip(),
              action, ttype, r["target_description"].strip(), sup, (r.get("note") or "").strip(), "Gazette of India (assessment extract)"),
         )
-        t = parse_target(r["target_description"], ttype, known)
+        t = parse_target(r["target_description"], ttype, known, cfg.get("ingest.gazette_parse_confidence"))
         problems.extend(t["problems"])
         conn.execute(
             """INSERT INTO regulatory_target(event_id, batch_id, ingredient_set, match_mode, form_qualifier, population_qualifier,

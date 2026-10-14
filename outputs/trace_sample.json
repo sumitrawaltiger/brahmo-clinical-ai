@@ -1,7 +1,6 @@
 {
-  "trace_id": "8e901aad-dfbc-44d7-84dc-121c49b5d9d5",
+  "trace_id": "trace-b12a561a5c4430cd",
   "schema_version": "1.0",
-  "created_at": "2026-10-14T08:58:25+00:00",
   "as_of": "2026-10-14",
   "input": {
     "prescription": {
@@ -319,8 +318,8 @@
               },
               "max_mg_per_day": 3000,
               "exceeds": false,
-              "population_matches_input": false,
-              "note": "aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+              "population_matches_input": true,
+              "note": "aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1)"
             }
           }
         ]
@@ -447,12 +446,14 @@
       "evidence": {
         "pairs_evaluated": 14,
         "seed_pairs_available": 15,
+        "seed_batch": "interactions:public-high-priority-2026:a68f50eb",
         "ingredients_not_in_seed": [
           "Chlorpheniramine",
           "Paracetamol",
           "Phenylephrine"
         ],
-        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions",
+        "unsigned_class_matches": [],
+        "coverage_note": "the seed list has 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions",
         "hits": [
           {
             "ingredient_a": "Warfarin",
@@ -667,22 +668,22 @@
     {
       "item_no": 1,
       "state": "HIT",
-      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2950.0 mg/day; aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2950.0 mg/day; aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1) (DUP-001=HIT, FDC-001=UNVERIFIED_INPUT, INT-001=HIT, CUM-001=UNVERIFIED_INPUT)"
     },
     {
       "item_no": 2,
       "state": "HIT",
-      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2950.0 mg/day; aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate 2950.0 mg/day; aggregate 2950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1) (DUP-001=HIT, FDC-001=UNVERIFIED_INPUT, INT-001=HIT, CUM-001=UNVERIFIED_INPUT)"
     },
     {
       "item_no": 3,
       "state": "HIT",
-      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026)"
+      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026) (DUP-001=HIT, FDC-001=UNVERIFIED_INPUT, INT-001=HIT, CUM-001=UNVERIFIED_INPUT)"
     },
     {
       "item_no": 4,
       "state": "HIT",
-      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026)"
+      "note": "INT-001 SEVERE: Warfarin + Azithromycin SEVERE (INR elevation; bleeding; public-high-priority-2026) (DUP-001=HIT, FDC-001=UNVERIFIED_INPUT, INT-001=HIT, CUM-001=UNVERIFIED_INPUT)"
     },
     {
       "item_no": 5,
@@ -755,7 +756,6 @@
       "model_abstained": null
     },
     "analysis": {
-      "question": "Which analgesic class must be avoided in suspected dengue, and why?",
       "conditions_in_corpus": [
         "dengue"
       ],
@@ -791,49 +791,49 @@
         "source": "CDCI-SUBSET-2026Q2",
         "source_version": "2026-06-30",
         "file_sha256": "8f7cdf39bded99adff6fb58d7305b1c99ffaa3483ed8ab628e8a14d6f95afed7",
-        "loaded_at": "2026-10-14T08:36:53+00:00"
+        "loaded_at": "2026-10-14T11:03:48+00:00"
       },
       "ingredient_supplement": {
         "batch_id": "ingredient_supplement:2026-10-14:b83d8fc4",
         "source": "candidate-added ingredient vocabulary",
         "source_version": "2026-10-14",
         "file_sha256": "b83d8fc4a1377cc30025f92a946f50a69cf574bcfa36d0381454752c721a545a",
-        "loaded_at": "2026-10-14T08:36:53+00:00"
+        "loaded_at": "2026-10-14T11:03:49+00:00"
       },
       "nlem": {
         "batch_id": "nlem:NLEM 2022:e212cce8",
         "source": "NLEM extract",
         "source_version": "NLEM 2022",
         "file_sha256": "e212cce8d4a5eb44d8825856fe4e869e89c09e24669a975596311805957328c8",
-        "loaded_at": "2026-10-14T08:36:53+00:00"
+        "loaded_at": "2026-10-14T11:03:49+00:00"
       },
       "jan_aushadhi": {
         "batch_id": "jan_aushadhi:PMBJP-2026-05:1bb7228d",
         "source": "Jan Aushadhi (PMBJP) extract",
         "source_version": "PMBJP-2026-05",
         "file_sha256": "1bb7228d8b6f377bfaab4d46402f93f035d8adc4391087670e00d5943a0e4506",
-        "loaded_at": "2026-10-14T08:36:53+00:00"
+        "loaded_at": "2026-10-14T11:03:49+00:00"
       },
       "gazette": {
         "batch_id": "gazette:extract-through-2025-11-02:a57b5a9d",
         "source": "Gazette of India notifications (assessment extract)",
         "source_version": "extract-through-2025-11-02",
         "file_sha256": "a57b5a9dd4e93714d184b1bc444f03b738bb6aa2afe0fc27200be8fd73a818f5",
-        "loaded_at": "2026-10-14T08:36:53+00:00"
+        "loaded_at": "2026-10-14T11:03:49+00:00"
       },
       "interactions": {
         "batch_id": "interactions:public-high-priority-2026:a68f50eb",
         "source": "severe interaction seed (ingredient-level)",
         "source_version": "public-high-priority-2026",
         "file_sha256": "a68f50ebe14b902e185d3f94122ff684d0fbf790c8a9a6be73298511ffc836d9",
-        "loaded_at": "2026-10-14T08:36:53+00:00"
+        "loaded_at": "2026-10-14T11:03:49+00:00"
       },
       "pharmacy_stock": {
         "batch_id": "pharmacy_stock:snapshot-ref-2026-10-14:fcb9f617",
         "source": "clinic pharmacy stock export",
         "source_version": "snapshot-ref-2026-10-14",
         "file_sha256": "fcb9f6175e5b87d6b2da3d3e8fd9464d5b4285bca7399ea40cd4e1172a50162f",
-        "loaded_at": "2026-10-14T08:36:53+00:00"
+        "loaded_at": "2026-10-14T11:03:49+00:00"
       }
     },
     "freshness": {
@@ -880,11 +880,11 @@
       "prompt_version": null,
       "prompt_file_sha256": "73e57a8defc4"
     },
-    "config_sha256": "bd32b79c308a"
+    "config_sha256": "625b849a8fd0"
   },
   "run_ids": {
-    "rail_run_id": "bacd84ff-d40a-41a8-bf60-a53982e23e5b",
-    "qa_run_id": "755c2704-a545-4cac-b174-32730694498a"
+    "rail_run_id": "rail-1c2741610fbdef25",
+    "qa_run_id": "qa-28c5fb57a4fa22dd"
   },
   "doctor_decides": "Nothing here is final. Every state above is a draft check or a cited excerpt for the prescribing doctor to confirm or reject."
 }

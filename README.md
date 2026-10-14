@@ -21,7 +21,7 @@ make reproduce
 |---|---|---|
 | venv | `python3 -m venv .venv && pip install -e ".[dev]"` | isolated environment |
 | setup | `brahmo setup` | `build/brahmo.sqlite` via numbered migrations (`migrations/00*.sql`), every dataset loaded with a `load_batch` (sha256 + declared version), review queue populated, `build/rag_index.json` built |
-| test | `pytest` | 51 tests: provenance, zero-silent-resolution, event-sourced status, rail contract, Module B, trace |
+| test | `pytest` | 63 tests: provenance, zero-silent-resolution, event-sourced status, rail contract, Module B, trace |
 | rail | `brahmo rail --seed --as-of 2026-10-14` | `outputs/rail/RX01..RX10.json`, `outputs/seed_prescriptions_completed.csv`, `outputs/seed_rail_summary.md` |
 | eval | `brahmo eval` | `outputs/eval/mini_eval_results.{json,md}`, `outputs/eval/answers_full.json` |
 | trace | `brahmo trace ...` | `outputs/trace_sample.json` |

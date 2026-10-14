@@ -1,5 +1,5 @@
 {
-  "run_id": "4d9eee7a-1249-41a1-bd83-586ad0041776",
+  "run_id": "rail-8d555a133a0a9a7a",
   "rx_id": "RX05",
   "as_of": "2026-10-14",
   "engine_version": "rail-engine-1.0.0",
@@ -204,11 +204,13 @@
       "evidence": {
         "pairs_evaluated": 1,
         "seed_pairs_available": 15,
+        "seed_batch": "interactions:public-high-priority-2026:a68f50eb",
         "ingredients_not_in_seed": [
           "Atorvastatin",
           "Metformin"
         ],
-        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
+        "unsigned_class_matches": [],
+        "coverage_note": "the seed list has 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
       },
       "unverified_items": [],
       "data_versions": {
@@ -299,12 +301,12 @@
     {
       "item_no": 1,
       "state": "PARTIAL_COVERAGE",
-      "note": "resolved (DUP-001=CHECKED_NO_HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=CHECKED_NO_HIT); INT-001: no seed pair matched, but 2 ingredient(s) are not covered by the seed list: Atorvastatin, Metformin"
+      "note": "resolved, but not fully screened (DUP-001=CHECKED_NO_HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=CHECKED_NO_HIT); INT-001: no seed pair matched, but 2 ingredient(s) are not covered by the seed list: Atorvastatin, Metformin"
     },
     {
       "item_no": 2,
       "state": "PARTIAL_COVERAGE",
-      "note": "resolved (DUP-001=CHECKED_NO_HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=CHECKED_NO_HIT); INT-001: no seed pair matched, but 2 ingredient(s) are not covered by the seed list: Atorvastatin, Metformin"
+      "note": "resolved, but not fully screened (DUP-001=CHECKED_NO_HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=CHECKED_NO_HIT); INT-001: no seed pair matched, but 2 ingredient(s) are not covered by the seed list: Atorvastatin, Metformin"
     }
   ]
 }

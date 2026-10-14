@@ -1,5 +1,5 @@
 {
-  "run_id": "e8a06a44-d545-4fb2-8804-16ab53d8a1c3",
+  "run_id": "rail-42b4686819aa7635",
   "rx_id": "RX07",
   "as_of": "2026-10-14",
   "engine_version": "rail-engine-1.0.0",
@@ -249,10 +249,12 @@
       "evidence": {
         "pairs_evaluated": 0,
         "seed_pairs_available": 15,
+        "seed_batch": "interactions:public-high-priority-2026:a68f50eb",
         "ingredients_not_in_seed": [
           "Paracetamol"
         ],
-        "coverage_note": "the seed list is 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
+        "unsigned_class_matches": [],
+        "coverage_note": "the seed list has 15 ingredient-level pairs; an ingredient absent from it has NOT been screened for interactions"
       },
       "unverified_items": [],
       "data_versions": {
@@ -340,12 +342,12 @@
     {
       "item_no": 1,
       "state": "HIT",
-      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate ≥1950.0 mg/day; aggregate ≥1950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate ≥1950.0 mg/day; aggregate ≥1950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed (DUP-001=HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=PARTIAL_COVERAGE)"
     },
     {
       "item_no": 2,
       "state": "HIT",
-      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate ≥1950.0 mg/day; aggregate ≥1950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed"
+      "note": "DUP-001 MODERATE: Paracetamol in items [1, 2]; aggregate ≥1950.0 mg/day; aggregate ≥1950.0 mg/day is within the cited adult ceiling (max 3 g/day adult, STW-GP-01 v2025.1); patient population not supplied, ceiling applicability not confirmed (DUP-001=HIT, FDC-001=CHECKED_NO_HIT, INT-001=PARTIAL_COVERAGE, CUM-001=PARTIAL_COVERAGE)"
     }
   ]
 }

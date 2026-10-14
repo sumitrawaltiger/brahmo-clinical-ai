@@ -13,6 +13,7 @@ from dataclasses import dataclass, field, asdict
 from typing import Any, Dict, List, Optional
 
 from ..config import Config, load_config
+from ..ingest.batches import latest_batch
 from . import reasons
 from .text import norm_key
 
@@ -135,6 +136,10 @@ def resolve(
 ) -> Resolution:
     cfg = cfg or load_config()
     mconf: Dict[str, float] = cfg["resolver.method_confidence"]
+    if batch_id is None:
+        # only the serving (latest) drug-master batch is ever consulted, so a reload never mixes old and new rows
+        lb = latest_batch(conn, "cdci")
+        batch_id = lb["batch_id"] if lb else None
     key = norm_key(text)
     strength = parse_strength(strength_as_written)
     res = Resolution(input_text=text, status=UNRESOLVED, norm_key=key, strength_given=strength, form_given=form)
@@ -211,6 +216,15 @@ def resolve(
 
     pre_filter = list(cands)
     filtered = cands
+
+    # a strength that was written but cannot be read is never ignored: that would resolve as if nothing had been written
+    if strength and not strength.get("parseable"):
+        res.status = UNRESOLVED
+        res.reason_code = reasons.STRENGTH_UNPARSEABLE
+        res.reason_detail = f"written strength '{strength['raw']}' could not be parsed (expected '<number> <unit>'); brand '{key}' matched {len(cands)} row(s) but the strength was not checked"
+        res.candidates = [_cand_dict(c) for c in cands]
+        res.method = method
+        return res
 
     # strength filter
     if strength and strength.get("parseable") and strength.get("value") is not None:

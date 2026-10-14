@@ -49,6 +49,10 @@ def load_jan_aushadhi(conn: sqlite3.Connection, cfg: Optional[Config] = None, pa
     rows = read_csv(path)
     version = sorted({r.get("catalog_version", "") for r in rows})
     batch_id = register_batch(conn, "jan_aushadhi", "Jan Aushadhi (PMBJP) extract", version[-1] if version else "unknown", path, len(rows))
+    pl = cfg.get("ingest.jan_aushadhi_plausibility", {})
+    suspicious_from = float(pl.get("solid_strength_suspicious_from_mg", 500))
+    never_high = {g.lower() for g in pl.get("generics_never_at_high_solid_strength", [])}
+    not_syrup = {g.lower() for g in pl.get("generics_not_marketed_as_syrup", [])}
     flagged = 0
     for idx, r in enumerate(rows, start=2):
         flag = None
@@ -57,16 +61,10 @@ def load_jan_aushadhi(conn: sqlite3.Connection, cfg: Optional[Config] = None, pa
         unit = m.group(2).lower() if m else None
         pack = (r.get("pack") or "").lower()
         generic = r["generic_name"].strip()
-        # plausibility windows: a solid-dose "strength" above 1000 mg or a liquid labelled per-bottle mg are suspicious in this extract
-        if val is not None and unit == "mg" and val >= 500 and generic.lower() in {
-            "losartan", "rosuvastatin", "clopidogrel", "ondansetron", "levocetirizine", "chlorpheniramine", "sertraline",
-            "prednisolone", "folic acid", "omeprazole", "domperidone", "glimepiride", "montelukast", "calcium carbonate",
-            "iron (ferrous ascorbate)", "vitamin d3", "nimesulide", "serratiopeptidase", "trypsin-chymotrypsin", "thyroxine",
-            "aceclofenac", "rabeprazole", "salbutamol", "telmisartan", "amlodipine", "hydrochlorothiazide", "phenylephrine",
-            "nitrofurantoin", "clavulanic acid", "sitagliptin", "atenolol", "cefixime", "ciprofloxacin", "ofloxacin", "metformin",
-        }:
+        # plausibility windows come from config/settings.json -> ingest.jan_aushadhi_plausibility
+        if val is not None and unit == "mg" and val >= suspicious_from and generic.lower() in never_high:
             flag = "IMPLAUSIBLE_STRENGTH"
-        if "syrup" in pack and generic.lower() in {"telmisartan", "amlodipine", "losartan", "sertraline", "montelukast", "calcium carbonate", "prednisolone", "aceclofenac", "cefixime", "iron (ferrous ascorbate)", "clavulanic acid"}:
+        if "syrup" in pack and generic.lower() in not_syrup:
             flag = (flag + "+" if flag else "") + "IMPLAUSIBLE_PACK_FOR_GENERIC"
         if flag:
             flagged += 1
